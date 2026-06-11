@@ -22,7 +22,8 @@
       --muted:   #64748b;
       --label:   #374151;
       --optional:#94a3b8;
-      /* section colors */
+      --danger:  #dc2626;
+      --danger-light:#fef2f2;
       --sec-ec:  #2563eb;
       --sec-em:  #7c3aed;
       --sec-en:  #0891b2;
@@ -40,7 +41,7 @@
       min-height: 100vh;
     }
 
-    /* ─── TOP NAV ─────────────────────────────────────────── */
+    /* ───── TOPNAV ───── */
     .topnav {
       background: var(--navy);
       display: flex;
@@ -88,177 +89,158 @@
     .nav-btn.active { background: rgba(132,204,22,.15); color: var(--lime); }
     .nav-btn .nb-icon { font-size: 16px; }
 
-    /* ─── PAGES ───────────────────────────────────────────── */
+    /* admin toggle */
+    .admin-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: background .15s;
+    }
+    .admin-toggle:hover { background: rgba(255,255,255,.08); }
+    .admin-toggle .at-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #b4c8e6;
+      white-space: nowrap;
+    }
+    .admin-toggle .at-switch {
+      width: 38px; height: 21px;
+      background: rgba(255,255,255,.2);
+      border-radius: 20px;
+      position: relative;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .admin-toggle .at-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 17px; height: 17px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform .2s;
+    }
+    body.admin-mode .admin-toggle .at-switch { background: var(--lime); }
+    body.admin-mode .admin-toggle .at-switch::after { transform: translateX(17px); }
+    body.admin-mode .admin-toggle .at-label { color: var(--lime); }
+
+    /* admin badge banner */
+    .admin-banner {
+      display: none;
+      background: #fef3c7;
+      border-bottom: 1px solid #fcd34d;
+      padding: 9px 24px;
+      font-size: 0.82rem;
+      color: #92400e;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    body.admin-mode .admin-banner { display: flex; }
+    .admin-banner .ab-left { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    .admin-banner .ab-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ab-btn {
+      border: 1px solid #d97706;
+      background: #fff;
+      color: #b45309;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .ab-btn:hover { background: #d97706; color: #fff; }
+    .ab-btn.danger { border-color: var(--danger); color: var(--danger); }
+    .ab-btn.danger:hover { background: var(--danger); color: #fff; }
+
+    /* ───── PAGES ───── */
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ─── HOME ────────────────────────────────────────────── */
-    .home-hero {
-      background: var(--navy);
-      padding: 64px 24px 56px;
-      text-align: center;
-    }
-    .home-hero h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -.5px;
-    }
-    .home-hero h1 span { color: var(--lime); }
-    .home-hero p {
-      color: #b4c8e6;
-      margin-top: 10px;
-      font-size: 1rem;
-    }
-    .home-accent {
-      width: 100%;
-      height: 3px;
-      background: var(--lime);
-    }
+    /* admin/user visibility helpers */
+    .only-admin { display: none; }
+    body.admin-mode .only-admin { display: block; }
+    body.admin-mode .only-user  { display: none; }
 
+    /* ───── HOME ───── */
+    .home-hero { background: var(--navy); padding: 64px 24px 56px; text-align: center; }
+    .home-hero h1 { font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: -.5px; }
+    .home-hero h1 span { color: var(--lime); }
+    .home-hero p { color: #b4c8e6; margin-top: 10px; font-size: 1rem; }
+    .home-accent { width: 100%; height: 3px; background: var(--lime); }
     .home-grid {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 24px 60px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      max-width: 900px; margin: 0 auto; padding: 40px 24px 60px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
     }
     .home-card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1.5px solid var(--border);
-      padding: 28px 24px 24px;
-      box-shadow: 0 1px 6px rgba(0,0,0,.05);
-      cursor: pointer;
+      background: var(--card); border-radius: 16px; border: 1.5px solid var(--border);
+      padding: 28px 24px 24px; box-shadow: 0 1px 6px rgba(0,0,0,.05); cursor: pointer;
       transition: box-shadow .2s, border-color .2s, transform .15s;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .home-card:hover {
-      box-shadow: 0 6px 24px rgba(37,99,235,.12);
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
+    .home-card:hover { box-shadow: 0 6px 24px rgba(37,99,235,.12); border-color: var(--primary); transform: translateY(-2px); }
     .home-card .hc-icon {
-      font-size: 2.2rem;
-      width: 52px; height: 52px;
-      background: var(--primary-light);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; width: 52px; height: 52px; background: var(--primary-light);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
     }
     .home-card h2 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
     .home-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
     .home-card .hc-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      background: #f1f5f9;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-top: 4px;
+      display: inline-block; font-size: 0.72rem; font-weight: 600; background: #f1f5f9;
+      color: var(--muted); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; margin-top: 4px;
     }
-
     .home-stats {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px 48px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
+      max-width: 900px; margin: 0 auto; padding: 0 24px 48px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
     }
-    .stat-card {
-      background: var(--card);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      padding: 20px;
-      text-align: center;
-    }
+    .stat-card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 20px; text-align: center; }
     .stat-card .sv { font-size: 1.8rem; font-weight: 800; color: var(--navy); }
     .stat-card .sl { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-    /* ─── SHARED SECTION STYLES ───────────────────────────── */
+    /* ───── SHARED ───── */
     .section-wrap {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 32px 16px 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      max-width: 780px; margin: 0 auto; padding: 32px 16px 60px;
+      display: flex; flex-direction: column; gap: 20px;
     }
-
     .page-header { text-align: center; margin-bottom: 16px; }
     .page-header h1 { font-size: 1.6rem; font-weight: 700; color: var(--text); letter-spacing: -.5px; }
     .page-header p { color: var(--muted); margin-top: 6px; font-size: 0.95rem; }
 
     .topic-separator { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
-    .topic-separator .topic-label {
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.2px;
-      text-transform: uppercase; color: var(--muted); white-space: nowrap;
-    }
+    .topic-separator .topic-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
     .topic-separator .topic-line { flex: 1; height: 1px; background: var(--border); }
 
-    /* ─── CLIENT CARD ─────────────────────────────────────── */
-    .client-card {
-      background: var(--card); border-radius: 14px;
-      border: 1px solid var(--border); padding: 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-    }
-    .client-card label {
-      font-weight: 600; font-size: 0.9rem; color: var(--label);
-      display: block; margin-bottom: 8px;
-    }
-    .client-card input {
-      width: 100%; padding: 11px 14px;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: 1rem; color: var(--text); transition: border-color .2s; outline: none;
-    }
+    .client-card { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+    .client-card label { font-weight: 600; font-size: 0.9rem; color: var(--label); display: block; margin-bottom: 8px; }
+    .client-card input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; color: var(--text); transition: border-color .2s; outline: none; }
     .client-card input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px #2563eb22; }
 
-    /* ─── SECTION CARDS (PDF generator) ──────────────────── */
-    .section-card {
-      background: var(--card); border-radius: 14px;
-      border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,.05); overflow: hidden;
-    }
-    .section-header {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 22px; background: var(--primary-light);
-      border-bottom: 1px solid var(--border); cursor: pointer; user-select: none;
-    }
-    .section-header .icon {
-      width: 36px; height: 36px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 18px;
-    }
+    .section-card { background: var(--card); border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,.05); overflow: hidden; }
+    .section-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; background: var(--primary-light); border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+    .section-header .icon { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
     .section-header .section-title { flex: 1; }
     .section-header .section-title h2 { font-size: 1rem; font-weight: 700; color: var(--text); }
     .section-header .section-title span { font-size: 0.78rem; color: var(--muted); }
-    .section-header .toggle-badge {
-      font-size: 0.72rem; font-weight: 600; padding: 3px 10px;
-      border-radius: 20px; background: #f1f5f9; color: #475569; border: 1px solid var(--border);
-    }
+    .section-header .toggle-badge { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: #f1f5f9; color: #475569; border: 1px solid var(--border); }
     .section-header .chevron { color: var(--muted); font-size: 14px; transition: transform .25s; }
     .section-header.open .chevron { transform: rotate(180deg); }
 
-    .sec-ecommerce .section-header  { background: #eff6ff; }
-    .sec-ecommerce .icon            { background: #dbeafe; color: var(--sec-ec); }
-    .sec-email .section-header      { background: #f5f3ff; }
-    .sec-email .icon                { background: #ede9fe; color: var(--sec-em); }
-    .sec-envio .section-header      { background: #ecfeff; }
-    .sec-envio .icon                { background: #cffafe; color: var(--sec-en); }
-    .sec-dominio .section-header    { background: #ecfdf5; }
-    .sec-dominio .icon              { background: #d1fae5; color: var(--sec-dom); }
-    .sec-facebook .section-header   { background: #eff6ff; }
-    .sec-facebook .icon             { background: #dbeafe; color: var(--sec-fb); }
-    .sec-google .section-header     { background: #fff1f2; }
-    .sec-google .icon               { background: #fee2e2; color: var(--sec-gg); }
-    .sec-erp .section-header        { background: #fffbeb; }
-    .sec-erp .icon                  { background: #fde68a; color: var(--sec-erp); }
-    .sec-marketplace .section-header{ background: #faf5ff; }
-    .sec-marketplace .icon          { background: #ede9fe; color: var(--sec-mk); }
+    .sec-ecommerce .section-header  { background: #eff6ff; } .sec-ecommerce .icon { background: #dbeafe; color: var(--sec-ec); }
+    .sec-email .section-header      { background: #f5f3ff; } .sec-email .icon { background: #ede9fe; color: var(--sec-em); }
+    .sec-envio .section-header      { background: #ecfeff; } .sec-envio .icon { background: #cffafe; color: var(--sec-en); }
+    .sec-dominio .section-header    { background: #ecfdf5; } .sec-dominio .icon { background: #d1fae5; color: var(--sec-dom); }
+    .sec-facebook .section-header   { background: #eff6ff; } .sec-facebook .icon { background: #dbeafe; color: var(--sec-fb); }
+    .sec-google .section-header     { background: #fff1f2; } .sec-google .icon { background: #fee2e2; color: var(--sec-gg); }
+    .sec-erp .section-header        { background: #fffbeb; } .sec-erp .icon { background: #fde68a; color: var(--sec-erp); }
+    .sec-marketplace .section-header{ background: #faf5ff; } .sec-marketplace .icon { background: #ede9fe; color: var(--sec-mk); }
 
     .section-body { padding: 22px; display: none; flex-direction: column; gap: 16px; }
     .section-body.open { display: flex; }
@@ -266,428 +248,247 @@
     .field-group { display: flex; flex-direction: column; gap: 6px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     @media(max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
-
-    .field-group label {
-      font-size: 0.84rem; font-weight: 600; color: var(--label);
-      display: flex; align-items: center; gap: 5px;
+    .field-group label { font-size: 0.84rem; font-weight: 600; color: var(--label); display: flex; align-items: center; gap: 5px; }
+    .field-group label .opt { font-size: 0.72rem; font-weight: 500; color: var(--optional); background: #f8fafc; border: 1px solid var(--border); padding: 1px 7px; border-radius: 10px; }
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 0.92rem; color: var(--text); background: #fff; transition: border-color .2s; outline: none; font-family: inherit;
     }
-    .field-group label .opt {
-      font-size: 0.72rem; font-weight: 500; color: var(--optional);
-      background: #f8fafc; border: 1px solid var(--border);
-      padding: 1px 7px; border-radius: 10px;
-    }
-    .field-group input, .field-group select {
-      width: 100%; padding: 10px 13px;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: 0.92rem; color: var(--text); background: #fff;
-      transition: border-color .2s; outline: none;
-    }
-    .field-group input:focus, .field-group select:focus {
-      border-color: var(--primary); box-shadow: 0 0 0 3px #2563eb1a;
-    }
-    .field-group input::placeholder { color: #b0bec5; }
+    .field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px #2563eb1a; }
+    .field-group input::placeholder, .field-group textarea::placeholder { color: #b0bec5; }
 
     .hint { font-size: 0.76rem; color: var(--optional); margin-top: 2px; }
     .divider { height: 1px; background: var(--border); margin: 4px 0; }
-    .sub-label {
-      font-size: 0.8rem; font-weight: 700; color: var(--muted);
-      text-transform: uppercase; letter-spacing: .5px; margin-bottom: -4px;
-    }
+    .sub-label { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: -4px; }
 
-    /* ─── BUTTONS ─────────────────────────────────────────── */
     .action-bar { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 10px;
-      font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none;
-      transition: background .2s, transform .1s, box-shadow .2s;
-    }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; transition: background .2s, transform .1s, box-shadow .2s; }
     .btn:active { transform: scale(0.98); }
     .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px #2563eb44; flex: 1; }
     .btn-primary:hover { background: var(--primary-dark); }
     .btn-secondary { background: #fff; color: var(--text); border: 1.5px solid var(--border); }
     .btn-secondary:hover { background: var(--bg); }
-    .btn-lime { background: var(--lime); color: var(--navy); }
-    .btn-lime:hover { background: var(--lime-dk); }
     .btn svg { width: 18px; height: 18px; }
 
-    /* ─── MESSAGES PAGE ───────────────────────────────────── */
-    .msg-page-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 16px 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .msg-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .msg-tab {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 18px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--muted);
-      transition: all .15s;
-    }
+    /* ───── MENSAGENS ───── */
+    .msg-page-wrap { max-width: 900px; margin: 0 auto; padding: 32px 16px 60px; display: flex; flex-direction: column; gap: 24px; }
+    .msg-tabs { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .msg-tab { background: var(--card); border: 1.5px solid var(--border); border-radius: 10px; padding: 8px 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all .15s; }
     .msg-tab:hover { border-color: var(--primary); color: var(--primary); }
     .msg-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-    .msg-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 16px;
-    }
+    .msg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 16px; }
     @media(max-width: 480px) { .msg-grid { grid-template-columns: 1fr; } }
 
-    .msg-card {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-      display: flex;
-      flex-direction: column;
-    }
-    .msg-card-header {
-      padding: 14px 18px 10px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .msg-card-icon {
-      font-size: 1.4rem;
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .msg-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); display: flex; flex-direction: column; }
+    .msg-card.full { grid-column: 1 / -1; }
+    .msg-card-header { padding: 14px 18px 10px; display: flex; align-items: flex-start; gap: 12px; }
+    .msg-card-icon { font-size: 1.4rem; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .msg-card-meta { flex: 1; }
     .msg-card-meta h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
     .msg-card-meta span { font-size: 0.78rem; color: var(--muted); }
-    .msg-card-body {
-      background: #f8fafc;
-      border-top: 1px solid var(--border);
-      padding: 14px 18px;
-      flex: 1;
-    }
-    .msg-card-body pre {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      font-size: 0.82rem;
-      color: var(--text);
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .msg-card-actions {
-      padding: 10px 18px 14px;
-      display: flex;
-      gap: 8px;
-    }
-    .btn-copy {
-      background: none;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 7px 14px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-      transition: all .15s;
-    }
+    .msg-card-body { background: #f8fafc; border-top: 1px solid var(--border); padding: 14px 18px; flex: 1; }
+    .msg-card-body pre { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 0.82rem; color: var(--text); line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .msg-card-actions { padding: 10px 18px 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-copy { background: none; border: 1.5px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all .15s; }
     .btn-copy:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
     .btn-copy.copied { border-color: #16a34a; color: #16a34a; background: #f0fdf4; }
 
-    /* variable chips inside messages */
-    .msg-card-body pre .var {
-      background: #dbeafe;
-      color: #1d4ed8;
-      border-radius: 4px;
-      padding: 1px 4px;
-      font-size: 0.78rem;
-    }
+    /* admin mini buttons on cards */
+    .card-admin-row { padding: 0 18px 14px; display: none; gap: 8px; flex-wrap: wrap; }
+    body.admin-mode .card-admin-row { display: flex; }
+    .mini-btn { border: 1.5px solid var(--border); background: #fff; border-radius: 8px; padding: 6px 12px; font-size: 0.78rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 5px; }
+    .mini-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .mini-btn.danger:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+    .mini-btn:disabled { opacity: .35; cursor: not-allowed; }
 
-    /* ─── DOCS PAGE ───────────────────────────────────────── */
-    .docs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 16px 60px;
-    }
-    .doc-card {
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .doc-card .dc-icon {
-      font-size: 2rem;
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-    }
+    /* section label (admin add buttons live here) */
+    .msg-section-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .msg-section-label .lbl-line { flex: 1; height: 1px; background: var(--border); }
+    .msg-section-label .lbl-admin { display: none; gap: 6px; }
+    body.admin-mode .msg-section-label .lbl-admin { display: flex; }
+
+    .msg-card[data-hidden="true"] { display: none; }
+
+    /* search wrap */
+    .msg-search-wrap { position: relative; }
+    .msg-search-wrap input { width: 100%; padding: 11px 16px 11px 42px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.9rem; color: var(--text); background: var(--card); outline: none; transition: border-color .2s; }
+    .msg-search-wrap input:focus { border-color: var(--primary); }
+    .msg-search-wrap .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 1rem; }
+
+    /* admin toolbar for tabs (manage filters) */
+    .admin-toolbar { display: none; gap: 8px; flex-wrap: wrap; margin-top: -8px; }
+    body.admin-mode .admin-toolbar { display: flex; }
+    .toolbar-btn { background: var(--lime); border: none; color: var(--navy); border-radius: 9px; padding: 8px 16px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background .15s; display: flex; align-items: center; gap: 6px; }
+    .toolbar-btn:hover { background: var(--lime-dk); }
+    .toolbar-btn.alt { background: #fff; border: 1.5px solid var(--border); color: var(--text); }
+    .toolbar-btn.alt:hover { background: var(--bg); }
+
+    /* empty state */
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.9rem; }
+
+    /* ───── DOCS ───── */
+    .docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; padding: 0 16px; }
+    .doc-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.05); display: flex; flex-direction: column; gap: 10px; }
+    .doc-card .dc-icon { font-size: 2rem; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
     .doc-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
-    .doc-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-    .doc-card .dc-tag {
-      font-size: 0.72rem; font-weight: 600; color: var(--muted);
-      background: #f1f5f9; border: 1px solid var(--border);
-      padding: 3px 10px; border-radius: 20px; display: inline-block;
-    }
-    .doc-card .btn-use {
-      background: var(--primary-light);
-      border: 1.5px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--primary);
-      cursor: pointer;
-      transition: all .15s;
-      width: 100%;
-      text-align: center;
-    }
+    .doc-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; flex: 1; }
+    .doc-card .dc-tag { font-size: 0.72rem; font-weight: 600; color: var(--muted); background: #f1f5f9; border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; display: inline-block; }
+    .doc-card .btn-use { background: var(--primary-light); border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 8px 14px; font-size: 0.82rem; font-weight: 600; color: var(--primary); cursor: pointer; transition: all .15s; width: 100%; text-align: center; }
     .doc-card .btn-use:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .doc-card .btn-use:disabled { opacity: .5; cursor: not-allowed; }
+    .doc-admin-row { display: none; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+    body.admin-mode .doc-admin-row { display: flex; }
+    .docs-page-wrap { max-width: 900px; margin: 0 auto; padding: 32px 16px 60px; display: flex; flex-direction: column; gap: 24px; }
 
-    /* ─── TOAST ───────────────────────────────────────────── */
-    #toast {
-      position: fixed; bottom: 28px; left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #1e293b; color: #fff;
-      padding: 12px 22px; border-radius: 10px;
-      font-size: 0.88rem; font-weight: 500;
-      opacity: 0; pointer-events: none;
-      transition: opacity .3s, transform .3s;
-      z-index: 9999; white-space: nowrap;
-    }
+    /* ───── TOAST ───── */
+    #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1e293b; color: #fff; padding: 12px 22px; border-radius: 10px; font-size: 0.88rem; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; z-index: 9999; white-space: nowrap; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ─── MSG SEARCH ──────────────────────────────────────── */
-    .msg-search-wrap {
-      position: relative;
-    }
-    .msg-search-wrap input {
-      width: 100%;
-      padding: 11px 16px 11px 42px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.9rem;
-      color: var(--text);
-      background: var(--card);
-      outline: none;
-      transition: border-color .2s;
-    }
-    .msg-search-wrap input:focus { border-color: var(--primary); }
-    .msg-search-wrap .search-icon {
-      position: absolute; left: 14px; top: 50%;
-      transform: translateY(-50%); color: var(--muted);
-      pointer-events: none; font-size: 1rem;
-    }
+    /* ───── MODAL (generic) ───── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,40,80,.55); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+    .modal-overlay.show { display: flex; }
+    /* modais que abrem em cima de outro modal (cat/msg/doc sobre managecat) */
+    #modal-cat.show, #modal-msg.show, #modal-doc.show { z-index: 1100; }
+    .modal-box { background: #fff; border-radius: 16px; max-width: 560px; width: 100%; max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .modal-head { padding: 22px 24px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .modal-head h2 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .modal-head p { font-size: 0.82rem; color: var(--muted); margin-top: 3px; }
+    .modal-x { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); line-height: 1; }
+    .modal-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+    .modal-foot { padding: 14px 24px 20px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+    .emoji-pick { display: flex; flex-wrap: wrap; gap: 6px; }
+    .emoji-opt { width: 38px; height: 38px; border: 1.5px solid var(--border); border-radius: 9px; background: #fff; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .12s; }
+    .emoji-opt:hover { border-color: var(--primary); }
+    .emoji-opt.sel { border-color: var(--primary); background: var(--primary-light); }
+    .color-pick { display: flex; flex-wrap: wrap; gap: 6px; }
+    .color-opt { width: 34px; height: 34px; border-radius: 9px; border: 2px solid transparent; cursor: pointer; transition: transform .1s; }
+    .color-opt:hover { transform: scale(1.08); }
+    .color-opt.sel { border-color: var(--navy); }
 
-    /* section headers inside messages page */
-    .msg-section-label {
-      font-size: 0.72rem; font-weight: 800; letter-spacing: 1.2px;
-      text-transform: uppercase; color: var(--muted);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .msg-section-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-
-    /* hidden msg cards */
-    .msg-card[data-hidden="true"] { display: none; }
+    /* admin reorder hint */
+    .reorder-grp { display: flex; gap: 4px; }
   </style>
 </head>
 <body>
 
-<!-- ── TOP NAV ──────────────────────────────────────────────── -->
 <nav class="topnav">
   <div class="logo">ajuda <span>// ecommerce</span></div>
   <div class="nav-links">
-    <button class="nav-btn active" onclick="showPage('home',this)">
-      <span class="nb-icon">🏠</span> Início
-    </button>
-    <button class="nav-btn" onclick="showPage('pdf',this)">
-      <span class="nb-icon">📄</span> Documento de Entrega
-    </button>
-    <button class="nav-btn" onclick="showPage('msgs',this)">
-      <span class="nb-icon">💬</span> Mensagens Padrão
-    </button>
-    <button class="nav-btn" onclick="showPage('docs',this)">
-      <span class="nb-icon">📁</span> PDFs e Documentos
-    </button>
+    <button class="nav-btn active" data-page="home" onclick="showPage('home',this)"><span class="nb-icon">🏠</span> Início</button>
+    <button class="nav-btn" data-page="pdf" onclick="showPage('pdf',this)"><span class="nb-icon">📄</span> Documento de Entrega</button>
+    <button class="nav-btn" data-page="msgs" onclick="showPage('msgs',this)"><span class="nb-icon">💬</span> Mensagens Padrão</button>
+    <button class="nav-btn" data-page="docs" onclick="showPage('docs',this)"><span class="nb-icon">📁</span> PDFs e Documentos</button>
+  </div>
+  <div class="admin-toggle" onclick="toggleAdmin()" title="Alternar modo administrador">
+    <span class="at-label">Admin</span>
+    <span class="at-switch"></span>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PAGE: HOME                                                 -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="page active" id="page-home">
+<div class="admin-banner">
+  <div class="ab-left">⚙️ Modo administrador ativo — edite mensagens, filtros e documentos. Salvo automaticamente neste navegador.</div>
+  <div class="ab-actions">
+    <button class="ab-btn" onclick="exportHTML()">⬇️ Exportar HTML atualizado</button>
+    <button class="ab-btn danger" onclick="resetData()">↺ Restaurar padrão</button>
+  </div>
+</div>
 
+<!-- ════════ HOME ════════ -->
+<div class="page active" id="page-home">
   <div class="home-hero">
     <h1>Central de <span>Ferramentas</span></h1>
     <p>Gerencie entregas, mensagens e documentos da agência em um só lugar.</p>
   </div>
   <div class="home-accent"></div>
-
   <div class="home-stats">
-    <div class="stat-card">
-      <div class="sv">8</div>
-      <div class="sl">Seções no doc. de entrega</div>
-    </div>
-    <div class="stat-card">
-      <div class="sv" id="stat-msgs">14</div>
-      <div class="sl">Mensagens padrão</div>
-    </div>
-    <div class="stat-card">
-      <div class="sv" id="stat-docs">6</div>
-      <div class="sl">PDFs disponíveis</div>
-    </div>
-    <div class="stat-card">
-      <div class="sv">∞</div>
-      <div class="sl">Gerações de PDF</div>
-    </div>
+    <div class="stat-card"><div class="sv">8</div><div class="sl">Seções no doc. de entrega</div></div>
+    <div class="stat-card"><div class="sv" id="stat-msgs">0</div><div class="sl">Mensagens padrão</div></div>
+    <div class="stat-card"><div class="sv" id="stat-docs">0</div><div class="sl">PDFs disponíveis</div></div>
+    <div class="stat-card"><div class="sv">∞</div><div class="sl">Gerações de PDF</div></div>
   </div>
-
   <div class="home-grid">
-    <div class="home-card" onclick="showPage('pdf', document.querySelectorAll('.nav-btn')[1])">
-      <div class="hc-icon">📄</div>
-      <h2>Documento de Entrega</h2>
+    <div class="home-card" onclick="showPage('pdf', navBtn('pdf'))">
+      <div class="hc-icon">📄</div><h2>Documento de Entrega</h2>
       <p>Preencha os dados do cliente e gere o PDF completo de finalização de loja — credenciais, contatos e orientações.</p>
       <span class="hc-tag">Gerador de PDF</span>
     </div>
-    <div class="home-card" onclick="showPage('msgs', document.querySelectorAll('.nav-btn')[2])">
-      <div class="hc-icon">💬</div>
-      <h2>Mensagens Padrão</h2>
+    <div class="home-card" onclick="showPage('msgs', navBtn('msgs'))">
+      <div class="hc-icon">💬</div><h2>Mensagens Padrão</h2>
       <p>Todas as mensagens de WhatsApp e e-mail usadas pela agência — boas-vindas, encerramento, follow-up e mais.</p>
       <span class="hc-tag">Biblioteca de textos</span>
     </div>
-    <div class="home-card" onclick="showPage('docs', document.querySelectorAll('.nav-btn')[3])">
-      <div class="hc-icon">📁</div>
-      <h2>PDFs e Documentos</h2>
+    <div class="home-card" onclick="showPage('docs', navBtn('docs'))">
+      <div class="hc-icon">📁</div><h2>PDFs e Documentos</h2>
       <p>Acesse e envie rapidamente todos os materiais padrão da agência: propostas, tutoriais, contratos e checklists.</p>
       <span class="hc-tag">Repositório de docs</span>
     </div>
   </div>
-
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PAGE: PDF GENERATOR                                        -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ════════ PDF GENERATOR (intocado) ════════ -->
 <div class="page" id="page-pdf">
 <div class="section-wrap">
-
   <div class="page-header">
     <h1>Documento de Entrega do Projeto</h1>
     <p>Preencha os dados e gere o kit de finalização da loja</p>
   </div>
 
-  <!-- Nome do cliente -->
   <div class="client-card">
     <label for="clientName">Nome do Cliente / Loja</label>
     <input type="text" id="clientName" placeholder="Ex: Loja da Maria – Maria Silva" />
+    <label for="lojaUrl" style="margin-top:14px;">URL da Loja</label>
+    <input type="url" id="lojaUrl" placeholder="Ex: https://minhaloja.com.br" />
     <label for="responsavel" style="margin-top:14px;">Responsável pelo projeto <span style="font-size:0.78rem;color:var(--optional);font-weight:500;">(opcional)</span></label>
     <input type="text" id="responsavel" placeholder="Ex: João Silva" />
   </div>
 
-  <div class="topic-separator">
-    <span class="topic-label">Credenciais Gerais</span>
-    <div class="topic-line"></div>
-  </div>
+  <div class="topic-separator"><span class="topic-label">Credenciais Gerais</span><div class="topic-line"></div></div>
 
-  <!-- 1. E-commerce -->
   <div class="section-card sec-ecommerce">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">🛒</div>
-      <div class="section-title">
-        <h2>Plataforma de E-commerce</h2>
-        <span>Nuvemshop, Shopify, VTEX, WooCommerce…</span>
-      </div>
-      <span class="toggle-badge">Obrigatório</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Plataforma de E-commerce</h2><span>Nuvemshop, Shopify, VTEX, WooCommerce…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body open">
-      <div class="field-group">
-        <label>Plataforma</label>
-        <select id="ec_platform">
-          <option value="">Selecione…</option>
+      <div class="field-group"><label>Plataforma</label>
+        <select id="ec_platform"><option value="">Selecione…</option>
           <option>Nuvemshop</option><option>Shopify</option><option>VTEX</option>
           <option>WooCommerce</option><option>Loja Integrada</option><option>Tray</option><option>Outra</option>
         </select>
       </div>
-      <div class="field-group">
-        <label>URL da loja / painel admin</label>
-        <input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin" />
-      </div>
+      <div class="field-group"><label>URL do painel admin</label><input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin" /></div>
       <div class="field-row">
-        <div class="field-group">
-          <label>E-mail / Login</label>
-          <input type="email" id="ec_email" placeholder="email@loja.com.br" />
-        </div>
-        <div class="field-group">
-          <label>Senha <span class="opt">opcional</span></label>
-          <input type="text" id="ec_senha" placeholder="Senha do painel" />
-        </div>
+        <div class="field-group"><label>E-mail / Login</label><input type="email" id="ec_email" placeholder="email@loja.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ec_senha" placeholder="Senha do painel" /></div>
       </div>
     </div>
   </div>
 
-  <!-- 2. E-mail Profissional -->
   <div class="section-card sec-email">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">✉️</div>
-      <div class="section-title">
-        <h2>E-mail Profissional</h2>
-        <span>Gmail Workspace, Outlook, Zoho…</span>
-      </div>
-      <span class="toggle-badge">Obrigatório</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>E-mail Profissional</h2><span>Gmail Workspace, Outlook, Zoho…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body open">
-      <div class="field-group">
-        <label>Provedor</label>
-        <select id="em_provider">
-          <option value="">Selecione…</option>
+      <div class="field-group"><label>Provedor</label>
+        <select id="em_provider"><option value="">Selecione…</option>
           <option>Google Workspace</option><option>Microsoft 365 / Outlook</option>
           <option>Zoho Mail</option><option>Titan Mail</option><option>Cpanel / Hospedagem</option><option>Outro</option>
         </select>
       </div>
-      <div class="field-group">
-        <label>E-mail / Login</label>
-        <input type="email" id="em_email" placeholder="contato@empresa.com.br" />
-      </div>
-      <div class="field-row">
-        <div class="field-group">
-          <label>Senha <span class="opt">opcional</span></label>
-          <input type="text" id="em_senha" placeholder="Senha do e-mail" />
-        </div>
-      </div>
+      <div class="field-group"><label>E-mail / Login</label><input type="email" id="em_email" placeholder="contato@empresa.com.br" /></div>
+      <div class="field-row"><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="em_senha" placeholder="Senha do e-mail" /></div></div>
     </div>
   </div>
 
-  <!-- 3. Meios de Envio -->
   <div class="section-card sec-envio">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">📦</div>
-      <div class="section-title">
-        <h2>Meios de Envio</h2>
-        <span>Melhor Envio, Correios, Jadlog, Total Express…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Meios de Envio</h2><span>Melhor Envio, Correios, Jadlog, Total Express…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
       <p class="sub-label">Melhor Envio</p>
@@ -711,22 +512,15 @@
     </div>
   </div>
 
-  <!-- 4. Domínio -->
   <div class="section-card sec-dominio">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">🌐</div>
-      <div class="section-title">
-        <h2>Domínio</h2>
-        <span>Registro.br, GoDaddy, Cloudflare, Hostinger…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Domínio</h2><span>Registro.br, GoDaddy, Cloudflare, Hostinger…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
-      <div class="field-group">
-        <label>Registradora / Provedor</label>
-        <select id="dom_provider">
-          <option value="">Selecione…</option>
+      <div class="field-group"><label>Registradora / Provedor</label>
+        <select id="dom_provider"><option value="">Selecione…</option>
           <option>Registro.br</option><option>GoDaddy</option><option>Cloudflare</option>
           <option>Hostinger</option><option>Locaweb</option><option>HostGator</option><option>Outro</option>
         </select>
@@ -739,21 +533,13 @@
     </div>
   </div>
 
-  <div class="topic-separator">
-    <span class="topic-label">Apps de Marketing</span>
-    <div class="topic-line"></div>
-  </div>
+  <div class="topic-separator"><span class="topic-label">Apps de Marketing</span><div class="topic-line"></div></div>
 
-  <!-- 5. Facebook / Meta -->
   <div class="section-card sec-facebook">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">📘</div>
-      <div class="section-title">
-        <h2>Facebook / Meta</h2>
-        <span>Conta pessoal, página, Business Manager…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Facebook / Meta</h2><span>Conta pessoal, página, Business Manager…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
       <p class="sub-label">Conta Facebook</p>
@@ -768,16 +554,11 @@
     </div>
   </div>
 
-  <!-- 6. Google -->
   <div class="section-card sec-google">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">🔴</div>
-      <div class="section-title">
-        <h2>Conta Google</h2>
-        <span>Google Ads, Analytics, Search Console, Tag Manager…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Conta Google</h2><span>Google Ads, Analytics, Search Console, Tag Manager…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
       <p class="sub-label">Acesso à Conta Google</p>
@@ -785,40 +566,20 @@
         <div class="field-group"><label>E-mail Google <span class="opt">opcional</span></label><input type="email" id="gg_email" placeholder="cliente@gmail.com" /></div>
         <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="gg_senha" placeholder="Senha" /></div>
       </div>
-      <div class="divider"></div>
-      <p class="sub-label">URLs das Ferramentas</p>
-      <div class="field-row">
-        <div class="field-group"><label>Google Ads – URL <span class="opt">opcional</span></label><input type="url" id="gg_ads" placeholder="https://ads.google.com/..." /></div>
-        <div class="field-group"><label>Google Analytics – URL <span class="opt">opcional</span></label><input type="url" id="gg_analytics" placeholder="https://analytics.google.com/..." /></div>
-      </div>
-      <div class="field-row">
-        <div class="field-group"><label>Search Console – URL <span class="opt">opcional</span></label><input type="url" id="gg_gsc" placeholder="https://search.google.com/..." /></div>
-        <div class="field-group"><label>Tag Manager – URL <span class="opt">opcional</span></label><input type="url" id="gg_gtm" placeholder="https://tagmanager.google.com/..." /></div>
-      </div>
     </div>
   </div>
 
-  <div class="topic-separator">
-    <span class="topic-label">ERP</span>
-    <div class="topic-line"></div>
-  </div>
+  <div class="topic-separator"><span class="topic-label">ERP</span><div class="topic-line"></div></div>
 
-  <!-- 7. ERP -->
   <div class="section-card sec-erp">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">🗂️</div>
-      <div class="section-title">
-        <h2>ERP</h2>
-        <span>Bling, Olist, outros sistemas de gestão…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>ERP</h2><span>Bling, Olist, outros sistemas de gestão…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
-      <div class="field-group">
-        <label>ERP utilizado <span class="opt">opcional</span></label>
-        <select id="erp_choice">
-          <option value="">Selecione…</option>
+      <div class="field-group"><label>ERP utilizado <span class="opt">opcional</span></label>
+        <select id="erp_choice"><option value="">Selecione…</option>
           <option>Bling</option><option>Olist</option><option>Tiny</option><option>Omie</option><option>Outro</option>
         </select>
         <span class="hint">Aparece no resumo do projeto</span>
@@ -845,21 +606,13 @@
     </div>
   </div>
 
-  <div class="topic-separator">
-    <span class="topic-label">Marketplace</span>
-    <div class="topic-line"></div>
-  </div>
+  <div class="topic-separator"><span class="topic-label">Marketplace</span><div class="topic-line"></div></div>
 
-  <!-- 8. Marketplace -->
   <div class="section-card sec-marketplace">
     <div class="section-header" onclick="toggle(this)">
       <div class="icon">🏪</div>
-      <div class="section-title">
-        <h2>Marketplace</h2>
-        <span>Amazon, Shopee, Mercado Livre, TikTok Shop…</span>
-      </div>
-      <span class="toggle-badge">Opcional</span>
-      <span class="chevron">▼</span>
+      <div class="section-title"><h2>Marketplace</h2><span>Amazon, Shopee, Mercado Livre, TikTok Shop…</span></div>
+      <span class="toggle-badge">Opcional</span><span class="chevron">▼</span>
     </div>
     <div class="section-body">
       <p class="sub-label">Amazon</p>
@@ -898,53 +651,218 @@
       Gerar Documento de Entrega
     </button>
   </div>
-
 </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PAGE: MENSAGENS PADRÃO                                     -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- ════════ MENSAGENS (renderizado via JS) ════════ -->
 <div class="page" id="page-msgs">
 <div class="msg-page-wrap">
-
   <div class="page-header">
-    <h1>Mensagens Padrão</h1>
-    <p>Copie e adapte as mensagens para WhatsApp, grupos e e-mails</p>
+    <h1 class="only-user">Mensagens Padrão</h1>
+    <h1 class="only-admin">Mensagens — Configuração</h1>
+    <p class="only-user">Copie e adapte as mensagens para WhatsApp, grupos e e-mails</p>
+    <p class="only-admin">Adicione, edite, reorganize mensagens e filtros</p>
   </div>
 
-  <div class="msg-search-wrap">
+  <div class="msg-search-wrap only-user">
     <span class="search-icon">🔍</span>
     <input type="text" id="msgSearch" placeholder="Buscar mensagem…" oninput="filterMsgs(this.value)" />
   </div>
 
-  <div class="msg-tabs">
-    <button class="msg-tab active" onclick="filterTab('todas',this)">Todas</button>
-    <button class="msg-tab" onclick="filterTab('boas-vindas',this)">Boas-vindas</button>
-    <button class="msg-tab" onclick="filterTab('pagamento',this)">Pagamento</button>
-    <button class="msg-tab" onclick="filterTab('frete',this)">Frete</button>
-    <button class="msg-tab" onclick="filterTab('banners',this)">Banners</button>
-    <button class="msg-tab" onclick="filterTab('reuniao',this)">Reuniões</button>
-    <button class="msg-tab" onclick="filterTab('encerramento',this)">Encerramento</button>
-    <button class="msg-tab" onclick="filterTab('followup',this)">Follow-up</button>
-    <button class="msg-tab" onclick="filterTab('suporte',this)">Suporte</button>
-    <button class="msg-tab" onclick="filterTab('cobranca',this)">Cobrança</button>
+  <div class="admin-toolbar">
+    <button class="toolbar-btn" onclick="openCatModal('msg')">＋ Novo filtro</button>
+    <button class="toolbar-btn alt" onclick="openMsgModal()">＋ Nova mensagem</button>
+    <button class="toolbar-btn alt" onclick="openManageCats('msg')">⚙️ Gerenciar filtros</button>
   </div>
 
-  <!-- ENCERRAMENTO -->
-  <div class="msg-section-label">Encerramento do Projeto</div>
-  <div class="msg-grid">
+  <div class="msg-tabs" id="msgTabs"></div>
+  <div id="msgContent"></div>
+</div>
+</div>
 
-    <div class="msg-card" data-cat="encerramento">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f0fdf4;">🎉</div>
-        <div class="msg-card-meta">
-          <h3>Encerramento — Grupo WhatsApp</h3>
-          <span>Para enviar no grupo do cliente ao finalizar</span>
-        </div>
+<!-- ════════ DOCS (renderizado via JS) ════════ -->
+<div class="page" id="page-docs">
+<div class="docs-page-wrap">
+  <div class="page-header">
+    <h1 class="only-user">PDFs e Documentos</h1>
+    <h1 class="only-admin">Documentos — Configuração</h1>
+    <p class="only-user">Materiais padrão da agência prontos para envio</p>
+    <p class="only-admin">Adicione, edite, reorganize documentos e filtros</p>
+  </div>
+
+  <div class="admin-toolbar">
+    <button class="toolbar-btn" onclick="openCatModal('doc')">＋ Novo filtro</button>
+    <button class="toolbar-btn alt" onclick="openDocModal()">＋ Novo documento</button>
+    <button class="toolbar-btn alt" onclick="openManageCats('doc')">⚙️ Gerenciar filtros</button>
+  </div>
+
+  <div class="msg-tabs" id="docTabs"></div>
+  <div id="docContent"></div>
+</div>
+</div>
+
+<!-- ════════ MODAL: Comparativo pagamento ════════ -->
+<div class="modal-overlay" id="modal-pagamento">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2>Comparativo de Meios de Pagamento</h2><p>Envie o PDF + a mensagem abaixo no grupo do cliente</p></div>
+      <button class="modal-x" onclick="closeModal('modal-pagamento')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:14px 16px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#166534;margin-bottom:6px;">📎 Lembre-se de anexar o PDF</p>
+        <p style="font-size:0.8rem;color:#15803d;">Envie o arquivo <strong>COMPARATIVO_MEIOS_DE_PAGAMENTO.pdf</strong> junto com a mensagem abaixo no grupo do WhatsApp do cliente.</p>
       </div>
-      <div class="msg-card-body">
-        <pre id="msg-enc-grupo">Olá, [NOME DO CLIENTE]! 🎉
+      <label style="font-size:0.84rem;font-weight:700;color:var(--label);">Mensagem para enviar:</label>
+      <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:0.82rem;line-height:1.6;color:var(--text);white-space:pre-wrap;" id="modal-msg-pagamento"></div>
+      <button class="btn btn-primary" style="flex:none;align-self:flex-start;" onclick="copyEl('modal-msg-pagamento',this)">📋 Copiar mensagem</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MODAL: Editor de Mensagem ════════ -->
+<div class="modal-overlay" id="modal-msg">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2 id="msgModalTitle">Nova mensagem</h2><p>Preencha os campos abaixo</p></div>
+      <button class="modal-x" onclick="closeModal('modal-msg')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-group"><label>Categoria (filtro)</label><select id="m_cat"></select></div>
+      <div class="field-group"><label>Título</label><input type="text" id="m_title" placeholder="Ex: Boas-vindas no Grupo" /></div>
+      <div class="field-group"><label>Subtítulo</label><input type="text" id="m_sub" placeholder="Ex: Primeira mensagem ao cliente" /></div>
+      <div class="field-group"><label>Ícone (emoji)</label>
+        <input type="text" id="m_icon" maxlength="4" placeholder="😊" style="width:80px;" />
+        <div class="emoji-pick" id="m_emojiPick"></div>
+      </div>
+      <div class="field-group"><label>Cor de fundo do ícone</label><div class="color-pick" id="m_colorPick"></div></div>
+      <div class="field-group">
+        <label>Ocupar largura total <span class="opt">mensagens longas</span></label>
+        <select id="m_full"><option value="false">Não — card normal</option><option value="true">Sim — largura total</option></select>
+      </div>
+      <div class="field-group"><label>Texto da mensagem</label><textarea id="m_text" rows="9" placeholder="Digite a mensagem…"></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary" onclick="closeModal('modal-msg')">Cancelar</button>
+      <button class="btn btn-primary" style="flex:none;" onclick="saveMsg()">Salvar mensagem</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MODAL: Editor de Documento ════════ -->
+<div class="modal-overlay" id="modal-doc">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2 id="docModalTitle">Novo documento</h2><p>Preencha os campos abaixo</p></div>
+      <button class="modal-x" onclick="closeModal('modal-doc')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-group"><label>Categoria (filtro)</label><select id="d_cat"></select></div>
+      <div class="field-group"><label>Título</label><input type="text" id="d_title" placeholder="Ex: Proposta Comercial" /></div>
+      <div class="field-group"><label>Descrição</label><textarea id="d_desc" rows="3" placeholder="Descreva o documento…"></textarea></div>
+      <div class="field-group"><label>Ícone (emoji)</label>
+        <input type="text" id="d_icon" maxlength="4" placeholder="📄" style="width:80px;" />
+        <div class="emoji-pick" id="d_emojiPick"></div>
+      </div>
+      <div class="field-group"><label>Cor de fundo do ícone</label><div class="color-pick" id="d_colorPick"></div></div>
+      <div class="field-group"><label>Tag</label><input type="text" id="d_tag" placeholder="Ex: PDF Pronto para envio / Em breve" /></div>
+      <div class="field-group"><label>Texto do botão</label><input type="text" id="d_btn" placeholder="Ex: Gerar PDF / Disponível em breve" /></div>
+      <div class="field-group">
+        <label>Estado do botão</label>
+        <select id="d_state">
+          <option value="placeholder">Placeholder (desativado — em breve)</option>
+          <option value="active">Ativo (mostra aviso de placeholder ao clicar)</option>
+        </select>
+        <span class="hint">Os documentos ainda não estão sendo salvos; o botão ativo apenas exibe um aviso.</span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary" onclick="closeModal('modal-doc')">Cancelar</button>
+      <button class="btn btn-primary" style="flex:none;" onclick="saveDoc()">Salvar documento</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MODAL: Categoria ════════ -->
+<div class="modal-overlay" id="modal-cat">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2 id="catModalTitle">Novo filtro</h2><p>O filtro também vira o cabeçalho da seção</p></div>
+      <button class="modal-x" onclick="closeModal('modal-cat')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-group"><label>Nome do filtro (aba)</label><input type="text" id="c_label" placeholder="Ex: Pós-venda" /></div>
+      <div class="field-group"><label>Título da seção</label><input type="text" id="c_section" placeholder="Ex: Mensagens de Pós-venda" /></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-secondary" onclick="closeModal('modal-cat')">Cancelar</button>
+      <button class="btn btn-primary" style="flex:none;" onclick="saveCat()">Salvar filtro</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MODAL: Gerenciar categorias ════════ -->
+<div class="modal-overlay" id="modal-managecat">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div><h2>Gerenciar filtros</h2><p>Renomeie, reordene ou exclua filtros</p></div>
+      <button class="modal-x" onclick="closeModal('modal-managecat')">×</button>
+    </div>
+    <div class="modal-body" id="manageCatBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-primary" style="flex:none;" onclick="closeModal('modal-managecat')">Concluído</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   AJUDA ECOMMERCE — CENTRAL DE FERRAMENTAS
+   Dados dinâmicos + modo admin + persistência
+   ══════════════════════════════════════════════════════ */
+
+const AJUDA = {
+  whatsappComercial: '(48) 99999-9999',
+  emailComercial:    'contato@ajudaecom.com.br',
+  whatsappTecnico:   '(48) 98888-8888',
+  emailTecnico:      'suporte@ajudaecom.com.br',
+  horario:           'Seg-Sex, 9h-18h',
+  site:              'ajudaecom.com.br',
+  instagram:         '@ajudaecommerce',
+  nome:              'Ajuda Ecommerce',
+};
+
+const SUPORTE_PLATAFORMA = {
+  'Nuvemshop':      { canal: 'atendimento@nuvemshop.com.br',       site: 'atendimento.nuvemshop.com.br', horario: '24/7 via chat' },
+  'Shopify':        { canal: 'support@shopify.com',                site: 'help.shopify.com',             horario: '24/7 via chat' },
+  'VTEX':           { canal: 'suporte@vtex.com.br',                site: 'help.vtex.com',                horario: 'Seg-Sex comercial' },
+  'WooCommerce':    { canal: 'wordpress.org/support/woocommerce',  site: 'woocommerce.com/contact-us',   horario: 'Forum/tickets' },
+  'Loja Integrada': { canal: 'ajuda@lojaintegrada.com.br',         site: 'ajuda.lojaintegrada.com.br',   horario: 'Seg-Sex comercial' },
+  'Tray':           { canal: 'atendimento@tray.com.br',            site: 'atendimento.tray.com.br',      horario: 'Seg-Sex comercial' },
+};
+
+const ICON_COLORS = ['#f0fdf4','#eff6ff','#fff7ed','#f5f3ff','#ecfdf5','#ecfeff','#faf5ff','#fff1f2','#fffbeb','#fafafa','#fee2e2','#dbeafe'];
+const EMOJI_SUGGEST = ['🎉','📬','🔒','📲','👋','📝','💳','🚚','🎨','📅','⏰','🔁','📊','✅','✔️','🛠️','💰','🔔','📦','🌐','📄','📋','📖','📜','💬','🚀','😊','📌','🔧','📍','☁️'];
+
+/* ───── DADOS PADRÃO (defaults embutidos) ───── */
+/*__DATA_START__*/
+const DEFAULT_DATA = {
+  msgCats: [
+    { id: 'encerramento', label: 'Encerramento', section: 'Encerramento do Projeto' },
+    { id: 'boas-vindas',  label: 'Boas-vindas',  section: 'Boas-vindas e Início de Projeto' },
+    { id: 'pagamento',    label: 'Pagamento',    section: 'Meios de Pagamento' },
+    { id: 'frete',        label: 'Frete',        section: 'Meios de Frete' },
+    { id: 'banners',      label: 'Banners',      section: 'Produção de Banners' },
+    { id: 'reuniao',      label: 'Reuniões',     section: 'Reuniões e Agendamentos' },
+    { id: 'followup',     label: 'Follow-up',    section: 'Follow-up e Andamento' },
+    { id: 'suporte',      label: 'Suporte',      section: 'Suporte Pós-entrega' },
+    { id: 'cobranca',     label: 'Cobrança',     section: 'Cobrança e Financeiro' },
+  ],
+  msgs: [
+    { id:'m1', cat:'encerramento', icon:'🎉', color:'#f0fdf4', full:false, title:'Encerramento — Grupo WhatsApp', sub:'Para enviar no grupo do cliente ao finalizar',
+      text:`Olá, [NOME DO CLIENTE]! 🎉
 
 É com muito orgulho que comunicamos a conclusão do seu projeto de e-commerce!
 
@@ -959,23 +877,9 @@ Para suporte, estamos disponíveis:
 📧 E-mail: contato@ajudaecom.com.br
 🕐 Seg–Sex, 9h–18h
 
-Foi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-enc-grupo',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="encerramento">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#eff6ff;">📬</div>
-        <div class="msg-card-meta">
-          <h3>Encerramento — E-mail formal</h3>
-          <span>Versão mais formal para envio por e-mail</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-enc-email">Prezado(a) [NOME DO CLIENTE],
+Foi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀` },
+    { id:'m2', cat:'encerramento', icon:'📬', color:'#eff6ff', full:false, title:'Encerramento — E-mail formal', sub:'Versão mais formal para envio por e-mail',
+      text:`Prezado(a) [NOME DO CLIENTE],
 
 Informamos com satisfação a conclusão do seu projeto de e-commerce.
 
@@ -989,23 +893,9 @@ Recomendamos:
 Em caso de dúvidas, nossa equipe está disponível de segunda a sexta, das 9h às 18h, pelo WhatsApp (48) 99999-9999 ou pelo e-mail suporte@ajudaecom.com.br.
 
 Atenciosamente,
-Equipe Ajuda Ecommerce</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-enc-email',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="encerramento">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fff7ed;">🔒</div>
-        <div class="msg-card-meta">
-          <h3>Orientações de Segurança</h3>
-          <span>Mensagem complementar sobre senhas e acessos</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-seg">⚠️ *Orientações de segurança importantes*
+Equipe Ajuda Ecommerce` },
+    { id:'m3', cat:'encerramento', icon:'🔒', color:'#fff7ed', full:false, title:'Orientações de Segurança', sub:'Mensagem complementar sobre senhas e acessos',
+      text:`⚠️ *Orientações de segurança importantes*
 
 Agora que seu projeto foi entregue, recomendamos:
 
@@ -1014,72 +904,23 @@ Agora que seu projeto foi entregue, recomendamos:
 📵 Não compartilhe senhas por WhatsApp ou e-mail
 💾 Salve o documento de entrega em local seguro (Google Drive, nuvem)
 
-Qualquer dúvida, fale conosco! 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-seg',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- BOAS-VINDAS -->
-  <div class="msg-section-label" style="margin-top:8px;">Boas-vindas e Início de Projeto</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="boas-vindas">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f5f3ff;">📲</div>
-        <div class="msg-card-meta">
-          <h3>Convite para o Grupo — WhatsApp</h3>
-          <span>Mensagem privada para adicionar o cliente ao grupo</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-convite-grupo">Olá, tudo bem? 😊
+Qualquer dúvida, fale conosco! 😊` },
+    { id:'m4', cat:'boas-vindas', icon:'📲', color:'#f5f3ff', full:false, title:'Convite para o Grupo — WhatsApp', sub:'Mensagem privada para adicionar o cliente ao grupo',
+      text:`Olá, tudo bem? 😊
 
 Meu nome é [NOME DO RESPONSÁVEL] e faço parte da equipe da Ajuda Ecommerce.
 
 O [NOME DO VENDEDOR] me passou o seu contato para que eu pudesse te adicionar ao grupo de acompanhamento do seu projeto — é por lá que vamos dar início a todo o processo de criação da sua loja virtual.
 
-Vou te enviar o convite em seguida!</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-convite-grupo',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="boas-vindas">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#ecfdf5;">👋</div>
-        <div class="msg-card-meta">
-          <h3>Boas-vindas no Grupo</h3>
-          <span>Primeira mensagem quando o cliente entra no grupo</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-bv-grupo">Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉
+Vou te enviar o convite em seguida!` },
+    { id:'m5', cat:'boas-vindas', icon:'👋', color:'#ecfdf5', full:false, title:'Boas-vindas no Grupo', sub:'Primeira mensagem quando o cliente entra no grupo',
+      text:`Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉
 
 Meu nome é [NOME] e estou aqui junto com toda a nossa equipe para acompanhar cada etapa da criação da sua loja virtual e garantir que tudo seja desenvolvido com excelência.
 
-Para começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-bv-grupo',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="boas-vindas">
-      <div class="msg-card-icon" style="background:#ecfdf5; width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:14px 18px 0;">📝</div>
-      <div class="msg-card-header" style="padding-top:6px;">
-        <div class="msg-card-icon" style="background:#ecfdf5;display:none;">📝</div>
-        <div class="msg-card-meta">
-          <h3>Solicitação de Dados Iniciais</h3>
-          <span>Pedir informações necessárias para início</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-dados">Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:
+Para começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅` },
+    { id:'m6', cat:'boas-vindas', icon:'📝', color:'#ecfdf5', full:false, title:'Solicitação de Dados Iniciais', sub:'Pedir informações necessárias para início',
+      text:`Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:
 
 📌 *Dados necessários:*
 • Nome completo / razão social
@@ -1090,29 +931,9 @@ Para começarmos com o pé direito, vou precisar de algumas informações inicia
 • Descrições dos produtos e preços
 • Forma de pagamento desejada (cartão, PIX, boleto)
 
-Assim que recebermos, iniciamos imediatamente! ✅</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-dados',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- PAGAMENTO -->
-  <div class="msg-section-label" style="margin-top:8px;">Meios de Pagamento</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="pagamento" style="grid-column: 1 / -1;">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f0fdf4;">💳</div>
-        <div class="msg-card-meta">
-          <h3>Apresentação dos Meios de Pagamento</h3>
-          <span>Enviar junto com o PDF comparativo de pagamentos</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-pagamento">Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
+Assim que recebermos, iniciamos imediatamente! ✅` },
+    { id:'m7', cat:'pagamento', icon:'💳', color:'#f0fdf4', full:true, title:'Apresentação dos Meios de Pagamento', sub:'Enviar junto com o PDF comparativo de pagamentos',
+      text:`Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
 
 *Principais opções disponíveis na Nuvemshop:*
 
@@ -1130,29 +951,9 @@ No cartão de crédito parcelado, quanto maior o número de parcelas, maior tend
 *Recomendação:*
 Para uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.
 
-Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-pagamento',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- FRETE -->
-  <div class="msg-section-label" style="margin-top:8px;">Meios de Frete</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="frete" style="grid-column: 1 / -1;">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#ecfeff;">🚚</div>
-        <div class="msg-card-meta">
-          <h3>Apresentação dos Meios de Frete</h3>
-          <span>Explicar as opções de envio disponíveis na plataforma</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-frete">Agora vamos conversar sobre as opções de frete para a sua loja! 📦
+Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊` },
+    { id:'m8', cat:'frete', icon:'🚚', color:'#ecfeff', full:true, title:'Apresentação dos Meios de Frete Nuvemshop', sub:'Explicar as opções de envio disponíveis na plataforma',
+      text:`Agora vamos conversar sobre as opções de frete para a sua loja! 📦
 
 A Nuvemshop possui integração nativa com os principais meios de envio do mercado. Veja as principais opções:
 
@@ -1162,6 +963,9 @@ Opção mais tradicional, com ampla cobertura nacional. Oferece modalidades como
 🚀 *Melhor Envio*
 Plataforma que agrega diversos transportadores (Correios, Jadlog, Azul Cargo, Latam Cargo e outros) em um só lugar. Permite comparar fretes e escolher o mais vantajoso por pedido. A integração é direta com a Nuvemshop e a utilização é gratuita — você paga apenas o frete no momento do envio.
 
+☁️ *Nuvem Envio*
+É a solução mais integrada para quem usa Nuvemshop, porque permite cotar, pagar e gerar etiquetas diretamente pelo painel da loja. Isso facilita bastante a operação do dia a dia.
+
 🏭 *Transportadoras próprias*
 Caso você já trabalhe com alguma transportadora específica, também é possível configurar frete manual ou personalizado na plataforma.
 
@@ -1169,31 +973,10 @@ Caso você já trabalhe com alguma transportadora específica, também é possí
 Você pode configurar condições especiais, como frete grátis a partir de um valor mínimo de compra ou frete fixo por região — ótimas estratégias para aumentar a conversão.
 
 *Nossa recomendação:*
-Para quem está começando, o *Melhor Envio* é a opção mais prática e econômica — sem contrato, com diversas transportadoras disponíveis e integração simples com a loja.
-
-Assim que você decidir qual solução de frete prefere utilizar, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-frete',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- BANNERS -->
-  <div class="msg-section-label" style="margin-top:8px;">Produção de Banners</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="banners" style="grid-column: 1 / -1;">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#faf5ff;">🎨</div>
-        <div class="msg-card-meta">
-          <h3>Início da Etapa de Banners</h3>
-          <span>Solicitar materiais e formulário para criação dos banners</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-banners">Bom dia, [NOME DO CLIENTE]! 😊
+De forma geral, se a prioridade for ter mais opções de transportadoras e comparar preços o Melhor Envio pode atender bem. Se a prioridade for praticidade dentro da própria Nuvemshop, o Nuvem Envio pode ser o mais interessante, desde que a loja esteja com as configurações necessárias feitas corretamente.
+Assim que você decidir qual solução de frete prefere utilizar, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊` },
+    { id:'m9', cat:'banners', icon:'🎨', color:'#faf5ff', full:true, title:'Início da Etapa de Banners', sub:'Solicitar materiais e formulário para criação dos banners',
+      text:`Bom dia, [NOME DO CLIENTE]! 😊
 
 Chegamos a uma das etapas mais visuais do projeto: a produção dos banners da sua loja! 🎨✨
 
@@ -1216,29 +999,9 @@ Caso tenha logos, referências visuais ou outros arquivos que deseja utilizar, e
 
 Os mini banners são ideais para direcionar o cliente às categorias da loja, mas podemos adaptá-los conforme a sua preferência. ✨
 
-Qualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-banners',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- REUNIÃO -->
-  <div class="msg-section-label" style="margin-top:8px;">Reuniões e Agendamentos</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="reuniao">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#eff6ff;">📅</div>
-        <div class="msg-card-meta">
-          <h3>Confirmação de Reunião</h3>
-          <span>Confirmar agendamento de call ou reunião</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-reuniao">Olá, [NOME]! 😊
+Qualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀` },
+    { id:'m10', cat:'reuniao', icon:'📅', color:'#eff6ff', full:false, title:'Confirmação de Reunião', sub:'Confirmar agendamento de call ou reunião',
+      text:`Olá, [NOME]! 😊
 
 Passando para confirmar nosso agendamento:
 
@@ -1248,45 +1011,17 @@ Passando para confirmar nosso agendamento:
 
 Estaremos disponíveis no horário combinado. Caso precise reagendar, é só nos avisar com antecedência — sem problema algum!
 
-Até lá! 👍</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-reuniao',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="reuniao">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fff1f2;">⏰</div>
-        <div class="msg-card-meta">
-          <h3>Ausência em Reunião</h3>
-          <span>Cliente não compareceu após 15 minutos de espera</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-ausencia">Olá, [NOME]! Tudo bem?
+Até lá! 👍` },
+    { id:'m11', cat:'reuniao', icon:'⏰', color:'#fff1f2', full:false, title:'Ausência em Reunião', sub:'Cliente não compareceu após 15 minutos de espera',
+      text:`Olá, [NOME]! Tudo bem?
 
 Estávamos te aguardando na reunião que tínhamos agendado para as [HORA] de hoje, mas não conseguimos fazer o contato.
 
 Nossa política é aguardar até 15 minutos — após esse período, precisamos considerar a reunião cancelada para não comprometer a agenda das demais equipes.
 
-Fique tranquilo(a)! Estamos totalmente disponíveis para reagendar em um horário mais conveniente para você. É só nos dizer quando funciona melhor. 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-ausencia',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="reuniao">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f0fdf4;">🔁</div>
-        <div class="msg-card-meta">
-          <h3>Reagendamento de Reunião</h3>
-          <span>Propor novo horário para reunião</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-reagendamento">Olá, [NOME]! 😊
+Fique tranquilo(a)! Estamos totalmente disponíveis para reagendar em um horário mais conveniente para você. É só nos dizer quando funciona melhor. 😊` },
+    { id:'m12', cat:'reuniao', icon:'🔁', color:'#f0fdf4', full:false, title:'Reagendamento de Reunião', sub:'Propor novo horário para reunião',
+      text:`Olá, [NOME]! 😊
 
 Gostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:
 
@@ -1296,29 +1031,9 @@ Gostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:
 
 Qual desses funciona melhor para você? Caso prefira outro horário, é só nos informar que tentamos nos adaptar!
 
-Aguardamos seu retorno. 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-reagendamento',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- FOLLOW-UP -->
-  <div class="msg-section-label" style="margin-top:8px;">Follow-up e Andamento</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="followup">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fafafa;">📊</div>
-        <div class="msg-card-meta">
-          <h3>Atualização de Status</h3>
-          <span>Informar andamento do projeto</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-status">Olá, [NOME]! 👋
+Aguardamos seu retorno. 😊` },
+    { id:'m13', cat:'followup', icon:'📊', color:'#fafafa', full:false, title:'Atualização de Status', sub:'Informar andamento do projeto',
+      text:`Olá, [NOME]! 👋
 
 Atualização do seu projeto — [DATA]:
 
@@ -1332,23 +1047,9 @@ Atualização do seu projeto — [DATA]:
 ⏳ Próximos passos:
 • [ITEM 4]
 
-Prazo estimado de conclusão: [PRAZO] 🎯</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-status',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="followup">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fff1f2;">⏰</div>
-        <div class="msg-card-meta">
-          <h3>Aguardando Retorno do Cliente</h3>
-          <span>Cobrar informação ou aprovação pendente</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-aguardo">Oi, [NOME]! Como vai?
+Prazo estimado de conclusão: [PRAZO] 🎯` },
+    { id:'m14', cat:'followup', icon:'⏰', color:'#fff1f2', full:false, title:'Aguardando Retorno do Cliente', sub:'Cobrar informação ou aprovação pendente',
+      text:`Oi, [NOME]! Como vai?
 
 Passando para lembrar que estamos aguardando:
 
@@ -1356,23 +1057,9 @@ Passando para lembrar que estamos aguardando:
 
 Assim que recebermos, seguimos imediatamente com o projeto!
 
-Qualquer dúvida ou dificuldade, pode chamar. 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-aguardo',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="followup">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f0fdf4;">✅</div>
-        <div class="msg-card-meta">
-          <h3>Aprovação de Etapa</h3>
-          <span>Solicitar aprovação de layout ou etapa</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-aprovacao">Olá, [NOME]! 🎨
+Qualquer dúvida ou dificuldade, pode chamar. 😊` },
+    { id:'m15', cat:'followup', icon:'✅', color:'#f0fdf4', full:false, title:'Aprovação de Etapa', sub:'Solicitar aprovação de layout ou etapa',
+      text:`Olá, [NOME]! 🎨
 
 A etapa de [NOME DA ETAPA] está pronta para aprovação!
 
@@ -1382,29 +1069,9 @@ Por favor, revise e nos diga:
 👍 Aprovado — seguimos para a próxima etapa
 ✏️ Solicitar ajustes — nos informe o que alterar
 
-Aguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-aprovacao',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- SUPORTE -->
-  <div class="msg-section-label" style="margin-top:8px;">Suporte Pós-entrega</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="suporte">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#eff6ff;">🛠️</div>
-        <div class="msg-card-meta">
-          <h3>Abertura de Chamado de Suporte</h3>
-          <span>Confirmação ao receber solicitação de suporte</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-chamado">Olá, [NOME]! 👋
+Aguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅` },
+    { id:'m16', cat:'suporte', icon:'🛠️', color:'#eff6ff', full:false, title:'Abertura de Chamado de Suporte', sub:'Confirmação ao receber solicitação de suporte',
+      text:`Olá, [NOME]! 👋
 
 Recebemos sua solicitação de suporte. ✅
 
@@ -1414,23 +1081,9 @@ Recebemos sua solicitação de suporte. ✅
 
 Nossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!
 
-Ajuda Ecommerce — Suporte Técnico</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-chamado',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="suporte">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#f0fdf4;">✔️</div>
-        <div class="msg-card-meta">
-          <h3>Resolução de Chamado</h3>
-          <span>Informar que o problema foi resolvido</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-resolucao">Olá, [NOME]! 😊
+Ajuda Ecommerce — Suporte Técnico` },
+    { id:'m17', cat:'suporte', icon:'✔️', color:'#f0fdf4', full:false, title:'Resolução de Chamado', sub:'Informar que o problema foi resolvido',
+      text:`Olá, [NOME]! 😊
 
 O problema reportado foi resolvido com sucesso! ✅
 
@@ -1439,29 +1092,9 @@ O problema reportado foi resolvido com sucesso! ✅
 Por favor, verifique se está tudo funcionando corretamente e nos informe.
 
 Qualquer outra dúvida, estamos à disposição!
-Equipe Ajuda Ecommerce 🚀</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-resolucao',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- COBRANÇA -->
-  <div class="msg-section-label" style="margin-top:8px;">Cobrança e Financeiro</div>
-  <div class="msg-grid">
-
-    <div class="msg-card" data-cat="cobranca">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fffbeb;">💰</div>
-        <div class="msg-card-meta">
-          <h3>Envio de Proposta</h3>
-          <span>Encaminhar proposta comercial</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-proposta">Olá, [NOME]! 😊
+Equipe Ajuda Ecommerce 🚀` },
+    { id:'m18', cat:'cobranca', icon:'💰', color:'#fffbeb', full:false, title:'Envio de Proposta', sub:'Encaminhar proposta comercial',
+      text:`Olá, [NOME]! 😊
 
 Conforme conversamos, segue nossa proposta para o seu projeto:
 
@@ -1475,23 +1108,9 @@ Conforme conversamos, segue nossa proposta para o seu projeto:
 
 Ficamos à disposição para esclarecer qualquer dúvida!
 
-Ajuda Ecommerce</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-proposta',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-    <div class="msg-card" data-cat="cobranca">
-      <div class="msg-card-header">
-        <div class="msg-card-icon" style="background:#fff1f2;">🔔</div>
-        <div class="msg-card-meta">
-          <h3>Lembrete de Pagamento</h3>
-          <span>Cobrar pagamento de forma gentil</span>
-        </div>
-      </div>
-      <div class="msg-card-body">
-        <pre id="msg-cobranca">Olá, [NOME]! Como vai?
+Ajuda Ecommerce` },
+    { id:'m19', cat:'cobranca', icon:'🔔', color:'#fff1f2', full:false, title:'Lembrete de Pagamento', sub:'Cobrar pagamento de forma gentil',
+      text:`Olá, [NOME]! Como vai?
 
 Passando para lembrar que temos um pagamento pendente:
 
@@ -1502,845 +1121,927 @@ Passando para lembrar que temos um pagamento pendente:
 Chave PIX: [CHAVE PIX]
 Ou acesse: [LINK DO BOLETO]
 
-Em caso de dúvidas, estamos à disposição! 😊</pre>
-      </div>
-      <div class="msg-card-actions">
-        <button class="btn-copy" onclick="copyMsg('msg-cobranca',this)">📋 Copiar</button>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PAGE: PDFs e DOCUMENTOS                                    -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="page" id="page-docs">
-
-  <div class="section-wrap" style="max-width:900px;">
-    <div class="page-header">
-      <h1>PDFs e Documentos</h1>
-      <p>Materiais padrão da agência prontos para envio</p>
-    </div>
-  </div>
-
-  <div class="docs-grid">
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#eff6ff;">📄</div>
-      <h3>Documento de Entrega</h3>
-      <p>Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.</p>
-      <span class="dc-tag">Gerador dinâmico</span>
-      <button class="btn-use" onclick="showPage('pdf', document.querySelectorAll('.nav-btn')[1])">Gerar PDF ↗</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#f0fdf4;">💳</div>
-      <h3>Comparativo de Meios de Pagamento</h3>
-      <p>Tabela completa comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal — taxas, diferenciais e recursos.</p>
-      <span class="dc-tag">PDF Pronto para envio</span>
-      <button class="btn-use" onclick="showComparativoPagamento()">📤 Ver e Copiar mensagem</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#f5f3ff;">📋</div>
-      <h3>Proposta Comercial</h3>
-      <p>Modelo de proposta padronizado com serviços, valores, cronograma e condições de pagamento.</p>
-      <span class="dc-tag">Em breve</span>
-      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#ecfdf5;">✅</div>
-      <h3>Checklist de Lançamento</h3>
-      <p>Lista completa de verificação antes do go-live: domínio, pagamentos, frete, SEO e mais.</p>
-      <span class="dc-tag">Em breve</span>
-      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#fff7ed;">📖</div>
-      <h3>Manual do Cliente</h3>
-      <p>Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.</p>
-      <span class="dc-tag">Em breve</span>
-      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#faf5ff;">📜</div>
-      <h3>Contrato de Prestação de Serviços</h3>
-      <p>Modelo de contrato com escopo, prazo, valores e cláusulas de suporte e manutenção.</p>
-      <span class="dc-tag">Em breve</span>
-      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
-    </div>
-
-    <div class="doc-card">
-      <div class="dc-icon" style="background:#ecfeff;">📊</div>
-      <h3>Relatório Mensal de Resultados</h3>
-      <p>Template de relatório para apresentar métricas de tráfego, conversão e campanhas ao cliente.</p>
-      <span class="dc-tag">Em breve</span>
-      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- MODAL: COMPARATIVO PAGAMENTO -->
-<div id="modal-pagamento" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);">
-    <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e8f0;padding-bottom:16px;">
-      <div>
-        <h2 style="font-size:1.1rem;font-weight:700;color:#1e293b;">Comparativo de Meios de Pagamento</h2>
-        <p style="font-size:0.82rem;color:#64748b;margin-top:3px;">Envie o PDF + a mensagem abaixo no grupo do cliente</p>
-      </div>
-      <button onclick="document.getElementById('modal-pagamento').style.display='none'" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#64748b;line-height:1;">×</button>
-    </div>
-    <div style="padding:20px 24px;">
-      <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:14px 16px;margin-bottom:16px;">
-        <p style="font-size:0.82rem;font-weight:700;color:#166534;margin-bottom:6px;">📎 Lembre-se de anexar o PDF</p>
-        <p style="font-size:0.8rem;color:#15803d;">Envie o arquivo <strong>COMPARATIVO_MEIOS_DE_PAGAMENTO.pdf</strong> junto com a mensagem abaixo no grupo do WhatsApp do cliente.</p>
-      </div>
-      <label style="font-size:0.84rem;font-weight:700;color:#374151;display:block;margin-bottom:8px;">Mensagem para enviar:</label>
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;font-family:'Segoe UI',sans-serif;font-size:0.82rem;line-height:1.6;color:#1e293b;white-space:pre-wrap;" id="modal-msg-pagamento">Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
-
-*Principais opções disponíveis na Nuvemshop:*
-
-✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.
-
-Além do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.
-
-*Sobre as taxas:*
-As taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.
-
-Uma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.
-
-No cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.
-
-*Recomendação:*
-Para uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.
-
-Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊</div>
-      <button onclick="copyModalMsg('modal-msg-pagamento',this)" style="margin-top:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:0.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;">📋 Copiar mensagem</button>
-    </div>
-  </div>
-</div>
-
-<!-- ── TOAST ──────────────────────────────────────────────── -->
-<div id="toast"></div>
-
-<script>
-// ── AJUDA ECOMMERCE — CONFIGURAÇÕES ──────────────────────────
-const AJUDA = {
-  whatsappComercial: '(48) 99999-9999',
-  emailComercial:    'contato@ajudaecom.com.br',
-  whatsappTecnico:   '(48) 98888-8888',
-  emailTecnico:      'suporte@ajudaecom.com.br',
-  horario:           'Seg-Sex, 9h-18h',
-  site:              'ajudaecom.com.br',
-  instagram:         '@ajudaecommerce',
-  nome:              'Ajuda Ecommerce',
+Em caso de dúvidas, estamos à disposição! 😊` },
+  ],
+  docCats: [
+    { id: 'geradores', label: 'Geradores', section: 'Geradores e Ferramentas' },
+    { id: 'modelos',   label: 'Modelos',   section: 'Modelos e Materiais' },
+  ],
+  docs: [
+    { id:'d1', cat:'geradores', icon:'📄', color:'#eff6ff', title:'Documento de Entrega', desc:'Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.', tag:'Gerador dinâmico', btn:'Gerar PDF ↗', state:'gen-pdf' },
+    { id:'d2', cat:'geradores', icon:'💳', color:'#f0fdf4', title:'Comparativo de Meios de Pagamento', desc:'Tabela completa comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal — taxas, diferenciais e recursos.', tag:'PDF Pronto para envio', btn:'📤 Ver e Copiar mensagem', state:'comparativo' },
+    { id:'d3', cat:'modelos', icon:'📋', color:'#f5f3ff', title:'Proposta Comercial', desc:'Modelo de proposta padronizado com serviços, valores, cronograma e condições de pagamento.', tag:'Em breve', btn:'Disponível em breve', state:'placeholder' },
+    { id:'d4', cat:'modelos', icon:'✅', color:'#ecfdf5', title:'Checklist de Lançamento', desc:'Lista completa de verificação antes do go-live: domínio, pagamentos, frete, SEO e mais.', tag:'Em breve', btn:'Disponível em breve', state:'placeholder' },
+    { id:'d5', cat:'modelos', icon:'📖', color:'#fff7ed', title:'Manual do Cliente', desc:'Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.', tag:'Em breve', btn:'Disponível em breve', state:'placeholder' },
+    { id:'d6', cat:'modelos', icon:'📜', color:'#faf5ff', title:'Contrato de Prestação de Serviços', desc:'Modelo de contrato com escopo, prazo, valores e cláusulas de suporte e manutenção.', tag:'Em breve', btn:'Disponível em breve', state:'placeholder' },
+    { id:'d7', cat:'modelos', icon:'📊', color:'#ecfeff', title:'Relatório Mensal de Resultados', desc:'Template de relatório para apresentar métricas de tráfego, conversão e campanhas ao cliente.', tag:'Em breve', btn:'Disponível em breve', state:'placeholder' },
+  ],
 };
+/*__DATA_END__*/
 
-const SUPORTE_PLATAFORMA = {
-  'Nuvemshop':      { canal: 'atendimento@nuvemshop.com.br',       site: 'atendimento.nuvemshop.com.br', horario: '24/7 via chat' },
-  'Shopify':        { canal: 'support@shopify.com',                site: 'help.shopify.com',             horario: '24/7 via chat' },
-  'VTEX':           { canal: 'suporte@vtex.com.br',                site: 'help.vtex.com',                horario: 'Seg-Sex comercial' },
-  'WooCommerce':    { canal: 'wordpress.org/support/woocommerce',  site: 'woocommerce.com/contact-us',   horario: 'Forum/tickets' },
-  'Loja Integrada': { canal: 'ajuda@lojaintegrada.com.br',         site: 'ajuda.lojaintegrada.com.br',   horario: 'Seg-Sex comercial' },
-  'Tray':           { canal: 'atendimento@tray.com.br',            site: 'atendimento.tray.com.br',      horario: 'Seg-Sex comercial' },
-};
+/* ───── ESTADO + PERSISTÊNCIA ───── */
+const STORE_KEY = 'ajuda_central_v1';
+let DATA = null;
+let adminMode = false;
 
-// ── NAVIGATION ────────────────────────────────────────────────
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORE_KEY);
+    if (saved) { DATA = JSON.parse(saved); return; }
+  } catch (e) {}
+  DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function saveData() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(DATA)); } catch (e) {}
+}
+function uid(p) { return p + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function slug(s) {
+  return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || ('cat-' + Date.now().toString(36));
+}
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ───── NAV ───── */
+function navBtn(page){ return document.querySelector('.nav-btn[data-page="'+page+'"]'); }
 function showPage(id, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  if (btn) btn.classList.add('active');
+  (btn || navBtn(id)).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+function toggle(header) { header.classList.toggle('open'); header.nextElementSibling.classList.toggle('open'); }
 
-// ── SECTION TOGGLE ────────────────────────────────────────────
-function toggle(header) {
-  header.classList.toggle('open');
-  header.nextElementSibling.classList.toggle('open');
+/* ───── ADMIN MODE ───── */
+function toggleAdmin() {
+  adminMode = !adminMode;
+  document.body.classList.toggle('admin-mode', adminMode);
+  renderMsgs(); renderDocs();
+  showToast(adminMode ? 'Modo administrador ativado' : 'Modo usuário ativado');
 }
 
-// ── FORM HELPERS ──────────────────────────────────────────────
-function val(id) {
-  const el = document.getElementById(id);
-  return el ? el.value.trim() : '';
+/* ───── TOAST ───── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove('show'), 2600);
 }
+
+/* ───── COPY HELPERS ───── */
+function copyText(text, btn, normalLabel) {
+  navigator.clipboard.writeText(text).then(() => {
+    if (btn) {
+      btn.classList.add('copied'); const old = btn.innerHTML; btn.textContent = '✅ Copiado!';
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = normalLabel || old; }, 2000);
+    }
+    showToast('Copiado para a área de transferência!');
+  });
+}
+function copyMsgById(id, btn) {
+  const m = DATA.msgs.find(x => x.id === id); if (!m) return;
+  copyText(m.text, btn, '📋 Copiar');
+}
+function copyEl(elId, btn) { copyText(document.getElementById(elId).textContent, btn, '📋 Copiar mensagem'); }
+
+/* ───── FILTRO (usuário) ───── */
+let activeMsgTab = 'todas', activeMsgSearch = '';
+let activeDocTab = 'todas';
+
+function filterTab(scope, cat) {
+  if (scope === 'msg') activeMsgTab = cat; else activeDocTab = cat;
+  if (scope === 'msg') renderMsgs(); else renderDocs();
+}
+function filterMsgs(q) { activeMsgSearch = (q||'').toLowerCase(); applyMsgFilter(); }
+function applyMsgFilter() {
+  document.querySelectorAll('#msgContent .msg-card').forEach(card => {
+    const cat = card.dataset.cat;
+    const text = card.textContent.toLowerCase();
+    const tabOk = activeMsgTab === 'todas' || cat === activeMsgTab;
+    const searchOk = activeMsgSearch === '' || text.includes(activeMsgSearch);
+    card.dataset.hidden = !(tabOk && searchOk);
+  });
+  document.querySelectorAll('#msgContent .msg-section-label').forEach(label => {
+    const cat = label.dataset.cat;
+    const grid = label.nextElementSibling;
+    const tabOk = activeMsgTab === 'todas' || cat === activeMsgTab;
+    const hasVisible = grid && [...grid.querySelectorAll('.msg-card')].some(c => c.dataset.hidden !== 'true');
+    // admin: mostra seção se o tab bate (mesmo vazia); esconde se o tab não bate
+    // usuário: mostra só se tem cards visíveis e tab bate
+    const show = adminMode ? tabOk : (tabOk && hasVisible);
+    label.style.display = show ? '' : 'none';
+    if (grid) grid.style.display = show ? '' : 'none';
+  });
+}
+
+/* ───── RENDER: TABS ───── */
+function renderTabs(scope) {
+  const cats = scope === 'msg' ? DATA.msgCats : DATA.docCats;
+  const active = scope === 'msg' ? activeMsgTab : activeDocTab;
+  const el = document.getElementById(scope === 'msg' ? 'msgTabs' : 'docTabs');
+  let html = '<button class="msg-tab' + (active==='todas'?' active':'') + '" onclick="filterTab(\''+scope+'\',\'todas\')">Todas</button>';
+  cats.forEach(c => {
+    html += '<button class="msg-tab' + (active===c.id?' active':'') + '" onclick="filterTab(\''+scope+'\',\''+c.id+'\')">' + esc(c.label) + '</button>';
+  });
+  el.innerHTML = html;
+}
+
+/* ───── RENDER: MENSAGENS ───── */
+function renderMsgs() {
+  renderTabs('msg');
+  const wrap = document.getElementById('msgContent');
+  let html = '';
+
+  DATA.msgCats.forEach(cat => {
+    const items = DATA.msgs.filter(m => m.cat === cat.id);
+    if (!adminMode && items.length === 0) return; // usuário não vê seção vazia
+
+    html += '<div class="msg-section-label" data-cat="'+cat.id+'">'
+          +   esc(cat.section)
+          +   '<span class="lbl-line"></span>'
+          +   '<span class="lbl-admin">'
+          +     '<button class="mini-btn" onclick="openMsgModal(null,\''+cat.id+'\')">＋ Mensagem</button>'
+          +   '</span>'
+          + '</div>';
+    html += '<div class="msg-grid">';
+    if (items.length === 0) {
+      html += '<div class="empty-state" style="grid-column:1/-1;">Nenhuma mensagem neste filtro ainda.</div>';
+    }
+    items.forEach((m, idx) => {
+      html += renderMsgCard(m, idx, items.length);
+    });
+    html += '</div>';
+  });
+
+  if (DATA.msgCats.length === 0) html = '<div class="empty-state">Nenhum filtro criado. Ative o modo admin para começar.</div>';
+  wrap.innerHTML = html;
+  applyMsgFilter();
+  updateStats();
+}
+
+function renderMsgCard(m, idx, total) {
+  let h = '<div class="msg-card'+(m.full?' full':'')+'" data-cat="'+m.cat+'">';
+  h += '<div class="msg-card-header">';
+  h += '<div class="msg-card-icon" style="background:'+esc(m.color)+';">'+esc(m.icon)+'</div>';
+  h += '<div class="msg-card-meta"><h3>'+esc(m.title)+'</h3><span>'+esc(m.sub)+'</span></div>';
+  h += '</div>';
+  h += '<div class="msg-card-body"><pre>'+esc(m.text)+'</pre></div>';
+  h += '<div class="msg-card-actions"><button class="btn-copy" onclick="copyMsgById(\''+m.id+'\',this)">📋 Copiar</button></div>';
+  // admin row
+  h += '<div class="card-admin-row">';
+  h += '<button class="mini-btn" onclick="openMsgModal(\''+m.id+'\')">✏️ Editar</button>';
+  h += '<span class="reorder-grp">';
+  h += '<button class="mini-btn" '+(idx===0?'disabled':'')+' onclick="moveMsg(\''+m.id+'\',-1)">▲</button>';
+  h += '<button class="mini-btn" '+(idx===total-1?'disabled':'')+' onclick="moveMsg(\''+m.id+'\',1)">▼</button>';
+  h += '</span>';
+  h += '<button class="mini-btn danger" onclick="deleteMsg(\''+m.id+'\')">🗑 Excluir</button>';
+  h += '</div>';
+  h += '</div>';
+  return h;
+}
+
+/* ───── RENDER: DOCS ───── */
+function renderDocs() {
+  renderTabs('doc');
+  const wrap = document.getElementById('docContent');
+  let html = '';
+
+  DATA.docCats.forEach(cat => {
+    const items = DATA.docs.filter(d => d.cat === cat.id);
+    if (!adminMode && items.length === 0) return;
+
+    html += '<div class="msg-section-label" data-cat="'+cat.id+'">'
+          +   esc(cat.section)
+          +   '<span class="lbl-line"></span>'
+          +   '<span class="lbl-admin">'
+          +     '<button class="mini-btn" onclick="openDocModal(null,\''+cat.id+'\')">＋ Documento</button>'
+          +   '</span>'
+          + '</div>';
+    html += '<div class="docs-grid" style="padding:0;">';
+    if (items.length === 0) {
+      html += '<div class="empty-state" style="grid-column:1/-1;">Nenhum documento neste filtro ainda.</div>';
+    }
+    items.forEach((d, idx) => { html += renderDocCard(d, idx, items.length); });
+    html += '</div>';
+  });
+
+  if (DATA.docCats.length === 0) html = '<div class="empty-state">Nenhum filtro criado. Ative o modo admin para começar.</div>';
+  wrap.innerHTML = html;
+  applyDocFilter();
+  updateStats();
+}
+
+function applyDocFilter() {
+  document.querySelectorAll('#docContent .doc-card').forEach(card => {
+    const tabOk = activeDocTab === 'todas' || card.dataset.cat === activeDocTab;
+    card.style.display = tabOk ? '' : 'none';
+  });
+  document.querySelectorAll('#docContent .msg-section-label').forEach(label => {
+    const cat = label.dataset.cat;
+    const grid = label.nextElementSibling;
+    const tabOk = activeDocTab === 'todas' || cat === activeDocTab;
+    const hasVisible = grid && [...grid.querySelectorAll('.doc-card')].some(c => c.style.display !== 'none');
+    const show = adminMode ? tabOk : (tabOk && hasVisible);
+    label.style.display = show ? '' : 'none';
+    if (grid) grid.style.display = show ? '' : 'none';
+  });
+}
+
+function docAction(d) {
+  if (d.state === 'gen-pdf') return 'onclick="showPage(\'pdf\', navBtn(\'pdf\'))"';
+  if (d.state === 'comparativo') return 'onclick="showComparativoPagamento()"';
+  if (d.state === 'placeholder') return 'disabled';
+  return 'onclick="placeholderDoc()"'; // active but not implemented
+}
+
+function renderDocCard(d, idx, total) {
+  let h = '<div class="doc-card" data-cat="'+d.cat+'">';
+  h += '<div class="dc-icon" style="background:'+esc(d.color)+';">'+esc(d.icon)+'</div>';
+  h += '<h3>'+esc(d.title)+'</h3>';
+  h += '<p>'+esc(d.desc)+'</p>';
+  h += '<span class="dc-tag">'+esc(d.tag)+'</span>';
+  const dis = d.state === 'placeholder' ? 'style="opacity:.5;cursor:not-allowed;"' : '';
+  h += '<button class="btn-use" '+dis+' '+docAction(d)+'>'+esc(d.btn)+'</button>';
+  // admin row
+  h += '<div class="doc-admin-row">';
+  h += '<button class="mini-btn" onclick="openDocModal(\''+d.id+'\')">✏️ Editar</button>';
+  h += '<span class="reorder-grp">';
+  h += '<button class="mini-btn" '+(idx===0?'disabled':'')+' onclick="moveDoc(\''+d.id+'\',-1)">▲</button>';
+  h += '<button class="mini-btn" '+(idx===total-1?'disabled':'')+' onclick="moveDoc(\''+d.id+'\',1)">▼</button>';
+  h += '</span>';
+  h += '<button class="mini-btn danger" onclick="deleteDoc(\''+d.id+'\')">🗑 Excluir</button>';
+  h += '</div>';
+  h += '</div>';
+  return h;
+}
+
+function placeholderDoc() { showToast('Este documento ainda não está disponível (placeholder).'); }
+
+/* ───── STATS ───── */
+function updateStats() {
+  document.getElementById('stat-msgs').textContent = DATA.msgs.length;
+  document.getElementById('stat-docs').textContent = DATA.docs.length;
+}
+
+/* ───── MOVE (reordenar dentro do filtro) ───── */
+function moveItem(list, id, dir) {
+  const item = list.find(x => x.id === id); if (!item) return false;
+  const sameCat = list.filter(x => x.cat === item.cat);
+  const pos = sameCat.indexOf(item);
+  const target = pos + dir;
+  if (target < 0 || target >= sameCat.length) return false;
+  const other = sameCat[target];
+  const iAll = list.indexOf(item), oAll = list.indexOf(other);
+  list[iAll] = other; list[oAll] = item;
+  return true;
+}
+function moveMsg(id, dir){ if(moveItem(DATA.msgs,id,dir)){ saveData(); renderMsgs(); } }
+function moveDoc(id, dir){ if(moveItem(DATA.docs,id,dir)){ saveData(); renderDocs(); } }
+
+/* ───── DELETE ───── */
+function deleteMsg(id) {
+  const m = DATA.msgs.find(x=>x.id===id); if(!m) return;
+  if (!confirm('Excluir a mensagem "'+m.title+'"?')) return;
+  DATA.msgs = DATA.msgs.filter(x=>x.id!==id); saveData(); renderMsgs(); showToast('Mensagem excluída');
+}
+function deleteDoc(id) {
+  const d = DATA.docs.find(x=>x.id===id); if(!d) return;
+  if (!confirm('Excluir o documento "'+d.title+'"?')) return;
+  DATA.docs = DATA.docs.filter(x=>x.id!==id); saveData(); renderDocs(); showToast('Documento excluído');
+}
+
+/* ───── MODAL helpers ───── */
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function showComparativoPagamento(){
+  const m = DATA.msgs.find(x=>x.id==='m7') || DATA.msgs.find(x=>x.cat==='pagamento');
+  document.getElementById('modal-msg-pagamento').textContent = m ? m.text : '';
+  openModal('modal-pagamento');
+}
+
+function buildEmojiPicker(containerId, inputId) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = EMOJI_SUGGEST.map(e =>
+    '<button type="button" class="emoji-opt" onclick="pickEmoji(\''+inputId+'\',\''+containerId+'\',\''+e+'\')">'+e+'</button>'
+  ).join('');
+}
+function pickEmoji(inputId, containerId, e) {
+  document.getElementById(inputId).value = e;
+  document.querySelectorAll('#'+containerId+' .emoji-opt').forEach(b => b.classList.toggle('sel', b.textContent===e));
+}
+function buildColorPicker(containerId, inputState) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = ICON_COLORS.map(col =>
+    '<button type="button" class="color-opt" style="background:'+col+';" data-col="'+col+'" onclick="pickColor(\''+containerId+'\',\''+inputState+'\',\''+col+'\')"></button>'
+  ).join('');
+}
+let pickedColor = { msg: ICON_COLORS[0], doc: ICON_COLORS[1] };
+function pickColor(containerId, scope, col) {
+  pickedColor[scope] = col;
+  document.querySelectorAll('#'+containerId+' .color-opt').forEach(b => b.classList.toggle('sel', b.dataset.col===col));
+}
+
+/* ───── MENSAGEM: modal ───── */
+let editingMsgId = null;
+function openMsgModal(id, presetCat) {
+  editingMsgId = id || null;
+  buildEmojiPicker('m_emojiPick','m_icon');
+  buildColorPicker('m_colorPick','msg');
+  // popular categorias
+  const catSel = document.getElementById('m_cat');
+  catSel.innerHTML = DATA.msgCats.map(c => '<option value="'+c.id+'">'+esc(c.label)+'</option>').join('');
+  if (DATA.msgCats.length === 0) { alert('Crie um filtro antes de adicionar mensagens.'); return; }
+
+  if (id) {
+    const m = DATA.msgs.find(x=>x.id===id);
+    document.getElementById('msgModalTitle').textContent = 'Editar mensagem';
+    catSel.value = m.cat;
+    document.getElementById('m_title').value = m.title;
+    document.getElementById('m_sub').value = m.sub;
+    document.getElementById('m_icon').value = m.icon;
+    document.getElementById('m_full').value = String(m.full);
+    document.getElementById('m_text').value = m.text;
+    pickedColor.msg = m.color;
+  } else {
+    document.getElementById('msgModalTitle').textContent = 'Nova mensagem';
+    catSel.value = presetCat || DATA.msgCats[0].id;
+    document.getElementById('m_title').value = '';
+    document.getElementById('m_sub').value = '';
+    document.getElementById('m_icon').value = '💬';
+    document.getElementById('m_full').value = 'false';
+    document.getElementById('m_text').value = '';
+    pickedColor.msg = ICON_COLORS[0];
+  }
+  pickColor('m_colorPick','msg', pickedColor.msg);
+  pickEmoji('m_icon','m_emojiPick', document.getElementById('m_icon').value);
+  openModal('modal-msg');
+}
+function saveMsg() {
+  const title = document.getElementById('m_title').value.trim();
+  const text  = document.getElementById('m_text').value.trim();
+  if (!title) { alert('Informe um título.'); return; }
+  if (!text)  { alert('Informe o texto da mensagem.'); return; }
+  const obj = {
+    cat: document.getElementById('m_cat').value,
+    icon: document.getElementById('m_icon').value.trim() || '💬',
+    color: pickedColor.msg,
+    full: document.getElementById('m_full').value === 'true',
+    title, sub: document.getElementById('m_sub').value.trim(), text,
+  };
+  if (editingMsgId) {
+    const m = DATA.msgs.find(x=>x.id===editingMsgId); Object.assign(m, obj);
+  } else {
+    DATA.msgs.push(Object.assign({ id: uid('m') }, obj));
+  }
+  saveData(); closeModal('modal-msg'); renderMsgs(); showToast('Mensagem salva');
+}
+
+/* ───── DOCUMENTO: modal ───── */
+let editingDocId = null;
+function openDocModal(id, presetCat) {
+  editingDocId = id || null;
+  buildEmojiPicker('d_emojiPick','d_icon');
+  buildColorPicker('d_colorPick','doc');
+  const catSel = document.getElementById('d_cat');
+  catSel.innerHTML = DATA.docCats.map(c => '<option value="'+c.id+'">'+esc(c.label)+'</option>').join('');
+  if (DATA.docCats.length === 0) { alert('Crie um filtro antes de adicionar documentos.'); return; }
+
+  if (id) {
+    const d = DATA.docs.find(x=>x.id===id);
+    document.getElementById('docModalTitle').textContent = 'Editar documento';
+    catSel.value = d.cat;
+    document.getElementById('d_title').value = d.title;
+    document.getElementById('d_desc').value = d.desc;
+    document.getElementById('d_icon').value = d.icon;
+    document.getElementById('d_tag').value = d.tag;
+    document.getElementById('d_btn').value = d.btn;
+    // map internal states to selectable ones
+    document.getElementById('d_state').value = (d.state==='placeholder') ? 'placeholder' : 'active';
+    pickedColor.doc = d.color;
+  } else {
+    document.getElementById('docModalTitle').textContent = 'Novo documento';
+    catSel.value = presetCat || DATA.docCats[0].id;
+    document.getElementById('d_title').value = '';
+    document.getElementById('d_desc').value = '';
+    document.getElementById('d_icon').value = '📄';
+    document.getElementById('d_tag').value = 'Em breve';
+    document.getElementById('d_btn').value = 'Disponível em breve';
+    document.getElementById('d_state').value = 'placeholder';
+    pickedColor.doc = ICON_COLORS[1];
+  }
+  pickColor('d_colorPick','doc', pickedColor.doc);
+  pickEmoji('d_icon','d_emojiPick', document.getElementById('d_icon').value);
+  openModal('modal-doc');
+}
+function saveDoc() {
+  const title = document.getElementById('d_title').value.trim();
+  if (!title) { alert('Informe um título.'); return; }
+  const stateSel = document.getElementById('d_state').value;
+  const obj = {
+    cat: document.getElementById('d_cat').value,
+    icon: document.getElementById('d_icon').value.trim() || '📄',
+    color: pickedColor.doc,
+    title,
+    desc: document.getElementById('d_desc').value.trim(),
+    tag: document.getElementById('d_tag').value.trim(),
+    btn: document.getElementById('d_btn').value.trim() || 'Abrir',
+    state: stateSel, // 'placeholder' or 'active'
+  };
+  if (editingDocId) {
+    const d = DATA.docs.find(x=>x.id===editingDocId);
+    // preserve special built-in states (gen-pdf / comparativo) if user didn't switch to placeholder
+    if ((d.state==='gen-pdf'||d.state==='comparativo') && stateSel==='active') obj.state = d.state;
+    Object.assign(d, obj);
+  } else {
+    DATA.docs.push(Object.assign({ id: uid('d') }, obj));
+  }
+  saveData(); closeModal('modal-doc'); renderDocs(); showToast('Documento salvo');
+}
+
+/* ───── CATEGORIA: modal ───── */
+let catScope = 'msg', editingCatId = null;
+function openCatModal(scope, id) {
+  catScope = scope; editingCatId = id || null;
+  document.getElementById('catModalTitle').textContent = id ? 'Editar filtro' : 'Novo filtro';
+  if (id) {
+    const cats = scope==='msg'?DATA.msgCats:DATA.docCats;
+    const c = cats.find(x=>x.id===id);
+    document.getElementById('c_label').value = c.label;
+    document.getElementById('c_section').value = c.section;
+  } else {
+    document.getElementById('c_label').value = '';
+    document.getElementById('c_section').value = '';
+  }
+  openModal('modal-cat');
+}
+function saveCat() {
+  const label = document.getElementById('c_label').value.trim();
+  const section = document.getElementById('c_section').value.trim();
+  if (!label) { alert('Informe o nome do filtro.'); return; }
+  const cats = catScope==='msg'?DATA.msgCats:DATA.docCats;
+  if (editingCatId) {
+    const c = cats.find(x=>x.id===editingCatId);
+    c.label = label; c.section = section || label;
+  } else {
+    cats.push({ id: uid('cat'), label, section: section || label });
+  }
+  saveData(); closeModal('modal-cat');
+  if (catScope==='msg') renderMsgs(); else renderDocs();
+  // refresh manage modal if open
+  if (document.getElementById('modal-managecat').classList.contains('show')) renderManageCats();
+  showToast('Filtro salvo');
+}
+
+/* ───── GERENCIAR CATEGORIAS ───── */
+let manageScope = 'msg';
+function openManageCats(scope) { manageScope = scope; renderManageCats(); openModal('modal-managecat'); }
+function renderManageCats() {
+  const cats = manageScope==='msg'?DATA.msgCats:DATA.docCats;
+  const items = manageScope==='msg'?DATA.msgs:DATA.docs;
+  const body = document.getElementById('manageCatBody');
+  if (cats.length === 0) { body.innerHTML = '<div class="empty-state">Nenhum filtro criado ainda.</div>'; return; }
+  let html = '';
+  cats.forEach((c, idx) => {
+    const count = items.filter(x=>x.cat===c.id).length;
+    html += '<div style="display:flex;align-items:center;gap:10px;padding:12px;border:1.5px solid var(--border);border-radius:10px;">';
+    html += '<div style="flex:1;"><div style="font-weight:700;font-size:0.9rem;">'+esc(c.label)+'</div>';
+    html += '<div style="font-size:0.76rem;color:var(--muted);">'+esc(c.section)+' · '+count+' item(s)</div></div>';
+    html += '<button class="mini-btn" '+(idx===0?'disabled':'')+' onclick="moveCat(\''+c.id+'\',-1)">▲</button>';
+    html += '<button class="mini-btn" '+(idx===cats.length-1?'disabled':'')+' onclick="moveCat(\''+c.id+'\',1)">▼</button>';
+    html += '<button class="mini-btn" onclick="openCatModal(\''+manageScope+'\',\''+c.id+'\')">✏️</button>';
+    html += '<button class="mini-btn danger" onclick="deleteCat(\''+c.id+'\')">🗑</button>';
+    html += '</div>';
+  });
+  body.innerHTML = html;
+}
+function moveCat(id, dir) {
+  const cats = manageScope==='msg'?DATA.msgCats:DATA.docCats;
+  const i = cats.findIndex(x=>x.id===id); const t = i+dir;
+  if (t<0||t>=cats.length) return;
+  [cats[i],cats[t]] = [cats[t],cats[i]];
+  saveData(); renderManageCats();
+  if (manageScope==='msg') renderMsgs(); else renderDocs();
+}
+function deleteCat(id) {
+  const cats = manageScope==='msg'?DATA.msgCats:DATA.docCats;
+  const items = manageScope==='msg'?DATA.msgs:DATA.docs;
+  const c = cats.find(x=>x.id===id); if(!c) return;
+  const count = items.filter(x=>x.cat===id).length;
+  if (count > 0) {
+    if (!confirm('O filtro "'+c.label+'" tem '+count+' item(s). Excluir o filtro também excluirá esses itens. Continuar?')) return;
+    if (manageScope==='msg') DATA.msgs = DATA.msgs.filter(x=>x.cat!==id);
+    else DATA.docs = DATA.docs.filter(x=>x.cat!==id);
+  } else {
+    if (!confirm('Excluir o filtro "'+c.label+'"?')) return;
+  }
+  if (manageScope==='msg') DATA.msgCats = DATA.msgCats.filter(x=>x.id!==id);
+  else DATA.docCats = DATA.docCats.filter(x=>x.id!==id);
+  saveData(); renderManageCats();
+  if (manageScope==='msg') renderMsgs(); else renderDocs();
+  showToast('Filtro excluído');
+}
+
+/* ───── RESET ───── */
+function resetData() {
+  if (!confirm('Restaurar todos os dados para o padrão? Suas edições neste navegador serão perdidas.')) return;
+  DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  saveData(); renderMsgs(); renderDocs(); showToast('Dados restaurados ao padrão');
+}
+
+/* ───── EXPORTAR HTML ─────
+   Substitui o bloco entre os sentinelas DATA_START / DATA_END pelos dados
+   atuais, gerando um HTML novo que já abre com tudo embutido. */
+function exportHTML() {
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const START = '/*__DATA_START__*/';
+  const END = '/*__DATA_END__*/';
+  const s = html.indexOf(START);
+  const e = html.indexOf(END);
+  if (s === -1 || e === -1 || e < s) { showToast('Erro ao localizar bloco de dados'); return; }
+  const dataStr = '\nconst DEFAULT_DATA = ' + JSON.stringify(DATA, null, 2) + ';\n';
+  const newHtml = html.slice(0, s + START.length) + dataStr + html.slice(e);
+  const blob = new Blob([newHtml], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'central-ferramentas.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('HTML exportado com os dados atuais!');
+}
+
+/* ───── FORM PDF helpers ───── */
+function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 function clearAll() {
   document.querySelectorAll('#page-pdf input, #page-pdf select').forEach(el => el.value = '');
   showToast('Formulário limpo');
 }
 
-// ── TOAST ─────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
+/* fechar modal clicando fora */
+document.addEventListener('click', e => {
+  if (e.target.classList && e.target.classList.contains('modal-overlay')) e.target.classList.remove('show');
+});
 
-// ── COPY MESSAGE ──────────────────────────────────────────────
-function copyMsg(id, btn) {
-  const text = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.classList.add('copied');
-    btn.textContent = '✅ Copiado!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '📋 Copiar';
-    }, 2000);
-    showToast('Mensagem copiada!');
-  });
-}
+/* ───── INIT ───── */
+loadData();
+renderMsgs();
+renderDocs();
+updateStats();
 
-// ── FILTER MESSAGES ───────────────────────────────────────────
-let activeTab = 'todas';
-let activeSearch = '';
-
-function filterTab(cat, btn) {
-  activeTab = cat;
-  document.querySelectorAll('.msg-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  applyFilters();
-}
-
-function filterMsgs(q) {
-  activeSearch = q.toLowerCase();
-  applyFilters();
-}
-
-function applyFilters() {
-  document.querySelectorAll('.msg-card').forEach(card => {
-    const cat = card.dataset.cat;
-    const text = card.textContent.toLowerCase();
-    const tabOk = activeTab === 'todas' || cat === activeTab;
-    const searchOk = activeSearch === '' || text.includes(activeSearch);
-    card.dataset.hidden = !(tabOk && searchOk);
-  });
-}
-
-// ── PDF GENERATION ────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════
+   GERADOR DE PDF (mantido da versão anterior)
+   ══════════════════════════════════════════════════════ */
 function generatePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
 
   const clientName  = val('clientName') || 'Cliente';
-  const pageW       = 210;
-  const pageH       = 297;
-  const margin      = 18;
-  const contentW    = pageW - margin * 2;
+  const lojaUrl     = val('lojaUrl');
+  const pageW = 210, pageH = 297, margin = 18, contentW = pageW - margin * 2;
   let y = 0;
 
   const C = {
-    navy:    [15, 40, 80],
-    accent:  [132, 204, 22],
-    gold:    [217, 165, 50],
-    primary: [37, 99, 235],
-    dark:    [30, 41, 59],
-    muted:   [100, 116, 139],
-    border:  [226, 232, 240],
-    white:   [255, 255, 255],
-    lightBg: [248, 250, 252],
-    wrapBg:  [244, 246, 249],
-    wrapBdr: [213, 219, 229],
-    cardBdr: [220, 225, 232],
-    sections: {
-      ecommerce:   [37,  99, 235],
-      email:       [124, 58, 237],
-      envio:       [8,  145, 178],
-      dominio:     [5,  150, 105],
-      facebook:    [24, 119, 242],
-      google:      [234, 67,  53],
-      erp:         [217, 119,  6],
-      marketplace: [124, 58, 237],
-    }
+    navy:[15,40,80], accent:[132,204,22], gold:[217,165,50], primary:[37,99,235],
+    dark:[30,41,59], muted:[100,116,139], border:[226,232,240], white:[255,255,255],
+    cardBdr:[220,225,232],
+    sections: { ecommerce:[37,99,235], email:[124,58,237], envio:[8,145,178], dominio:[5,150,105],
+      facebook:[24,119,242], google:[234,67,53], erp:[217,119,6], marketplace:[124,58,237] }
   };
 
-  const addPage  = () => { doc.addPage(); y = 20; };
-  const checkY   = (needed = 20) => { if (y + needed > pageH - 20) addPage(); };
-  const drawLink = (text, x, yPos, url, fontSize) => {
-    doc.setFontSize(fontSize || 10.5);
-    doc.setTextColor(37, 99, 235);
-    doc.textWithLink(text, x, yPos, { url: url });
-  };
+  const addPage = () => { doc.addPage(); y = 20; };
+  const checkY = (n = 20) => { if (y + n > pageH - 20) addPage(); };
+  const drawLink = (text, x, yPos, url, fs) => { doc.setFontSize(fs||10.5); doc.setTextColor(37,99,235); doc.textWithLink(text, x, yPos, { url }); };
 
   const drawTopBand = () => {
-    doc.setFillColor(...C.navy);
-    doc.rect(0, 0, pageW, 18, 'F');
-    doc.setFillColor(...C.accent);
-    doc.rect(0, 16, pageW, 2, 'F');
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.setTextColor(...C.accent);
-    doc.text('ajuda', margin, 11);
-    const aw = doc.getTextWidth('ajuda');
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(180, 200, 230);
-    doc.text(' // ', margin + aw, 11);
-    const sw = doc.getTextWidth(' // ');
-    doc.setTextColor(...C.white);
-    doc.text('ecommerce', margin + aw + sw, 11);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.setTextColor(180, 200, 230);
-    doc.text(clientName, pageW - margin, 11, { align: 'right' });
+    doc.setFillColor(...C.navy); doc.rect(0,0,pageW,18,'F');
+    doc.setFillColor(...C.accent); doc.rect(0,16,pageW,2,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.accent);
+    doc.text('ajuda', margin, 11); const aw = doc.getTextWidth('ajuda');
+    doc.setFont('helvetica','normal'); doc.setTextColor(180,200,230);
+    doc.text(' // ', margin+aw, 11); const sw = doc.getTextWidth(' // ');
+    doc.setTextColor(...C.white); doc.text('ecommerce', margin+aw+sw, 11);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(180,200,230);
+    doc.text(clientName, pageW-margin, 11, { align:'right' });
   };
 
-  // PAGE 1: COVER
   const drawCover = () => {
-    doc.setFillColor(...C.navy);
-    doc.rect(0, 0, pageW, pageH, 'F');
-    doc.setFillColor(...C.accent);
-    doc.rect(0, 76, pageW, 2, 'F');
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(28);
-    doc.setTextColor(...C.accent);
-    doc.text('ajuda', margin, 60);
-    const aw = doc.getTextWidth('ajuda');
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(28);
-    doc.setTextColor(180, 200, 230);
-    doc.text(' // ', margin + aw, 60);
-    const sw = doc.getTextWidth(' // ');
-    doc.setTextColor(...C.white);
-    doc.text('ecommerce', margin + aw + sw, 60);
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(9);
-    doc.setTextColor(...C.gold);
+    doc.setFillColor(...C.navy); doc.rect(0,0,pageW,pageH,'F');
+    doc.setFillColor(...C.accent); doc.rect(0,76,pageW,2,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(28); doc.setTextColor(...C.accent);
+    doc.text('ajuda', margin, 60); const aw = doc.getTextWidth('ajuda');
+    doc.setFont('helvetica','normal'); doc.setFontSize(28); doc.setTextColor(180,200,230);
+    doc.text(' // ', margin+aw, 60); const sw = doc.getTextWidth(' // ');
+    doc.setTextColor(...C.white); doc.text('ecommerce', margin+aw+sw, 60);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.gold);
     doc.text('DOCUMENTO DE ENTREGA', margin, 130);
     const elw = doc.getTextWidth('DOCUMENTO DE ENTREGA');
-    doc.setDrawColor(...C.gold);
-    doc.setLineWidth(0.5);
-    doc.line(margin, 132, margin + elw, 132);
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(34);
-    doc.setTextColor(...C.white);
-    const maxNameW = pageW - margin * 2;
-    const lines = doc.splitTextToSize(clientName, maxNameW);
-    let ny = 152;
-    lines.slice(0, 2).forEach(ln => { doc.text(ln, margin, ny); ny += 14; });
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(12);
-    doc.setTextColor(180, 200, 230);
-    doc.text('Kit de finalização e acessos da loja', margin, ny + 6);
-
-    doc.setDrawColor(...C.gold);
-    doc.setLineWidth(0.3);
-    doc.line(margin, pageH - 55, margin + 40, pageH - 55);
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.gold);
-    doc.text('PROJETO CONCLUÍDO EM', margin, pageH - 48);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(13);
-    doc.setTextColor(...C.white);
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-    doc.text(dateStr, margin, pageH - 40);
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.gold);
-    doc.text('ENTREGUE POR', pageW - margin, pageH - 48, { align: 'right' });
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(13);
-    doc.setTextColor(...C.white);
-    doc.text(AJUDA.nome, pageW - margin, pageH - 40, { align: 'right' });
+    doc.setDrawColor(...C.gold); doc.setLineWidth(0.5); doc.line(margin,132,margin+elw,132);
+    doc.setFont('helvetica','bold'); doc.setFontSize(34); doc.setTextColor(...C.white);
+    const lines = doc.splitTextToSize(clientName, pageW-margin*2);
+    let ny = 152; lines.slice(0,2).forEach(ln => { doc.text(ln, margin, ny); ny += 14; });
+    doc.setFont('helvetica','normal'); doc.setFontSize(12); doc.setTextColor(180,200,230);
+    doc.text('Kit de finalização e acessos da loja', margin, ny+6);
+    if (lojaUrl) { doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...C.accent); doc.text(lojaUrl, margin, ny+16); }
+    doc.setDrawColor(...C.gold); doc.setLineWidth(0.3); doc.line(margin,pageH-55,margin+40,pageH-55);
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.gold);
+    doc.text('PROJETO CONCLUÍDO EM', margin, pageH-48);
+    doc.setFont('helvetica','normal'); doc.setFontSize(13); doc.setTextColor(...C.white);
+    doc.text(new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}), margin, pageH-40);
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.gold);
+    doc.text('ENTREGUE POR', pageW-margin, pageH-48, { align:'right' });
+    doc.setFont('helvetica','normal'); doc.setFontSize(13); doc.setTextColor(...C.white);
+    doc.text(AJUDA.nome, pageW-margin, pageH-40, { align:'right' });
   };
 
-  // PAGE 2: MENSAGEM
   const drawMensagem = () => {
     addPage(); drawTopBand(); y = 40;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.muted);
-    doc.text('01  ·  ENCERRAMENTO', margin, y);
-    y += 14;
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(26);
-    doc.setTextColor(...C.dark);
-    doc.text('Seu projeto está', margin, y);
-    doc.text('concluído.', margin, y + 12);
-    y += 32;
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(11.5);
-    doc.setTextColor(...C.dark);
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+    doc.text('01  ·  ENCERRAMENTO', margin, y); y += 14;
+    doc.setFont('helvetica','bold'); doc.setFontSize(26); doc.setTextColor(...C.dark);
+    doc.text('Seu projeto está', margin, y); doc.text('concluído.', margin, y+12); y += 32;
+    doc.setFont('helvetica','normal'); doc.setFontSize(11.5); doc.setTextColor(...C.dark);
     const intro = 'Obrigado pela confiança em nosso trabalho. Sua loja foi configurada e está pronta para operação.';
-    const introLines = doc.splitTextToSize(intro, contentW);
-    introLines.forEach(ln => { doc.text(ln, margin, y); y += 6.5; });
-
-    y += 6;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10.5);
-    doc.setTextColor(...C.muted);
-    doc.text('Neste documento você encontrará:', margin, y);
-    y += 10;
-
-    const items = [
-      'Resumo do projeto e dados da loja',
-      'Canais de suporte (Ajuda Ecommerce e plataforma)',
-      'Orientações de segurança',
-      'Credenciais e acessos de cada serviço',
-    ];
-    items.forEach(it => {
-      doc.setFillColor(...C.accent);
-      doc.circle(margin + 2, y - 1.5, 1.5, 'F');
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10.5);
-      doc.setTextColor(...C.dark);
-      doc.text(it, margin + 8, y);
-      y += 8;
+    doc.splitTextToSize(intro, contentW).forEach(ln => { doc.text(ln, margin, y); y += 6.5; });
+    y += 6; doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.muted);
+    doc.text('Neste documento você encontrará:', margin, y); y += 10;
+    ['Resumo do projeto e dados da loja','Canais de suporte (Ajuda Ecommerce e plataforma)','Orientações de segurança','Credenciais e acessos de cada serviço'].forEach(it => {
+      doc.setFillColor(...C.accent); doc.circle(margin+2, y-1.5, 1.5, 'F');
+      doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+      doc.text(it, margin+8, y); y += 8;
     });
-
-    y += 10;
-    doc.setFont('helvetica', 'italic');
-    doc.setFontSize(10.5);
-    doc.setTextColor(...C.muted);
+    y += 10; doc.setFont('helvetica','italic'); doc.setFontSize(10.5); doc.setTextColor(...C.muted);
     doc.text('Estamos à disposição para qualquer necessidade.', margin, y);
   };
 
   const drawInfoBlock = (title, rows, accentColor) => {
-    const labelH = 10, rowH = 14;
-    const blockH = labelH + rows.length * rowH + 6;
-    doc.setFillColor(...C.white);
-    doc.setDrawColor(...C.cardBdr);
-    doc.setLineWidth(0.3);
+    const labelH = 10, rowH = 14, blockH = labelH + rows.length*rowH + 6;
+    doc.setFillColor(...C.white); doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3);
     doc.roundedRect(margin, y, contentW, blockH, 3, 3, 'FD');
-    if (accentColor) {
-      doc.setFillColor(...accentColor);
-      doc.rect(margin, y, contentW, 1.5, 'F');
-    }
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(9);
-    doc.setTextColor(...C.muted);
-    doc.text(title.toUpperCase(), margin + 7, y + 7);
+    if (accentColor) { doc.setFillColor(...accentColor); doc.rect(margin, y, contentW, 1.5, 'F'); }
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.muted);
+    doc.text(title.toUpperCase(), margin+7, y+7);
     const tw = doc.getTextWidth(title.toUpperCase());
-    doc.setDrawColor(...C.border);
-    doc.setLineWidth(0.2);
-    doc.line(margin + 7 + tw + 4, y + 6, margin + contentW - 7, y + 6);
+    doc.setDrawColor(...C.border); doc.setLineWidth(0.2); doc.line(margin+7+tw+4, y+6, margin+contentW-7, y+6);
     let ry = y + labelH + 5;
-    rows.forEach(([k, v, isUrl]) => {
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(7.5);
-      doc.setTextColor(...C.muted);
-      doc.text(k.toUpperCase(), margin + 7, ry);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      if (isUrl && v && v !== '—') {
-        doc.setTextColor(37, 99, 235);
-        doc.textWithLink(v, margin + 7, ry + 5, { url: v.startsWith('http') ? v : 'https://' + v });
-      } else {
-        doc.setTextColor(...C.dark);
-        doc.text(v || '—', margin + 7, ry + 5);
-      }
+    rows.forEach(([k,v,isUrl]) => {
+      doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...C.muted);
+      doc.text(k.toUpperCase(), margin+7, ry);
+      doc.setFont('helvetica','normal'); doc.setFontSize(10);
+      if (isUrl && v && v !== '—') { doc.setTextColor(37,99,235); doc.textWithLink(v, margin+7, ry+5, { url: v.startsWith('http')?v:'https://'+v }); }
+      else { doc.setTextColor(...C.dark); doc.text(v||'—', margin+7, ry+5); }
       ry += rowH;
     });
     y += blockH;
   };
 
-  // PAGE 3: RESUMO + CONTATOS
   const drawResumoContatos = () => {
     addPage(); drawTopBand(); y = 32;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.muted);
-    doc.text('02  ·  RESUMO E SUPORTE', margin, y);
-    y += 12;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(20);
-    doc.setTextColor(...C.dark);
-    doc.text('Resumo do projeto', margin, y);
-    y += 10;
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+    doc.text('02  ·  RESUMO E SUPORTE', margin, y); y += 12;
+    doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...C.dark);
+    doc.text('Resumo do projeto', margin, y); y += 10;
 
     const ecPlatform = val('ec_platform') || '—';
-    const domDom     = val('dom_dominio') || '—';
-    const erpChoice  = val('erp_choice')  || val('erp_outro_nome') || '—';
-    const dateNow    = new Date().toLocaleDateString('pt-BR');
-    checkY(10 + 5 * 14 + 6);
-    drawInfoBlock('Resumo do projeto', [
+    const erpChoice = val('erp_choice') || val('erp_outro_nome') || '—';
+    const dateNow = new Date().toLocaleDateString('pt-BR');
+
+    const resumoRows = [
       ['Plataforma', ecPlatform, false],
-      ['Domínio', domDom, domDom !== '—'],
+      ['URL da Loja', lojaUrl || '—', !!lojaUrl],
+    ];
+    const domDom = val('dom_dominio');
+    if (domDom) resumoRows.push(['Domínio', domDom, true]);
+    resumoRows.push(
       ['ERP', erpChoice, false],
       ['Data da entrega', dateNow, false],
       ['Responsável pelo projeto', val('responsavel') || AJUDA.nome, false],
-    ]);
-    y += 10;
+    );
 
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(20);
-    doc.setTextColor(...C.dark);
-    doc.text('Contatos de suporte', margin, y);
-    y += 10;
+    checkY(10 + resumoRows.length*14 + 6);
+    drawInfoBlock('Resumo do projeto', resumoRows); y += 10;
 
-    const halfW = (contentW - 6) / 2;
+    doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...C.dark);
+    doc.text('Contatos de suporte', margin, y); y += 10;
+
+    const halfW = (contentW-6)/2;
     const drawSupportColumn = (title, sx, rows) => {
-      const labelH = 10, rowH = 14;
-      const blockH = labelH + rows.length * rowH + 6;
-      doc.setFillColor(...C.white);
-      doc.setDrawColor(...C.cardBdr);
-      doc.setLineWidth(0.3);
+      const labelH = 10, rowH = 14, blockH = labelH + rows.length*rowH + 6;
+      doc.setFillColor(...C.white); doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3);
       doc.roundedRect(sx, y, halfW, blockH, 3, 3, 'FD');
-      doc.setFillColor(...C.accent);
-      doc.rect(sx, y, halfW, 1.5, 'F');
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(9);
-      doc.setTextColor(...C.dark);
-      doc.text(title, sx + 7, y + 9);
+      doc.setFillColor(...C.accent); doc.rect(sx, y, halfW, 1.5, 'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.dark);
+      doc.text(title, sx+7, y+9);
       let ry = y + labelH + 5;
-      rows.forEach(([k, v]) => {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(7);
-        doc.setTextColor(...C.muted);
-        doc.text(k.toUpperCase(), sx + 7, ry);
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(...C.dark);
-        doc.text(v, sx + 7, ry + 4.5);
-        ry += rowH;
+      rows.forEach(([k,v]) => {
+        doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...C.muted);
+        doc.text(k.toUpperCase(), sx+7, ry);
+        doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(...C.dark);
+        doc.text(v, sx+7, ry+4.5); ry += rowH;
       });
       return y + blockH;
     };
 
     const platSup = SUPORTE_PLATAFORMA[ecPlatform];
-    const platBlockH = 10 + 3 * 14 + 6;
-    checkY(platBlockH);
+    checkY(10 + 3*14 + 6);
     if (platSup) {
       drawInfoBlock('Suporte ' + ecPlatform + ' (plataforma)', [
         ['Canal de atendimento', platSup.canal, false],
         ['Central de ajuda', platSup.site, true],
         ['Horário', platSup.horario, false],
-      ], [37, 99, 235]);
+      ], [37,99,235]);
     } else {
       drawInfoBlock('Suporte da plataforma', [
-        ['Canal de atendimento', '—', false],
-        ['Central de ajuda', '—', false],
-        ['Horário', '—', false],
-      ], [37, 99, 235]);
+        ['Canal de atendimento','—',false],['Central de ajuda','—',false],['Horário','—',false],
+      ], [37,99,235]);
     }
     y += 6;
 
-    checkY(10 + 3 * 14 + 6 + 10);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(9);
-    doc.setTextColor(...C.muted);
-    doc.text('AJUDA ECOMMERCE', margin, y + 6);
+    checkY(10 + 3*14 + 6 + 10);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.muted);
+    doc.text('AJUDA ECOMMERCE', margin, y+6);
     const ajLw = doc.getTextWidth('AJUDA ECOMMERCE');
-    doc.setDrawColor(...C.border);
-    doc.setLineWidth(0.3);
-    doc.line(margin + ajLw + 5, y + 5, margin + contentW, y + 5);
+    doc.setDrawColor(...C.border); doc.setLineWidth(0.3); doc.line(margin+ajLw+5, y+5, margin+contentW, y+5);
     y += 10;
 
     const comH = drawSupportColumn('Suporte Comercial', margin, [
-      ['WhatsApp', AJUDA.whatsappComercial],
-      ['E-mail',   AJUDA.emailComercial],
-      ['Horário',  AJUDA.horario],
+      ['WhatsApp', AJUDA.whatsappComercial],['E-mail', AJUDA.emailComercial],['Horário', AJUDA.horario],
     ]);
-    const tecH = drawSupportColumn('Suporte Técnico', margin + halfW + 6, [
-      ['WhatsApp', AJUDA.whatsappTecnico],
-      ['E-mail',   AJUDA.emailTecnico],
-      ['Horário',  AJUDA.horario],
+    const tecH = drawSupportColumn('Suporte Técnico', margin+halfW+6, [
+      ['WhatsApp', AJUDA.whatsappTecnico],['E-mail', AJUDA.emailTecnico],['Horário', AJUDA.horario],
     ]);
     y = Math.max(comH, tecH) + 6;
 
-    const ajudaBlockH = 10 + 2 * 14 + 6;
-    checkY(ajudaBlockH);
-    drawInfoBlock('Ajuda Ecommerce', [
-      ['Site', AJUDA.site, true],
-      ['Instagram', AJUDA.instagram, false],
-    ], C.accent);
+    checkY(10 + 2*14 + 6);
+    drawInfoBlock('Ajuda Ecommerce', [['Site', AJUDA.site, true],['Instagram', AJUDA.instagram, false]], C.accent);
     y += 10;
 
     checkY(60);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(14);
-    doc.setTextColor(...C.dark);
-    doc.text('Orientações importantes', margin, y);
-    y += 8;
-    const orient = [
-      'Não compartilhe senhas por canais não seguros.',
-      'Altere as senhas após a entrega caso deseje.',
-      'Ative autenticação em dois fatores onde possível.',
-      'Mantenha este documento em local seguro.',
-    ];
-    orient.forEach(it => {
-      doc.setFillColor(...C.accent);
-      doc.circle(margin + 2, y - 1.2, 1.3, 'F');
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.setTextColor(...C.dark);
-      doc.text(it, margin + 7, y);
-      y += 7;
+    doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.setTextColor(...C.dark);
+    doc.text('Orientações importantes', margin, y); y += 8;
+    ['Não compartilhe senhas por canais não seguros.','Altere as senhas após a entrega caso deseje.','Ative autenticação em dois fatores onde possível.','Mantenha este documento em local seguro.'].forEach(it => {
+      doc.setFillColor(...C.accent); doc.circle(margin+2, y-1.2, 1.3, 'F');
+      doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(...C.dark);
+      doc.text(it, margin+7, y); y += 7;
     });
   };
 
-  // CREDENCIAIS helpers
-  const ROW_H = 17, FIELD_H = 15, ARROW_H = 21, CARD_TITLE_H = 18;
-  const CARD_PAD = 8, CARD_GAP = 5, TOPIC_H = 14, TOPIC_GAP = 5;
-  const GROUP_GAP = 8, SUB_H = 10, SUB_PAD = 4;
+  const ROW_H=17, FIELD_H=15, ARROW_H=21, CARD_TITLE_H=18, CARD_PAD=8, CARD_GAP=5, TOPIC_H=14, TOPIC_GAP=5, GROUP_GAP=8, SUB_H=10, SUB_PAD=4;
+  const calcFieldH = r => { if (Array.isArray(r)) return r.some(f=>f.value)?ROW_H:0; if (!r.value) return 0; return r.value.indexOf('  ->  ')!==-1?ARROW_H:FIELD_H; };
+  const calcCardH = rows => { let h = CARD_TITLE_H; rows.forEach(r=>{h+=calcFieldH(r);}); return h+CARD_PAD; };
+  const calcCompositeH = sections => { let h = CARD_TITLE_H; sections.forEach(({rows})=>{ const hd = rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value); if(!hd)return; h+=SUB_H; rows.forEach(r=>{h+=calcFieldH(r);}); h+=SUB_PAD; }); return h+CARD_PAD; };
 
-  const calcFieldH = (row) => {
-    if (Array.isArray(row)) return row.some(f => f.value) ? ROW_H : 0;
-    if (!row.value) return 0;
-    if (row.value.indexOf('  ->  ') !== -1) return ARROW_H;
-    return FIELD_H;
-  };
-  const calcCardH = (rows) => {
-    let h = CARD_TITLE_H;
-    rows.forEach(r => { h += calcFieldH(r); });
-    return h + CARD_PAD;
-  };
-  const calcCompositeH = (sections) => {
-    let h = CARD_TITLE_H;
-    sections.forEach(({ rows }) => {
-      const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
-      if (!hasData) return;
-      h += SUB_H;
-      rows.forEach(r => { h += calcFieldH(r); });
-      h += SUB_PAD;
-    });
-    return h + CARD_PAD;
-  };
-
-  const sectionTitle = (label) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.setTextColor(...C.dark);
-    doc.text(label.toUpperCase(), margin, y + 7);
+  const sectionTitle = label => {
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.dark);
+    doc.text(label.toUpperCase(), margin, y+7);
     const lw = doc.getTextWidth(label.toUpperCase());
-    doc.setDrawColor(...C.border);
-    doc.setLineWidth(0.4);
-    doc.line(margin + lw + 5, y + 6, margin + contentW, y + 6);
+    doc.setDrawColor(...C.border); doc.setLineWidth(0.4); doc.line(margin+lw+5, y+6, margin+contentW, y+6);
     y += TOPIC_H;
   };
 
   const sectionCard = (title, color, rows) => {
-    const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
-    if (!hasData) return;
+    if (!rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)) return;
     const h = calcCardH(rows);
-    doc.setFillColor(...C.white);
-    doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
-    doc.setDrawColor(...C.cardBdr);
-    doc.setLineWidth(0.25);
-    doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
-    doc.setFillColor(...color);
-    doc.roundedRect(margin, y, 4, h, 2, 2, 'F');
-    doc.rect(margin, y + 1, 4, h - 2, 'F');
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.setTextColor(...C.dark);
-    doc.text(title, margin + 9, y + 10);
+    doc.setFillColor(...C.white); doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
+    doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.25); doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
+    doc.setFillColor(...color); doc.roundedRect(margin, y, 4, h, 2, 2, 'F'); doc.rect(margin, y+1, 4, h-2, 'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.dark); doc.text(title, margin+9, y+10);
     let ry = y + CARD_TITLE_H + 2;
     rows.forEach(row => {
       if (Array.isArray(row)) {
         row.forEach((field, i) => {
           if (!field.value) return;
-          const x = margin + 9 + i * (contentW / 2 - 4);
-          doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
-          doc.text(field.label.toUpperCase(), x, ry);
-          if (field.value.startsWith('http')) {
-            drawLink(field.value.length > 38 ? field.value.substring(0, 35) + '...' : field.value, x, ry + 6, field.value, 10.5);
-          } else {
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
-            doc.text(field.value, x, ry + 6);
-          }
+          const x = margin+9 + i*(contentW/2-4);
+          doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted); doc.text(field.label.toUpperCase(), x, ry);
+          if (field.value.startsWith('http')) drawLink(field.value.length>38?field.value.substring(0,35)+'...':field.value, x, ry+6, field.value, 10.5);
+          else { doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(field.value, x, ry+6); }
         });
-        if (row.some(f => f.value)) ry += ROW_H;
+        if (row.some(f=>f.value)) ry += ROW_H;
       } else {
         if (!row.value) return;
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
-        doc.text(row.label.toUpperCase(), margin + 9, ry);
+        doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted); doc.text(row.label.toUpperCase(), margin+9, ry);
         const arrowIdx = row.value.indexOf('  ->  ');
         if (arrowIdx !== -1) {
-          const lbl2 = row.value.substring(0, arrowIdx);
-          const link = row.value.substring(arrowIdx + 6);
-          doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
-          doc.text(lbl2, margin + 9, ry + 6);
-          drawLink(link.length > 58 ? link.substring(0, 55) + '...' : link, margin + 9, ry + 13, link, 8.5);
-          ry += ARROW_H;
-        } else if (row.value.startsWith('http')) {
-          drawLink(row.value.length > 68 ? row.value.substring(0, 65) + '...' : row.value, margin + 9, ry + 6, row.value, 10.5);
-          ry += FIELD_H;
-        } else {
-          doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
-          doc.text(row.value, margin + 9, ry + 6);
-          ry += FIELD_H;
-        }
+          const lbl2 = row.value.substring(0,arrowIdx), link = row.value.substring(arrowIdx+6);
+          doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(lbl2, margin+9, ry+6);
+          drawLink(link.length>58?link.substring(0,55)+'...':link, margin+9, ry+13, link, 8.5); ry += ARROW_H;
+        } else if (row.value.startsWith('http')) { drawLink(row.value.length>68?row.value.substring(0,65)+'...':row.value, margin+9, ry+6, row.value, 10.5); ry += FIELD_H; }
+        else { doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(row.value, margin+9, ry+6); ry += FIELD_H; }
       }
     });
     y += h + CARD_GAP;
   };
 
   const subSection = (title, color, rows) => {
-    const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
-    if (!hasData) return;
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...color);
-    doc.text(('-- ' + title).toUpperCase(), margin + 9, y + 5);
-    doc.setDrawColor(...color); doc.setLineWidth(0.2);
-    doc.line(margin + 9, y + 6.5, margin + contentW - 4, y + 6.5);
+    if (!rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)) return;
+    doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...color);
+    doc.text(('-- '+title).toUpperCase(), margin+9, y+5);
+    doc.setDrawColor(...color); doc.setLineWidth(0.2); doc.line(margin+9, y+6.5, margin+contentW-4, y+6.5);
     y += SUB_H;
     rows.forEach(row => {
       if (Array.isArray(row)) {
         row.forEach((field, i) => {
           if (!field.value) return;
-          const x = margin + 9 + i * (contentW / 2 - 4);
-          doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
-          doc.text(field.label.toUpperCase(), x, y);
-          if (field.value.startsWith('http')) {
-            drawLink(field.value.length > 38 ? field.value.substring(0, 35) + '...' : field.value, x, y + 6, field.value, 10.5);
-          } else {
-            doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
-            doc.text(field.value, x, y + 6);
-          }
+          const x = margin+9 + i*(contentW/2-4);
+          doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted); doc.text(field.label.toUpperCase(), x, y);
+          if (field.value.startsWith('http')) drawLink(field.value.length>38?field.value.substring(0,35)+'...':field.value, x, y+6, field.value, 10.5);
+          else { doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(field.value, x, y+6); }
         });
-        if (row.some(f => f.value)) y += ROW_H;
+        if (row.some(f=>f.value)) y += ROW_H;
       } else {
         if (!row.value) return;
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
-        doc.text(row.label.toUpperCase(), margin + 9, y);
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
-        doc.text(row.value, margin + 9, y + 6);
-        y += FIELD_H;
+        doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted); doc.text(row.label.toUpperCase(), margin+9, y);
+        doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(row.value, margin+9, y+6); y += FIELD_H;
       }
     });
     y += SUB_PAD;
   };
 
   const compositeCard = (title, color, sections) => {
-    const hasAny = sections.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value));
-    if (!hasAny) return;
+    if (!sections.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))) return;
     const h = calcCompositeH(sections);
-    doc.setFillColor(...C.white);
-    doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
-    doc.setDrawColor(...C.cardBdr);
-    doc.setLineWidth(0.25);
-    doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
-    doc.setFillColor(...color);
-    doc.roundedRect(margin, y, 4, h, 2, 2, 'F');
-    doc.rect(margin, y + 1, 4, h - 2, 'F');
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.setTextColor(...C.dark);
-    doc.text(title, margin + 9, y + 10);
-    y += CARD_TITLE_H;
-    sections.forEach(s => subSection(s.title, color, s.rows));
-    y += CARD_GAP - SUB_PAD;
+    doc.setFillColor(...C.white); doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
+    doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.25); doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
+    doc.setFillColor(...color); doc.roundedRect(margin, y, 4, h, 2, 2, 'F'); doc.rect(margin, y+1, 4, h-2, 'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.dark); doc.text(title, margin+9, y+10);
+    y += CARD_TITLE_H; sections.forEach(s => subSection(s.title, color, s.rows)); y += CARD_GAP - SUB_PAD;
   };
 
   const drawCredenciais = () => {
     const blocks = [];
-
-    const ecPlatform = val('ec_platform');
-    const ecUrl      = val('ec_url');
-    const ecEmail    = val('ec_email');
-
-    // E-commerce
     const ecRows = [
-      { label: 'Plataforma', value: ecPlatform },
-      { label: 'URL / Painel Admin', value: ecUrl },
-      [{ label: 'E-mail / Login', value: ecEmail }, { label: 'Senha', value: val('ec_senha') }],
+      { label:'Plataforma', value: val('ec_platform') },
+      { label:'URL / Painel Admin', value: val('ec_url') },
+      [{ label:'E-mail / Login', value: val('ec_email') }, { label:'Senha', value: val('ec_senha') }],
     ];
-    if (ecRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
-      blocks.push({ group: 'E-commerce', type: 'card', title: 'Plataforma de E-commerce', color: C.sections.ecommerce, rows: ecRows });
+    if (ecRows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))
+      blocks.push({ group:'E-commerce', type:'card', title:'Plataforma de E-commerce', color:C.sections.ecommerce, rows:ecRows });
 
-    // E-mail
     const emRows = [
-      { label: 'Provedor', value: val('em_provider') },
-      [{ label: 'E-mail / Login', value: val('em_email') }, { label: 'Senha', value: val('em_senha') }],
+      { label:'Provedor', value: val('em_provider') },
+      [{ label:'E-mail / Login', value: val('em_email') }, { label:'Senha', value: val('em_senha') }],
     ];
-    if (emRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
-      blocks.push({ group: 'E-mail e Domínio', type: 'card', title: 'E-mail Profissional', color: C.sections.email, rows: emRows });
+    if (emRows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))
+      blocks.push({ group:'E-mail e Domínio', type:'card', title:'E-mail Profissional', color:C.sections.email, rows:emRows });
 
-    // Domínio
     const domEmailLogin = val('dom_login') || val('dom_dominio');
     const domRows = [
-      { label: 'Registradora', value: val('dom_provider') },
-      { label: 'Domínio', value: val('dom_dominio') },
-      [{ label: 'E-mail / Login', value: domEmailLogin }, { label: 'Senha', value: val('dom_senha') }],
+      { label:'Registradora', value: val('dom_provider') },
+      { label:'Domínio', value: val('dom_dominio') },
+      [{ label:'E-mail / Login', value: domEmailLogin }, { label:'Senha', value: val('dom_senha') }],
     ];
-    if (domRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
-      blocks.push({ group: 'E-mail e Domínio', type: 'card', title: 'Domínio', color: C.sections.dominio, rows: domRows });
+    if (domRows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))
+      blocks.push({ group:'E-mail e Domínio', type:'card', title:'Domínio', color:C.sections.dominio, rows:domRows });
 
-    // Envio
     const envioSecs = [
-      { title: 'Melhor Envio', rows: [[{ label: 'E-mail / Login', value: val('me_email') }, { label: 'Senha', value: val('me_senha') }]] },
-      { title: 'Correios',     rows: [[{ label: 'Login / CNPJ', value: val('cor_login') },  { label: 'Senha', value: val('cor_senha') }]] },
-      { title: 'Outro Transportador', rows: [[{ label: 'Transportador', value: val('out_nome') }, { label: 'E-mail / Login', value: val('out_login') }], [{ label: 'Senha', value: val('out_senha') }]] },
+      { title:'Melhor Envio', rows:[[{ label:'E-mail / Login', value: val('me_email') }, { label:'Senha', value: val('me_senha') }]] },
+      { title:'Correios', rows:[[{ label:'Login / CNPJ', value: val('cor_login') }, { label:'Senha', value: val('cor_senha') }]] },
+      { title:'Outro Transportador', rows:[[{ label:'Transportador', value: val('out_nome') }, { label:'E-mail / Login', value: val('out_login') }], [{ label:'Senha', value: val('out_senha') }]] },
     ];
-    if (envioSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
-      blocks.push({ group: 'Envio', type: 'composite', title: 'Meios de Envio', color: C.sections.envio, sections: envioSecs });
+    if (envioSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
+      blocks.push({ group:'Envio', type:'composite', title:'Meios de Envio', color:C.sections.envio, sections:envioSecs });
 
-    // Facebook
     const fbSecs = [
-      { title: 'Conta Facebook', rows: [[{ label: 'E-mail / Telefone', value: val('fb_email') }, { label: 'Senha', value: val('fb_senha') }]] },
-      { title: 'Business Manager', rows: [[{ label: 'URL Business Manager', value: val('fb_bm_url') }, { label: 'URL da Página', value: val('fb_page') }]] },
+      { title:'Conta Facebook', rows:[[{ label:'E-mail / Telefone', value: val('fb_email') }, { label:'Senha', value: val('fb_senha') }]] },
+      { title:'Business Manager', rows:[[{ label:'URL Business Manager', value: val('fb_bm_url') }, { label:'URL da Página', value: val('fb_page') }]] },
     ];
-    if (fbSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
-      blocks.push({ group: 'Meta e Google', type: 'composite', title: 'Facebook / Meta', color: C.sections.facebook, sections: fbSecs });
+    if (fbSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
+      blocks.push({ group:'Meta e Google', type:'composite', title:'Facebook / Meta', color:C.sections.facebook, sections:fbSecs });
 
-    // Google
     const ggSecs = [
-      { title: 'Acesso', rows: [[{ label: 'E-mail / Login', value: val('gg_email') }, { label: 'Senha', value: val('gg_senha') }]] },
-      { title: 'Ferramentas', rows: [
-        [{ label: 'Google Ads', value: val('gg_ads') }, { label: 'Google Analytics', value: val('gg_analytics') }],
-        [{ label: 'Search Console', value: val('gg_gsc') }, { label: 'Tag Manager', value: val('gg_gtm') }],
+      { title:'Acesso', rows:[[{ label:'E-mail / Login', value: val('gg_email') }, { label:'Senha', value: val('gg_senha') }]] },
+      { title:'Ferramentas', rows:[
+        [{ label:'Google Ads', value:'https://ads.google.com' }, { label:'Google Analytics', value:'https://analytics.google.com' }],
+        [{ label:'Search Console', value:'https://search.google.com/search-console' }, { label:'Tag Manager', value:'https://tagmanager.google.com' }],
       ]},
     ];
-    if (ggSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
-      blocks.push({ group: 'Meta e Google', type: 'composite', title: 'Conta Google', color: C.sections.google, sections: ggSecs });
+    if (ggSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
+      blocks.push({ group:'Meta e Google', type:'composite', title:'Conta Google', color:C.sections.google, sections:ggSecs });
 
-    // ERP
     const erpSecs = [
-      { title: 'Bling',    rows: [[{ label: 'E-mail / Login', value: val('bling_login') }, { label: 'Senha', value: val('bling_senha') }]] },
-      { title: 'Olist',    rows: [[{ label: 'E-mail / Login', value: val('olist_login') }, { label: 'Senha', value: val('olist_senha') }]] },
-      { title: 'Outro ERP',rows: [[{ label: 'Sistema', value: val('erp_outro_nome') }, { label: 'E-mail / Login', value: val('erp_outro_login') }], [{ label: 'Senha', value: val('erp_outro_senha') }]] },
+      { title:'Bling', rows:[[{ label:'E-mail / Login', value: val('bling_login') }, { label:'Senha', value: val('bling_senha') }]] },
+      { title:'Olist', rows:[[{ label:'E-mail / Login', value: val('olist_login') }, { label:'Senha', value: val('olist_senha') }]] },
+      { title:'Outro ERP', rows:[[{ label:'Sistema', value: val('erp_outro_nome') }, { label:'E-mail / Login', value: val('erp_outro_login') }], [{ label:'Senha', value: val('erp_outro_senha') }]] },
     ];
-    if (erpSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
-      blocks.push({ group: 'ERP', type: 'composite', title: 'ERP', color: C.sections.erp, sections: erpSecs });
+    if (erpSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
+      blocks.push({ group:'ERP', type:'composite', title:'ERP', color:C.sections.erp, sections:erpSecs });
 
-    // Marketplace
     const mktpSecs = [
-      { title: 'Amazon',        rows: [[{ label: 'E-mail / Login', value: val('amz_login') }, { label: 'Senha', value: val('amz_senha') }]] },
-      { title: 'Shopee',        rows: [[{ label: 'E-mail / Login', value: val('shp_login') }, { label: 'Senha', value: val('shp_senha') }]] },
-      { title: 'Mercado Livre', rows: [[{ label: 'E-mail / Login', value: val('ml_login')  }, { label: 'Senha', value: val('ml_senha')  }]] },
-      { title: 'TikTok Shop',   rows: [[{ label: 'E-mail / Login', value: val('tkt_login') }, { label: 'Senha', value: val('tkt_senha') }]] },
+      { title:'Amazon', rows:[[{ label:'E-mail / Login', value: val('amz_login') }, { label:'Senha', value: val('amz_senha') }]] },
+      { title:'Shopee', rows:[[{ label:'E-mail / Login', value: val('shp_login') }, { label:'Senha', value: val('shp_senha') }]] },
+      { title:'Mercado Livre', rows:[[{ label:'E-mail / Login', value: val('ml_login') }, { label:'Senha', value: val('ml_senha') }]] },
+      { title:'TikTok Shop', rows:[[{ label:'E-mail / Login', value: val('tkt_login') }, { label:'Senha', value: val('tkt_senha') }]] },
     ];
-    if (mktpSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
-      blocks.push({ group: 'Marketplace', type: 'composite', title: 'Marketplace', color: C.sections.marketplace, sections: mktpSecs });
+    if (mktpSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
+      blocks.push({ group:'Marketplace', type:'composite', title:'Marketplace', color:C.sections.marketplace, sections:mktpSecs });
 
     if (blocks.length === 0) return;
 
     addPage(); drawTopBand(); y = 32;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.muted);
-    doc.text('03  ·  CREDENCIAIS E ACESSOS', margin, y);
-    y += 12;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(20);
-    doc.setTextColor(...C.dark);
-    doc.text('Credenciais', margin, y);
-    y += 12;
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+    doc.text('03  ·  CREDENCIAIS E ACESSOS', margin, y); y += 12;
+    doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...C.dark);
+    doc.text('Credenciais', margin, y); y += 12;
 
     const PAGE_BOTTOM = pageH - 25;
-    const chunkBlock = (b) => {
-      const h = b.type === 'card' ? calcCardH(b.rows) : calcCompositeH(b.sections);
-      return { block: b, h };
-    };
-    const queued = blocks.map(chunkBlock);
+    const queued = blocks.map(b => ({ block:b, h: b.type==='card'?calcCardH(b.rows):calcCompositeH(b.sections) }));
     let pageBlocks = [], pageH_used = 0, lastGroup = null, i = 0;
 
     const flushPage = () => {
@@ -2348,68 +2049,39 @@ function generatePDF() {
       let prevGroup = null;
       pageBlocks.forEach((it, idx) => {
         const b = it.block;
-        if (b.group !== prevGroup) {
-          if (prevGroup !== null) y += GROUP_GAP;
-          sectionTitle(b.group);
-          y += TOPIC_GAP;
-          prevGroup = b.group;
-        }
-        if (b.type === 'card') sectionCard(b.title, b.color, b.rows);
-        else compositeCard(b.title, b.color, b.sections);
-        const next = pageBlocks[idx + 1];
+        if (b.group !== prevGroup) { if (prevGroup !== null) y += GROUP_GAP; sectionTitle(b.group); y += TOPIC_GAP; prevGroup = b.group; }
+        if (b.type === 'card') sectionCard(b.title, b.color, b.rows); else compositeCard(b.title, b.color, b.sections);
+        const next = pageBlocks[idx+1];
         if (next && next.block.group !== b.group) y -= CARD_GAP;
       });
       pageBlocks = []; pageH_used = 0; lastGroup = null;
     };
 
     while (i < queued.length) {
-      const it = queued[i];
-      const b  = it.block;
-      let addH = it.h;
-      if (b.group !== lastGroup) {
-        if (lastGroup !== null) addH += GROUP_GAP;
-        addH += TOPIC_H + TOPIC_GAP;
+      const it = queued[i], b = it.block; let addH = it.h;
+      if (b.group !== lastGroup) { if (lastGroup !== null) addH += GROUP_GAP; addH += TOPIC_H + TOPIC_GAP; }
+      if (pageBlocks.length > 0 && (y + pageH_used + addH) > PAGE_BOTTOM) {
+        flushPage(); addPage(); drawTopBand(); y = 32;
+        doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+        doc.text('03  ·  CREDENCIAIS E ACESSOS  (continuação)', margin, y); y += 12; continue;
       }
-      const wrapBottom = y + pageH_used + addH;
-      if (pageBlocks.length > 0 && wrapBottom > PAGE_BOTTOM) {
-        flushPage();
-        addPage(); drawTopBand(); y = 32;
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(8);
-        doc.setTextColor(...C.muted);
-        doc.text('03  ·  CREDENCIAIS E ACESSOS  (continuação)', margin, y);
-        y += 12;
-        continue;
-      }
-      pageBlocks.push(it);
-      pageH_used += addH;
-      lastGroup = b.group;
-      i++;
+      pageBlocks.push(it); pageH_used += addH; lastGroup = b.group; i++;
     }
     flushPage();
   };
 
-  // BUILD
-  drawCover();
-  drawMensagem();
-  drawResumoContatos();
-  drawCredenciais();
+  drawCover(); drawMensagem(); drawResumoContatos(); drawCredenciais();
 
-  // FOOTER
   const totalPages = doc.internal.getNumberOfPages();
   for (let p = 2; p <= totalPages; p++) {
     doc.setPage(p);
-    doc.setDrawColor(...C.border);
-    doc.setLineWidth(0.2);
-    doc.line(margin, pageH - 15, pageW - margin, pageH - 15);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.5);
-    doc.setTextColor(...C.muted);
-    doc.text(AJUDA.nome + '  ·  Documento Confidencial  ·  ' + clientName, margin, pageH - 9);
-    doc.text('Página ' + p + ' de ' + totalPages, pageW - margin, pageH - 9, { align: 'right' });
+    doc.setDrawColor(...C.border); doc.setLineWidth(0.2); doc.line(margin, pageH-15, pageW-margin, pageH-15);
+    doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(...C.muted);
+    doc.text(AJUDA.nome + '  ·  Documento Confidencial  ·  ' + clientName, margin, pageH-9);
+    doc.text('Página ' + p + ' de ' + totalPages, pageW-margin, pageH-9, { align:'right' });
   }
 
-  const safeName = clientName.replace(/\s+/g, '-').toLowerCase();
+  const safeName = clientName.replace(/\s+/g,'-').toLowerCase();
   doc.save('documento-entrega-' + safeName + '.pdf');
   showToast('Documento de entrega gerado!');
 }

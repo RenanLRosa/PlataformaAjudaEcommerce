@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ajuda Ecommerce — Central de Ferramentas</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f2850;
+      --lime:    #84cc16;
+      --lime-dk: #65a30d;
+      --bg:      #f0f2f5;
+      --card:    #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --border:  #e2e8f0;
+      --text:    #1e293b;
+      --muted:   #64748b;
+      --label:   #374151;
+      --optional:#94a3b8;
+      /* section colors */
+      --sec-ec:  #2563eb;
+      --sec-em:  #7c3aed;
+      --sec-en:  #0891b2;
+      --sec-dom: #059669;
+      --sec-fb:  #1877f2;
+      --sec-gg:  #ea4335;
+      --sec-erp: #d97706;
+      --sec-mk:  #7c3aed;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── TOP NAV ─────────────────────────────────────────── */
+    .topnav {
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: 56px;
+      gap: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .topnav .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--lime);
+      letter-spacing: -.3px;
+      margin-right: 32px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .topnav .logo span { color: #b4c8e6; font-weight: 400; }
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      flex: 1;
+      overflow-x: auto;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: #b4c8e6;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s, color .15s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .nav-btn.active { background: rgba(132,204,22,.15); color: var(--lime); }
+    .nav-btn .nb-icon { font-size: 16px; }
+
+    /* ─── PAGES ───────────────────────────────────────────── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ─── HOME ────────────────────────────────────────────── */
+    .home-hero {
+      background: var(--navy);
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+    .home-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.5px;
+    }
+    .home-hero h1 span { color: var(--lime); }
+    .home-hero p {
+      color: #b4c8e6;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .home-accent {
+      width: 100%;
+      height: 3px;
+      background: var(--lime);
+    }
+
+    .home-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .home-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      padding: 28px 24px 24px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.05);
+      cursor: pointer;
+      transition: box-shadow .2s, border-color .2s, transform .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .home-card:hover {
+      box-shadow: 0 6px 24px rgba(37,99,235,.12);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .home-card .hc-icon {
+      font-size: 2.2rem;
+      width: 52px; height: 52px;
+      background: var(--primary-light);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .home-card h2 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .home-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+    .home-card .hc-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 4px;
+    }
+
+    .home-stats {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-card .sv { font-size: 1.8rem; font-weight: 800; color: var(--navy); }
+    .stat-card .sl { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── SHARED SECTION STYLES ───────────────────────────── */
+    .section-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .page-header { text-align: center; margin-bottom: 16px; }
+    .page-header h1 { font-size: 1.6rem; font-weight: 700; color: var(--text); letter-spacing: -.5px; }
+    .page-header p { color: var(--muted); margin-top: 6px; font-size: 0.95rem; }
+
+    .topic-separator { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+    .topic-separator .topic-label {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    .topic-separator .topic-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── CLIENT CARD ─────────────────────────────────────── */
+    .client-card {
+      background: var(--card); border-radius: 14px;
+      border: 1px solid var(--border); padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .client-card label {
+      font-weight: 600; font-size: 0.9rem; color: var(--label);
+      display: block; margin-bottom: 8px;
+    }
+    .client-card input {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 1rem; color: var(--text); transition: border-color .2s; outline: none;
+    }
+    .client-card input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px #2563eb22; }
+
+    /* ─── SECTION CARDS (PDF generator) ──────────────────── */
+    .section-card {
+      background: var(--card); border-radius: 14px;
+      border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,.05); overflow: hidden;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 22px; background: var(--primary-light);
+      border-bottom: 1px solid var(--border); cursor: pointer; user-select: none;
+    }
+    .section-header .icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 18px;
+    }
+    .section-header .section-title { flex: 1; }
+    .section-header .section-title h2 { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .section-header .section-title span { font-size: 0.78rem; color: var(--muted); }
+    .section-header .toggle-badge {
+      font-size: 0.72rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; background: #f1f5f9; color: #475569; border: 1px solid var(--border);
+    }
+    .section-header .chevron { color: var(--muted); font-size: 14px; transition: transform .25s; }
+    .section-header.open .chevron { transform: rotate(180deg); }
+
+    .sec-ecommerce .section-header  { background: #eff6ff; }
+    .sec-ecommerce .icon            { background: #dbeafe; color: var(--sec-ec); }
+    .sec-email .section-header      { background: #f5f3ff; }
+    .sec-email .icon                { background: #ede9fe; color: var(--sec-em); }
+    .sec-envio .section-header      { background: #ecfeff; }
+    .sec-envio .icon                { background: #cffafe; color: var(--sec-en); }
+    .sec-dominio .section-header    { background: #ecfdf5; }
+    .sec-dominio .icon              { background: #d1fae5; color: var(--sec-dom); }
+    .sec-facebook .section-header   { background: #eff6ff; }
+    .sec-facebook .icon             { background: #dbeafe; color: var(--sec-fb); }
+    .sec-google .section-header     { background: #fff1f2; }
+    .sec-google .icon               { background: #fee2e2; color: var(--sec-gg); }
+    .sec-erp .section-header        { background: #fffbeb; }
+    .sec-erp .icon                  { background: #fde68a; color: var(--sec-erp); }
+    .sec-marketplace .section-header{ background: #faf5ff; }
+    .sec-marketplace .icon          { background: #ede9fe; color: var(--sec-mk); }
+
+    .section-body { padding: 22px; display: none; flex-direction: column; gap: 16px; }
+    .section-body.open { display: flex; }
+
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
+    .field-group label {
+      font-size: 0.84rem; font-weight: 600; color: var(--label);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .field-group label .opt {
+      font-size: 0.72rem; font-weight: 500; color: var(--optional);
+      background: #f8fafc; border: 1px solid var(--border);
+      padding: 1px 7px; border-radius: 10px;
+    }
+    .field-group input, .field-group select {
+      width: 100%; padding: 10px 13px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 0.92rem; color: var(--text); background: #fff;
+      transition: border-color .2s; outline: none;
+    }
+    .field-group input:focus, .field-group select:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 3px #2563eb1a;
+    }
+    .field-group input::placeholder { color: #b0bec5; }
+
+    .hint { font-size: 0.76rem; color: var(--optional); margin-top: 2px; }
+    .divider { height: 1px; background: var(--border); margin: 4px 0; }
+    .sub-label {
+      font-size: 0.8rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: -4px;
+    }
+
+    /* ─── BUTTONS ─────────────────────────────────────────── */
+    .action-bar { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none;
+      transition: background .2s, transform .1s, box-shadow .2s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px #2563eb44; flex: 1; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #fff; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg); }
+    .btn-lime { background: var(--lime); color: var(--navy); }
+    .btn-lime:hover { background: var(--lime-dk); }
+    .btn svg { width: 18px; height: 18px; }
+
+    /* ─── MESSAGES PAGE ───────────────────────────────────── */
+    .msg-page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .msg-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .msg-tab {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all .15s;
+    }
+    .msg-tab:hover { border-color: var(--primary); color: var(--primary); }
+    .msg-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    .msg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 16px;
+    }
+    @media(max-width: 480px) { .msg-grid { grid-template-columns: 1fr; } }
+
+    .msg-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .msg-card-header {
+      padding: 14px 18px 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .msg-card-icon {
+      font-size: 1.4rem;
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .msg-card-meta { flex: 1; }
+    .msg-card-meta h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .msg-card-meta span { font-size: 0.78rem; color: var(--muted); }
+    .msg-card-body {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      padding: 14px 18px;
+      flex: 1;
+    }
+    .msg-card-body pre {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .msg-card-actions {
+      padding: 10px 18px 14px;
+      display: flex;
+      gap: 8px;
+    }
+    .btn-copy {
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      transition: all .15s;
+    }
+    .btn-copy:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .btn-copy.copied { border-color: #16a34a; color: #16a34a; background: #f0fdf4; }
+
+    /* variable chips inside messages */
+    .msg-card-body pre .var {
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-size: 0.78rem;
+    }
+
+    /* ─── DOCS PAGE ───────────────────────────────────────── */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+    }
+    .doc-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .doc-card .dc-icon {
+      font-size: 2rem;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .doc-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+    .doc-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .doc-card .dc-tag {
+      font-size: 0.72rem; font-weight: 600; color: var(--muted);
+      background: #f1f5f9; border: 1px solid var(--border);
+      padding: 3px 10px; border-radius: 20px; display: inline-block;
+    }
+    .doc-card .btn-use {
+      background: var(--primary-light);
+      border: 1.5px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all .15s;
+      width: 100%;
+      text-align: center;
+    }
+    .doc-card .btn-use:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    /* ─── TOAST ───────────────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b; color: #fff;
+      padding: 12px 22px; border-radius: 10px;
+      font-size: 0.88rem; font-weight: 500;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 9999; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ─── MSG SEARCH ──────────────────────────────────────── */
+    .msg-search-wrap {
+      position: relative;
+    }
+    .msg-search-wrap input {
+      width: 100%;
+      padding: 11px 16px 11px 42px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--card);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .msg-search-wrap input:focus { border-color: var(--primary); }
+    .msg-search-wrap .search-icon {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%); color: var(--muted);
+      pointer-events: none; font-size: 1rem;
+    }
+
+    /* section headers inside messages page */
+    .msg-section-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .msg-section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* hidden msg cards */
+    .msg-card[data-hidden="true"] { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── TOP NAV ──────────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="logo">ajuda <span>// ecommerce</span></div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('home',this)">
+      <span class="nb-icon">🏠</span> Início
+    </button>
+    <button class="nav-btn" onclick="showPage('pdf',this)">
+      <span class="nb-icon">📄</span> Documento de Entrega
+    </button>
+    <button class="nav-btn" onclick="showPage('msgs',this)">
+      <span class="nb-icon">💬</span> Mensagens Padrão
+    </button>
+    <button class="nav-btn" onclick="showPage('docs',this)">
+      <span class="nb-icon">📁</span> PDFs e Documentos
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: HOME                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="home-hero">
+    <h1>Central de <span>Ferramentas</span></h1>
+    <p>Gerencie entregas, mensagens e documentos da agência em um só lugar.</p>
+  </div>
+  <div class="home-accent"></div>
+
+  <div class="home-stats">
+    <div class="stat-card">
+      <div class="sv">8</div>
+      <div class="sl">Seções no doc. de entrega</div>
+    </div>
+    <div class="stat-card">
+      <div class="sv" id="stat-msgs">14</div>
+      <div class="sl">Mensagens padrão</div>
+    </div>
+    <div class="stat-card">
+      <div class="sv" id="stat-docs">6</div>
+      <div class="sl">PDFs disponíveis</div>
+    </div>
+    <div class="stat-card">
+      <div class="sv">∞</div>
+      <div class="sl">Gerações de PDF</div>
+    </div>
+  </div>
+
+  <div class="home-grid">
+    <div class="home-card" onclick="showPage('pdf', document.querySelectorAll('.nav-btn')[1])">
+      <div class="hc-icon">📄</div>
+      <h2>Documento de Entrega</h2>
+      <p>Preencha os dados do cliente e gere o PDF completo de finalização de loja — credenciais, contatos e orientações.</p>
+      <span class="hc-tag">Gerador de PDF</span>
+    </div>
+    <div class="home-card" onclick="showPage('msgs', document.querySelectorAll('.nav-btn')[2])">
+      <div class="hc-icon">💬</div>
+      <h2>Mensagens Padrão</h2>
+      <p>Todas as mensagens de WhatsApp e e-mail usadas pela agência — boas-vindas, encerramento, follow-up e mais.</p>
+      <span class="hc-tag">Biblioteca de textos</span>
+    </div>
+    <div class="home-card" onclick="showPage('docs', document.querySelectorAll('.nav-btn')[3])">
+      <div class="hc-icon">📁</div>
+      <h2>PDFs e Documentos</h2>
+      <p>Acesse e envie rapidamente todos os materiais padrão da agência: propostas, tutoriais, contratos e checklists.</p>
+      <span class="hc-tag">Repositório de docs</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: PDF GENERATOR                                        -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-pdf">
+<div class="section-wrap">
+
+  <div class="page-header">
+    <h1>Documento de Entrega do Projeto</h1>
+    <p>Preencha os dados e gere o kit de finalização da loja</p>
+  </div>
+
+  <!-- Nome do cliente -->
+  <div class="client-card">
+    <label for="clientName">Nome do Cliente / Loja</label>
+    <input type="text" id="clientName" placeholder="Ex: Loja da Maria – Maria Silva" />
+    <label for="responsavel" style="margin-top:14px;">Responsável pelo projeto <span style="font-size:0.78rem;color:var(--optional);font-weight:500;">(opcional)</span></label>
+    <input type="text" id="responsavel" placeholder="Ex: João Silva" />
+  </div>
+
+  <div class="topic-separator">
+    <span class="topic-label">Credenciais Gerais</span>
+    <div class="topic-line"></div>
+  </div>
+
+  <!-- 1. E-commerce -->
+  <div class="section-card sec-ecommerce">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">🛒</div>
+      <div class="section-title">
+        <h2>Plataforma de E-commerce</h2>
+        <span>Nuvemshop, Shopify, VTEX, WooCommerce…</span>
+      </div>
+      <span class="toggle-badge">Obrigatório</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="field-group">
+        <label>Plataforma</label>
+        <select id="ec_platform">
+          <option value="">Selecione…</option>
+          <option>Nuvemshop</option><option>Shopify</option><option>VTEX</option>
+          <option>WooCommerce</option><option>Loja Integrada</option><option>Tray</option><option>Outra</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>URL da loja / painel admin</label>
+        <input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin" />
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>E-mail / Login</label>
+          <input type="email" id="ec_email" placeholder="email@loja.com.br" />
+        </div>
+        <div class="field-group">
+          <label>Senha <span class="opt">opcional</span></label>
+          <input type="text" id="ec_senha" placeholder="Senha do painel" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. E-mail Profissional -->
+  <div class="section-card sec-email">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">✉️</div>
+      <div class="section-title">
+        <h2>E-mail Profissional</h2>
+        <span>Gmail Workspace, Outlook, Zoho…</span>
+      </div>
+      <span class="toggle-badge">Obrigatório</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body open">
+      <div class="field-group">
+        <label>Provedor</label>
+        <select id="em_provider">
+          <option value="">Selecione…</option>
+          <option>Google Workspace</option><option>Microsoft 365 / Outlook</option>
+          <option>Zoho Mail</option><option>Titan Mail</option><option>Cpanel / Hospedagem</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>E-mail / Login</label>
+        <input type="email" id="em_email" placeholder="contato@empresa.com.br" />
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label>Senha <span class="opt">opcional</span></label>
+          <input type="text" id="em_senha" placeholder="Senha do e-mail" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Meios de Envio -->
+  <div class="section-card sec-envio">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">📦</div>
+      <div class="section-title">
+        <h2>Meios de Envio</h2>
+        <span>Melhor Envio, Correios, Jadlog, Total Express…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p class="sub-label">Melhor Envio</p>
+      <div class="field-row">
+        <div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="email" id="me_email" placeholder="email@melhorenvio.com" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="me_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Correios</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / CNPJ <span class="opt">opcional</span></label><input type="text" id="cor_login" placeholder="Login ou CNPJ" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="cor_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Outro Transportador</p>
+      <div class="field-group"><label>Nome do transportador <span class="opt">opcional</span></label><input type="text" id="out_nome" placeholder="Ex: Jadlog, Total Express, Azul Cargo…" /></div>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="out_login" placeholder="Login" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="out_senha" placeholder="Senha" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Domínio -->
+  <div class="section-card sec-dominio">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">🌐</div>
+      <div class="section-title">
+        <h2>Domínio</h2>
+        <span>Registro.br, GoDaddy, Cloudflare, Hostinger…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="field-group">
+        <label>Registradora / Provedor</label>
+        <select id="dom_provider">
+          <option value="">Selecione…</option>
+          <option>Registro.br</option><option>GoDaddy</option><option>Cloudflare</option>
+          <option>Hostinger</option><option>Locaweb</option><option>HostGator</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="field-group"><label>Domínio</label><input type="text" id="dom_dominio" placeholder="meusite.com.br" /></div>
+      <div class="field-row">
+        <div class="field-group"><label>E-mail / Login <span class="opt">opcional</span></label><input type="text" id="dom_login" placeholder="Login" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="dom_senha" placeholder="Senha" /></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-separator">
+    <span class="topic-label">Apps de Marketing</span>
+    <div class="topic-line"></div>
+  </div>
+
+  <!-- 5. Facebook / Meta -->
+  <div class="section-card sec-facebook">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">📘</div>
+      <div class="section-title">
+        <h2>Facebook / Meta</h2>
+        <span>Conta pessoal, página, Business Manager…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p class="sub-label">Conta Facebook</p>
+      <div class="field-row">
+        <div class="field-group"><label>E-mail / Telefone <span class="opt">opcional</span></label><input type="text" id="fb_email" placeholder="email ou telefone" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="fb_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Business Manager / Meta Business Suite</p>
+      <div class="field-group"><label>URL do Business Manager <span class="opt">opcional</span></label><input type="url" id="fb_bm_url" placeholder="https://business.facebook.com/..." /></div>
+      <div class="field-group"><label>URL da Página <span class="opt">opcional</span></label><input type="url" id="fb_page" placeholder="https://facebook.com/minhaloja" /></div>
+    </div>
+  </div>
+
+  <!-- 6. Google -->
+  <div class="section-card sec-google">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">🔴</div>
+      <div class="section-title">
+        <h2>Conta Google</h2>
+        <span>Google Ads, Analytics, Search Console, Tag Manager…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p class="sub-label">Acesso à Conta Google</p>
+      <div class="field-row">
+        <div class="field-group"><label>E-mail Google <span class="opt">opcional</span></label><input type="email" id="gg_email" placeholder="cliente@gmail.com" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="gg_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">URLs das Ferramentas</p>
+      <div class="field-row">
+        <div class="field-group"><label>Google Ads – URL <span class="opt">opcional</span></label><input type="url" id="gg_ads" placeholder="https://ads.google.com/..." /></div>
+        <div class="field-group"><label>Google Analytics – URL <span class="opt">opcional</span></label><input type="url" id="gg_analytics" placeholder="https://analytics.google.com/..." /></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Search Console – URL <span class="opt">opcional</span></label><input type="url" id="gg_gsc" placeholder="https://search.google.com/..." /></div>
+        <div class="field-group"><label>Tag Manager – URL <span class="opt">opcional</span></label><input type="url" id="gg_gtm" placeholder="https://tagmanager.google.com/..." /></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-separator">
+    <span class="topic-label">ERP</span>
+    <div class="topic-line"></div>
+  </div>
+
+  <!-- 7. ERP -->
+  <div class="section-card sec-erp">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">🗂️</div>
+      <div class="section-title">
+        <h2>ERP</h2>
+        <span>Bling, Olist, outros sistemas de gestão…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <div class="field-group">
+        <label>ERP utilizado <span class="opt">opcional</span></label>
+        <select id="erp_choice">
+          <option value="">Selecione…</option>
+          <option>Bling</option><option>Olist</option><option>Tiny</option><option>Omie</option><option>Outro</option>
+        </select>
+        <span class="hint">Aparece no resumo do projeto</span>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Bling</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="bling_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="bling_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Olist</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="olist_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="olist_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Outro ERP</p>
+      <div class="field-group"><label>Nome do sistema <span class="opt">opcional</span></label><input type="text" id="erp_outro_nome" placeholder="Ex: Tiny, Omie, SAP…" /></div>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="erp_outro_login" placeholder="Login" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="erp_outro_senha" placeholder="Senha" /></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-separator">
+    <span class="topic-label">Marketplace</span>
+    <div class="topic-line"></div>
+  </div>
+
+  <!-- 8. Marketplace -->
+  <div class="section-card sec-marketplace">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="icon">🏪</div>
+      <div class="section-title">
+        <h2>Marketplace</h2>
+        <span>Amazon, Shopee, Mercado Livre, TikTok Shop…</span>
+      </div>
+      <span class="toggle-badge">Opcional</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="section-body">
+      <p class="sub-label">Amazon</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="amz_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="amz_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Shopee</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="shp_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="shp_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">Mercado Livre</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="ml_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ml_senha" placeholder="Senha" /></div>
+      </div>
+      <div class="divider"></div>
+      <p class="sub-label">TikTok Shop</p>
+      <div class="field-row">
+        <div class="field-group"><label>Login / E-mail <span class="opt">opcional</span></label><input type="text" id="tkt_login" placeholder="email@empresa.com.br" /></div>
+        <div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="tkt_senha" placeholder="Senha" /></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn btn-secondary" onclick="clearAll()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.82"/></svg>
+      Limpar
+    </button>
+    <button class="btn btn-primary" onclick="generatePDF()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Gerar Documento de Entrega
+    </button>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: MENSAGENS PADRÃO                                     -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-msgs">
+<div class="msg-page-wrap">
+
+  <div class="page-header">
+    <h1>Mensagens Padrão</h1>
+    <p>Copie e adapte as mensagens para WhatsApp, grupos e e-mails</p>
+  </div>
+
+  <div class="msg-search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="msgSearch" placeholder="Buscar mensagem…" oninput="filterMsgs(this.value)" />
+  </div>
+
+  <div class="msg-tabs">
+    <button class="msg-tab active" onclick="filterTab('todas',this)">Todas</button>
+    <button class="msg-tab" onclick="filterTab('boas-vindas',this)">Boas-vindas</button>
+    <button class="msg-tab" onclick="filterTab('pagamento',this)">Pagamento</button>
+    <button class="msg-tab" onclick="filterTab('frete',this)">Frete</button>
+    <button class="msg-tab" onclick="filterTab('banners',this)">Banners</button>
+    <button class="msg-tab" onclick="filterTab('reuniao',this)">Reuniões</button>
+    <button class="msg-tab" onclick="filterTab('encerramento',this)">Encerramento</button>
+    <button class="msg-tab" onclick="filterTab('followup',this)">Follow-up</button>
+    <button class="msg-tab" onclick="filterTab('suporte',this)">Suporte</button>
+    <button class="msg-tab" onclick="filterTab('cobranca',this)">Cobrança</button>
+  </div>
+
+  <!-- ENCERRAMENTO -->
+  <div class="msg-section-label">Encerramento do Projeto</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="encerramento">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f0fdf4;">🎉</div>
+        <div class="msg-card-meta">
+          <h3>Encerramento — Grupo WhatsApp</h3>
+          <span>Para enviar no grupo do cliente ao finalizar</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-enc-grupo">Olá, [NOME DO CLIENTE]! 🎉
+
+É com muito orgulho que comunicamos a conclusão do seu projeto de e-commerce!
+
+✅ Sua loja está configurada e pronta para operar
+✅ Os acessos foram organizados no documento em anexo
+✅ Todas as integrações foram validadas
+
+📎 Enviamos o *Documento de Entrega* com todos os dados importantes — guarde em local seguro!
+
+Para suporte, estamos disponíveis:
+📞 WhatsApp: (48) 99999-9999
+📧 E-mail: contato@ajudaecom.com.br
+🕐 Seg–Sex, 9h–18h
+
+Foi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-enc-grupo',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="encerramento">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#eff6ff;">📬</div>
+        <div class="msg-card-meta">
+          <h3>Encerramento — E-mail formal</h3>
+          <span>Versão mais formal para envio por e-mail</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-enc-email">Prezado(a) [NOME DO CLIENTE],
+
+Informamos com satisfação a conclusão do seu projeto de e-commerce.
+
+Segue em anexo o Documento de Entrega com o resumo do projeto, dados de suporte e todas as credenciais de acesso organizadas por serviço.
+
+Recomendamos:
+• Guardar o documento em local seguro
+• Alterar as senhas após o recebimento
+• Ativar autenticação em dois fatores
+
+Em caso de dúvidas, nossa equipe está disponível de segunda a sexta, das 9h às 18h, pelo WhatsApp (48) 99999-9999 ou pelo e-mail suporte@ajudaecom.com.br.
+
+Atenciosamente,
+Equipe Ajuda Ecommerce</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-enc-email',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="encerramento">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fff7ed;">🔒</div>
+        <div class="msg-card-meta">
+          <h3>Orientações de Segurança</h3>
+          <span>Mensagem complementar sobre senhas e acessos</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-seg">⚠️ *Orientações de segurança importantes*
+
+Agora que seu projeto foi entregue, recomendamos:
+
+🔑 Altere as senhas dos acessos recebidos
+🔐 Ative a verificação em dois fatores onde possível
+📵 Não compartilhe senhas por WhatsApp ou e-mail
+💾 Salve o documento de entrega em local seguro (Google Drive, nuvem)
+
+Qualquer dúvida, fale conosco! 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-seg',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOAS-VINDAS -->
+  <div class="msg-section-label" style="margin-top:8px;">Boas-vindas e Início de Projeto</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="boas-vindas">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f5f3ff;">📲</div>
+        <div class="msg-card-meta">
+          <h3>Convite para o Grupo — WhatsApp</h3>
+          <span>Mensagem privada para adicionar o cliente ao grupo</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-convite-grupo">Olá, tudo bem? 😊
+
+Meu nome é [NOME DO RESPONSÁVEL] e faço parte da equipe da Ajuda Ecommerce.
+
+O [NOME DO VENDEDOR] me passou o seu contato para que eu pudesse te adicionar ao grupo de acompanhamento do seu projeto — é por lá que vamos dar início a todo o processo de criação da sua loja virtual.
+
+Vou te enviar o convite em seguida!</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-convite-grupo',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="boas-vindas">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#ecfdf5;">👋</div>
+        <div class="msg-card-meta">
+          <h3>Boas-vindas no Grupo</h3>
+          <span>Primeira mensagem quando o cliente entra no grupo</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-bv-grupo">Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉
+
+Meu nome é [NOME] e estou aqui junto com toda a nossa equipe para acompanhar cada etapa da criação da sua loja virtual e garantir que tudo seja desenvolvido com excelência.
+
+Para começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-bv-grupo',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="boas-vindas">
+      <div class="msg-card-icon" style="background:#ecfdf5; width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:14px 18px 0;">📝</div>
+      <div class="msg-card-header" style="padding-top:6px;">
+        <div class="msg-card-icon" style="background:#ecfdf5;display:none;">📝</div>
+        <div class="msg-card-meta">
+          <h3>Solicitação de Dados Iniciais</h3>
+          <span>Pedir informações necessárias para início</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-dados">Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:
+
+📌 *Dados necessários:*
+• Nome completo / razão social
+• CNPJ ou CPF
+• Endereço completo
+• Logo da empresa (PNG com fundo transparente)
+• Fotos dos produtos (mínimo 5 por produto)
+• Descrições dos produtos e preços
+• Forma de pagamento desejada (cartão, PIX, boleto)
+
+Assim que recebermos, iniciamos imediatamente! ✅</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-dados',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGAMENTO -->
+  <div class="msg-section-label" style="margin-top:8px;">Meios de Pagamento</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="pagamento" style="grid-column: 1 / -1;">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f0fdf4;">💳</div>
+        <div class="msg-card-meta">
+          <h3>Apresentação dos Meios de Pagamento</h3>
+          <span>Enviar junto com o PDF comparativo de pagamentos</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-pagamento">Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
+
+*Principais opções disponíveis na Nuvemshop:*
+
+✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.
+
+Além do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.
+
+*Sobre as taxas:*
+As taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.
+
+Uma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.
+
+No cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.
+
+*Recomendação:*
+Para uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.
+
+Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-pagamento',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FRETE -->
+  <div class="msg-section-label" style="margin-top:8px;">Meios de Frete</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="frete" style="grid-column: 1 / -1;">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#ecfeff;">🚚</div>
+        <div class="msg-card-meta">
+          <h3>Apresentação dos Meios de Frete</h3>
+          <span>Explicar as opções de envio disponíveis na plataforma</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-frete">Agora vamos conversar sobre as opções de frete para a sua loja! 📦
+
+A Nuvemshop possui integração nativa com os principais meios de envio do mercado. Veja as principais opções:
+
+📮 *Correios*
+Opção mais tradicional, com ampla cobertura nacional. Oferece modalidades como PAC (econômico) e SEDEX (expresso). Para utilizar, é necessário ter contrato com os Correios ou usar via Melhor Envio.
+
+🚀 *Melhor Envio*
+Plataforma que agrega diversos transportadores (Correios, Jadlog, Azul Cargo, Latam Cargo e outros) em um só lugar. Permite comparar fretes e escolher o mais vantajoso por pedido. A integração é direta com a Nuvemshop e a utilização é gratuita — você paga apenas o frete no momento do envio.
+
+🏭 *Transportadoras próprias*
+Caso você já trabalhe com alguma transportadora específica, também é possível configurar frete manual ou personalizado na plataforma.
+
+📍 *Frete grátis e frete fixo*
+Você pode configurar condições especiais, como frete grátis a partir de um valor mínimo de compra ou frete fixo por região — ótimas estratégias para aumentar a conversão.
+
+*Nossa recomendação:*
+Para quem está começando, o *Melhor Envio* é a opção mais prática e econômica — sem contrato, com diversas transportadoras disponíveis e integração simples com a loja.
+
+Assim que você decidir qual solução de frete prefere utilizar, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-frete',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BANNERS -->
+  <div class="msg-section-label" style="margin-top:8px;">Produção de Banners</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="banners" style="grid-column: 1 / -1;">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#faf5ff;">🎨</div>
+        <div class="msg-card-meta">
+          <h3>Início da Etapa de Banners</h3>
+          <span>Solicitar materiais e formulário para criação dos banners</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-banners">Bom dia, [NOME DO CLIENTE]! 😊
+
+Chegamos a uma das etapas mais visuais do projeto: a produção dos banners da sua loja! 🎨✨
+
+Para que nossa equipe de design possa criar as artes com a identidade ideal para o seu negócio, precisamos de duas coisas:
+
+*1. Formulário preenchido*
+Por favor, acesse o link abaixo e preencha as informações solicitadas — quanto mais detalhes, melhor o resultado!
+📋 *Formulário:* https://docs.google.com/forms/d/e/1FAIpQLSf9mOg-9WFFxRfQpE30Mj3bSWTs_J9u7gOcmNsMjNoHUVp_XA/viewform
+
+*2. Envio dos materiais visuais*
+📸 *Full Banners:* envie de 2 a 4 fotos de alta qualidade
+📸 *Mini Banners:* envie no mínimo 1 foto para cada mini banner
+
+Caso tenha logos, referências visuais ou outros arquivos que deseja utilizar, envie pelo e-mail abaixo:
+📧 ajudaecomm@gmail.com
+
+*Serão produzidos para a sua loja:*
+✅ 2 Full Banners
+✅ 3 Mini Banners
+
+Os mini banners são ideais para direcionar o cliente às categorias da loja, mas podemos adaptá-los conforme a sua preferência. ✨
+
+Qualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-banners',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REUNIÃO -->
+  <div class="msg-section-label" style="margin-top:8px;">Reuniões e Agendamentos</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="reuniao">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#eff6ff;">📅</div>
+        <div class="msg-card-meta">
+          <h3>Confirmação de Reunião</h3>
+          <span>Confirmar agendamento de call ou reunião</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-reuniao">Olá, [NOME]! 😊
+
+Passando para confirmar nosso agendamento:
+
+📅 *Data:* [DATA]
+🕐 *Horário:* [HORA]
+🔗 *Link:* [LINK MEET/ZOOM]
+
+Estaremos disponíveis no horário combinado. Caso precise reagendar, é só nos avisar com antecedência — sem problema algum!
+
+Até lá! 👍</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-reuniao',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="reuniao">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fff1f2;">⏰</div>
+        <div class="msg-card-meta">
+          <h3>Ausência em Reunião</h3>
+          <span>Cliente não compareceu após 15 minutos de espera</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-ausencia">Olá, [NOME]! Tudo bem?
+
+Estávamos te aguardando na reunião que tínhamos agendado para as [HORA] de hoje, mas não conseguimos fazer o contato.
+
+Nossa política é aguardar até 15 minutos — após esse período, precisamos considerar a reunião cancelada para não comprometer a agenda das demais equipes.
+
+Fique tranquilo(a)! Estamos totalmente disponíveis para reagendar em um horário mais conveniente para você. É só nos dizer quando funciona melhor. 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-ausencia',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="reuniao">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f0fdf4;">🔁</div>
+        <div class="msg-card-meta">
+          <h3>Reagendamento de Reunião</h3>
+          <span>Propor novo horário para reunião</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-reagendamento">Olá, [NOME]! 😊
+
+Gostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:
+
+📅 Opção 1: [DATA] às [HORA]
+📅 Opção 2: [DATA] às [HORA]
+📅 Opção 3: [DATA] às [HORA]
+
+Qual desses funciona melhor para você? Caso prefira outro horário, é só nos informar que tentamos nos adaptar!
+
+Aguardamos seu retorno. 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-reagendamento',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOLLOW-UP -->
+  <div class="msg-section-label" style="margin-top:8px;">Follow-up e Andamento</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="followup">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fafafa;">📊</div>
+        <div class="msg-card-meta">
+          <h3>Atualização de Status</h3>
+          <span>Informar andamento do projeto</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-status">Olá, [NOME]! 👋
+
+Atualização do seu projeto — [DATA]:
+
+✅ Concluído:
+• [ITEM 1]
+• [ITEM 2]
+
+🔄 Em andamento:
+• [ITEM 3]
+
+⏳ Próximos passos:
+• [ITEM 4]
+
+Prazo estimado de conclusão: [PRAZO] 🎯</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-status',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="followup">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fff1f2;">⏰</div>
+        <div class="msg-card-meta">
+          <h3>Aguardando Retorno do Cliente</h3>
+          <span>Cobrar informação ou aprovação pendente</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-aguardo">Oi, [NOME]! Como vai?
+
+Passando para lembrar que estamos aguardando:
+
+📋 [DESCREVA O QUE ESTÁ AGUARDANDO]
+
+Assim que recebermos, seguimos imediatamente com o projeto!
+
+Qualquer dúvida ou dificuldade, pode chamar. 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-aguardo',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="followup">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f0fdf4;">✅</div>
+        <div class="msg-card-meta">
+          <h3>Aprovação de Etapa</h3>
+          <span>Solicitar aprovação de layout ou etapa</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-aprovacao">Olá, [NOME]! 🎨
+
+A etapa de [NOME DA ETAPA] está pronta para aprovação!
+
+🔗 Link para visualização: [LINK]
+
+Por favor, revise e nos diga:
+👍 Aprovado — seguimos para a próxima etapa
+✏️ Solicitar ajustes — nos informe o que alterar
+
+Aguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-aprovacao',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUPORTE -->
+  <div class="msg-section-label" style="margin-top:8px;">Suporte Pós-entrega</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="suporte">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#eff6ff;">🛠️</div>
+        <div class="msg-card-meta">
+          <h3>Abertura de Chamado de Suporte</h3>
+          <span>Confirmação ao receber solicitação de suporte</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-chamado">Olá, [NOME]! 👋
+
+Recebemos sua solicitação de suporte. ✅
+
+📋 *Protocolo:* #[NÚMERO]
+🔎 *Assunto:* [ASSUNTO]
+⏱️ *Prazo de retorno:* até [PRAZO]
+
+Nossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!
+
+Ajuda Ecommerce — Suporte Técnico</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-chamado',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="suporte">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#f0fdf4;">✔️</div>
+        <div class="msg-card-meta">
+          <h3>Resolução de Chamado</h3>
+          <span>Informar que o problema foi resolvido</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-resolucao">Olá, [NOME]! 😊
+
+O problema reportado foi resolvido com sucesso! ✅
+
+🔧 *O que foi feito:* [DESCRIÇÃO DA SOLUÇÃO]
+
+Por favor, verifique se está tudo funcionando corretamente e nos informe.
+
+Qualquer outra dúvida, estamos à disposição!
+Equipe Ajuda Ecommerce 🚀</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-resolucao',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COBRANÇA -->
+  <div class="msg-section-label" style="margin-top:8px;">Cobrança e Financeiro</div>
+  <div class="msg-grid">
+
+    <div class="msg-card" data-cat="cobranca">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fffbeb;">💰</div>
+        <div class="msg-card-meta">
+          <h3>Envio de Proposta</h3>
+          <span>Encaminhar proposta comercial</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-proposta">Olá, [NOME]! 😊
+
+Conforme conversamos, segue nossa proposta para o seu projeto:
+
+📎 [LINK OU ANEXO DA PROPOSTA]
+
+📋 *Resumo:*
+• Serviço: [DESCRIÇÃO]
+• Investimento: R$ [VALOR]
+• Prazo de entrega: [PRAZO]
+• Forma de pagamento: [FORMA]
+
+Ficamos à disposição para esclarecer qualquer dúvida!
+
+Ajuda Ecommerce</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-proposta',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+    <div class="msg-card" data-cat="cobranca">
+      <div class="msg-card-header">
+        <div class="msg-card-icon" style="background:#fff1f2;">🔔</div>
+        <div class="msg-card-meta">
+          <h3>Lembrete de Pagamento</h3>
+          <span>Cobrar pagamento de forma gentil</span>
+        </div>
+      </div>
+      <div class="msg-card-body">
+        <pre id="msg-cobranca">Olá, [NOME]! Como vai?
+
+Passando para lembrar que temos um pagamento pendente:
+
+💳 *Referente a:* [SERVIÇO]
+💰 *Valor:* R$ [VALOR]
+📅 *Vencimento:* [DATA]
+
+Chave PIX: [CHAVE PIX]
+Ou acesse: [LINK DO BOLETO]
+
+Em caso de dúvidas, estamos à disposição! 😊</pre>
+      </div>
+      <div class="msg-card-actions">
+        <button class="btn-copy" onclick="copyMsg('msg-cobranca',this)">📋 Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: PDFs e DOCUMENTOS                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-docs">
+
+  <div class="section-wrap" style="max-width:900px;">
+    <div class="page-header">
+      <h1>PDFs e Documentos</h1>
+      <p>Materiais padrão da agência prontos para envio</p>
+    </div>
+  </div>
+
+  <div class="docs-grid">
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#eff6ff;">📄</div>
+      <h3>Documento de Entrega</h3>
+      <p>Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.</p>
+      <span class="dc-tag">Gerador dinâmico</span>
+      <button class="btn-use" onclick="showPage('pdf', document.querySelectorAll('.nav-btn')[1])">Gerar PDF ↗</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#f0fdf4;">💳</div>
+      <h3>Comparativo de Meios de Pagamento</h3>
+      <p>Tabela completa comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal — taxas, diferenciais e recursos.</p>
+      <span class="dc-tag">PDF Pronto para envio</span>
+      <button class="btn-use" onclick="showComparativoPagamento()">📤 Ver e Copiar mensagem</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#f5f3ff;">📋</div>
+      <h3>Proposta Comercial</h3>
+      <p>Modelo de proposta padronizado com serviços, valores, cronograma e condições de pagamento.</p>
+      <span class="dc-tag">Em breve</span>
+      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#ecfdf5;">✅</div>
+      <h3>Checklist de Lançamento</h3>
+      <p>Lista completa de verificação antes do go-live: domínio, pagamentos, frete, SEO e mais.</p>
+      <span class="dc-tag">Em breve</span>
+      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#fff7ed;">📖</div>
+      <h3>Manual do Cliente</h3>
+      <p>Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.</p>
+      <span class="dc-tag">Em breve</span>
+      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#faf5ff;">📜</div>
+      <h3>Contrato de Prestação de Serviços</h3>
+      <p>Modelo de contrato com escopo, prazo, valores e cláusulas de suporte e manutenção.</p>
+      <span class="dc-tag">Em breve</span>
+      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
+    </div>
+
+    <div class="doc-card">
+      <div class="dc-icon" style="background:#ecfeff;">📊</div>
+      <h3>Relatório Mensal de Resultados</h3>
+      <p>Template de relatório para apresentar métricas de tráfego, conversão e campanhas ao cliente.</p>
+      <span class="dc-tag">Em breve</span>
+      <button class="btn-use" style="opacity:.5;cursor:not-allowed;">Disponível em breve</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL: COMPARATIVO PAGAMENTO -->
+<div id="modal-pagamento" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+    <div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e8f0;padding-bottom:16px;">
+      <div>
+        <h2 style="font-size:1.1rem;font-weight:700;color:#1e293b;">Comparativo de Meios de Pagamento</h2>
+        <p style="font-size:0.82rem;color:#64748b;margin-top:3px;">Envie o PDF + a mensagem abaixo no grupo do cliente</p>
+      </div>
+      <button onclick="document.getElementById('modal-pagamento').style.display='none'" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#64748b;line-height:1;">×</button>
+    </div>
+    <div style="padding:20px 24px;">
+      <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+        <p style="font-size:0.82rem;font-weight:700;color:#166534;margin-bottom:6px;">📎 Lembre-se de anexar o PDF</p>
+        <p style="font-size:0.8rem;color:#15803d;">Envie o arquivo <strong>COMPARATIVO_MEIOS_DE_PAGAMENTO.pdf</strong> junto com a mensagem abaixo no grupo do WhatsApp do cliente.</p>
+      </div>
+      <label style="font-size:0.84rem;font-weight:700;color:#374151;display:block;margin-bottom:8px;">Mensagem para enviar:</label>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;font-family:'Segoe UI',sans-serif;font-size:0.82rem;line-height:1.6;color:#1e293b;white-space:pre-wrap;" id="modal-msg-pagamento">Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
+
+*Principais opções disponíveis na Nuvemshop:*
+
+✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.
+
+Além do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.
+
+*Sobre as taxas:*
+As taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.
+
+Uma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.
+
+No cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.
+
+*Recomendação:*
+Para uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.
+
+Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊</div>
+      <button onclick="copyModalMsg('modal-msg-pagamento',this)" style="margin-top:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:0.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;">📋 Copiar mensagem</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ──────────────────────────────────────────────── -->
+<div id="toast"></div>
+
+<script>
+// ── AJUDA ECOMMERCE — CONFIGURAÇÕES ──────────────────────────
+const AJUDA = {
+  whatsappComercial: '(48) 99999-9999',
+  emailComercial:    'contato@ajudaecom.com.br',
+  whatsappTecnico:   '(48) 98888-8888',
+  emailTecnico:      'suporte@ajudaecom.com.br',
+  horario:           'Seg-Sex, 9h-18h',
+  site:              'ajudaecom.com.br',
+  instagram:         '@ajudaecommerce',
+  nome:              'Ajuda Ecommerce',
+};
+
+const SUPORTE_PLATAFORMA = {
+  'Nuvemshop':      { canal: 'atendimento@nuvemshop.com.br',       site: 'atendimento.nuvemshop.com.br', horario: '24/7 via chat' },
+  'Shopify':        { canal: 'support@shopify.com',                site: 'help.shopify.com',             horario: '24/7 via chat' },
+  'VTEX':           { canal: 'suporte@vtex.com.br',                site: 'help.vtex.com',                horario: 'Seg-Sex comercial' },
+  'WooCommerce':    { canal: 'wordpress.org/support/woocommerce',  site: 'woocommerce.com/contact-us',   horario: 'Forum/tickets' },
+  'Loja Integrada': { canal: 'ajuda@lojaintegrada.com.br',         site: 'ajuda.lojaintegrada.com.br',   horario: 'Seg-Sex comercial' },
+  'Tray':           { canal: 'atendimento@tray.com.br',            site: 'atendimento.tray.com.br',      horario: 'Seg-Sex comercial' },
+};
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SECTION TOGGLE ────────────────────────────────────────────
+function toggle(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+// ── FORM HELPERS ──────────────────────────────────────────────
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+function clearAll() {
+  document.querySelectorAll('#page-pdf input, #page-pdf select').forEach(el => el.value = '');
+  showToast('Formulário limpo');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── COPY MESSAGE ──────────────────────────────────────────────
+function copyMsg(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '📋 Copiar';
+    }, 2000);
+    showToast('Mensagem copiada!');
+  });
+}
+
+// ── FILTER MESSAGES ───────────────────────────────────────────
+let activeTab = 'todas';
+let activeSearch = '';
+
+function filterTab(cat, btn) {
+  activeTab = cat;
+  document.querySelectorAll('.msg-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterMsgs(q) {
+  activeSearch = q.toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  document.querySelectorAll('.msg-card').forEach(card => {
+    const cat = card.dataset.cat;
+    const text = card.textContent.toLowerCase();
+    const tabOk = activeTab === 'todas' || cat === activeTab;
+    const searchOk = activeSearch === '' || text.includes(activeSearch);
+    card.dataset.hidden = !(tabOk && searchOk);
+  });
+}
+
+// ── PDF GENERATION ────────────────────────────────────────────
+function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+  const clientName  = val('clientName') || 'Cliente';
+  const pageW       = 210;
+  const pageH       = 297;
+  const margin      = 18;
+  const contentW    = pageW - margin * 2;
+  let y = 0;
+
+  const C = {
+    navy:    [15, 40, 80],
+    accent:  [132, 204, 22],
+    gold:    [217, 165, 50],
+    primary: [37, 99, 235],
+    dark:    [30, 41, 59],
+    muted:   [100, 116, 139],
+    border:  [226, 232, 240],
+    white:   [255, 255, 255],
+    lightBg: [248, 250, 252],
+    wrapBg:  [244, 246, 249],
+    wrapBdr: [213, 219, 229],
+    cardBdr: [220, 225, 232],
+    sections: {
+      ecommerce:   [37,  99, 235],
+      email:       [124, 58, 237],
+      envio:       [8,  145, 178],
+      dominio:     [5,  150, 105],
+      facebook:    [24, 119, 242],
+      google:      [234, 67,  53],
+      erp:         [217, 119,  6],
+      marketplace: [124, 58, 237],
+    }
+  };
+
+  const addPage  = () => { doc.addPage(); y = 20; };
+  const checkY   = (needed = 20) => { if (y + needed > pageH - 20) addPage(); };
+  const drawLink = (text, x, yPos, url, fontSize) => {
+    doc.setFontSize(fontSize || 10.5);
+    doc.setTextColor(37, 99, 235);
+    doc.textWithLink(text, x, yPos, { url: url });
+  };
+
+  const drawTopBand = () => {
+    doc.setFillColor(...C.navy);
+    doc.rect(0, 0, pageW, 18, 'F');
+    doc.setFillColor(...C.accent);
+    doc.rect(0, 16, pageW, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...C.accent);
+    doc.text('ajuda', margin, 11);
+    const aw = doc.getTextWidth('ajuda');
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(180, 200, 230);
+    doc.text(' // ', margin + aw, 11);
+    const sw = doc.getTextWidth(' // ');
+    doc.setTextColor(...C.white);
+    doc.text('ecommerce', margin + aw + sw, 11);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(180, 200, 230);
+    doc.text(clientName, pageW - margin, 11, { align: 'right' });
+  };
+
+  // PAGE 1: COVER
+  const drawCover = () => {
+    doc.setFillColor(...C.navy);
+    doc.rect(0, 0, pageW, pageH, 'F');
+    doc.setFillColor(...C.accent);
+    doc.rect(0, 76, pageW, 2, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(28);
+    doc.setTextColor(...C.accent);
+    doc.text('ajuda', margin, 60);
+    const aw = doc.getTextWidth('ajuda');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(28);
+    doc.setTextColor(180, 200, 230);
+    doc.text(' // ', margin + aw, 60);
+    const sw = doc.getTextWidth(' // ');
+    doc.setTextColor(...C.white);
+    doc.text('ecommerce', margin + aw + sw, 60);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...C.gold);
+    doc.text('DOCUMENTO DE ENTREGA', margin, 130);
+    const elw = doc.getTextWidth('DOCUMENTO DE ENTREGA');
+    doc.setDrawColor(...C.gold);
+    doc.setLineWidth(0.5);
+    doc.line(margin, 132, margin + elw, 132);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(34);
+    doc.setTextColor(...C.white);
+    const maxNameW = pageW - margin * 2;
+    const lines = doc.splitTextToSize(clientName, maxNameW);
+    let ny = 152;
+    lines.slice(0, 2).forEach(ln => { doc.text(ln, margin, ny); ny += 14; });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.setTextColor(180, 200, 230);
+    doc.text('Kit de finalização e acessos da loja', margin, ny + 6);
+
+    doc.setDrawColor(...C.gold);
+    doc.setLineWidth(0.3);
+    doc.line(margin, pageH - 55, margin + 40, pageH - 55);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.gold);
+    doc.text('PROJETO CONCLUÍDO EM', margin, pageH - 48);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(13);
+    doc.setTextColor(...C.white);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+    doc.text(dateStr, margin, pageH - 40);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.gold);
+    doc.text('ENTREGUE POR', pageW - margin, pageH - 48, { align: 'right' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(13);
+    doc.setTextColor(...C.white);
+    doc.text(AJUDA.nome, pageW - margin, pageH - 40, { align: 'right' });
+  };
+
+  // PAGE 2: MENSAGEM
+  const drawMensagem = () => {
+    addPage(); drawTopBand(); y = 40;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.muted);
+    doc.text('01  ·  ENCERRAMENTO', margin, y);
+    y += 14;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(26);
+    doc.setTextColor(...C.dark);
+    doc.text('Seu projeto está', margin, y);
+    doc.text('concluído.', margin, y + 12);
+    y += 32;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11.5);
+    doc.setTextColor(...C.dark);
+    const intro = 'Obrigado pela confiança em nosso trabalho. Sua loja foi configurada e está pronta para operação.';
+    const introLines = doc.splitTextToSize(intro, contentW);
+    introLines.forEach(ln => { doc.text(ln, margin, y); y += 6.5; });
+
+    y += 6;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10.5);
+    doc.setTextColor(...C.muted);
+    doc.text('Neste documento você encontrará:', margin, y);
+    y += 10;
+
+    const items = [
+      'Resumo do projeto e dados da loja',
+      'Canais de suporte (Ajuda Ecommerce e plataforma)',
+      'Orientações de segurança',
+      'Credenciais e acessos de cada serviço',
+    ];
+    items.forEach(it => {
+      doc.setFillColor(...C.accent);
+      doc.circle(margin + 2, y - 1.5, 1.5, 'F');
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10.5);
+      doc.setTextColor(...C.dark);
+      doc.text(it, margin + 8, y);
+      y += 8;
+    });
+
+    y += 10;
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(10.5);
+    doc.setTextColor(...C.muted);
+    doc.text('Estamos à disposição para qualquer necessidade.', margin, y);
+  };
+
+  const drawInfoBlock = (title, rows, accentColor) => {
+    const labelH = 10, rowH = 14;
+    const blockH = labelH + rows.length * rowH + 6;
+    doc.setFillColor(...C.white);
+    doc.setDrawColor(...C.cardBdr);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(margin, y, contentW, blockH, 3, 3, 'FD');
+    if (accentColor) {
+      doc.setFillColor(...accentColor);
+      doc.rect(margin, y, contentW, 1.5, 'F');
+    }
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...C.muted);
+    doc.text(title.toUpperCase(), margin + 7, y + 7);
+    const tw = doc.getTextWidth(title.toUpperCase());
+    doc.setDrawColor(...C.border);
+    doc.setLineWidth(0.2);
+    doc.line(margin + 7 + tw + 4, y + 6, margin + contentW - 7, y + 6);
+    let ry = y + labelH + 5;
+    rows.forEach(([k, v, isUrl]) => {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...C.muted);
+      doc.text(k.toUpperCase(), margin + 7, ry);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      if (isUrl && v && v !== '—') {
+        doc.setTextColor(37, 99, 235);
+        doc.textWithLink(v, margin + 7, ry + 5, { url: v.startsWith('http') ? v : 'https://' + v });
+      } else {
+        doc.setTextColor(...C.dark);
+        doc.text(v || '—', margin + 7, ry + 5);
+      }
+      ry += rowH;
+    });
+    y += blockH;
+  };
+
+  // PAGE 3: RESUMO + CONTATOS
+  const drawResumoContatos = () => {
+    addPage(); drawTopBand(); y = 32;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.muted);
+    doc.text('02  ·  RESUMO E SUPORTE', margin, y);
+    y += 12;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(...C.dark);
+    doc.text('Resumo do projeto', margin, y);
+    y += 10;
+
+    const ecPlatform = val('ec_platform') || '—';
+    const domDom     = val('dom_dominio') || '—';
+    const erpChoice  = val('erp_choice')  || val('erp_outro_nome') || '—';
+    const dateNow    = new Date().toLocaleDateString('pt-BR');
+    checkY(10 + 5 * 14 + 6);
+    drawInfoBlock('Resumo do projeto', [
+      ['Plataforma', ecPlatform, false],
+      ['Domínio', domDom, domDom !== '—'],
+      ['ERP', erpChoice, false],
+      ['Data da entrega', dateNow, false],
+      ['Responsável pelo projeto', val('responsavel') || AJUDA.nome, false],
+    ]);
+    y += 10;
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(...C.dark);
+    doc.text('Contatos de suporte', margin, y);
+    y += 10;
+
+    const halfW = (contentW - 6) / 2;
+    const drawSupportColumn = (title, sx, rows) => {
+      const labelH = 10, rowH = 14;
+      const blockH = labelH + rows.length * rowH + 6;
+      doc.setFillColor(...C.white);
+      doc.setDrawColor(...C.cardBdr);
+      doc.setLineWidth(0.3);
+      doc.roundedRect(sx, y, halfW, blockH, 3, 3, 'FD');
+      doc.setFillColor(...C.accent);
+      doc.rect(sx, y, halfW, 1.5, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor(...C.dark);
+      doc.text(title, sx + 7, y + 9);
+      let ry = y + labelH + 5;
+      rows.forEach(([k, v]) => {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(7);
+        doc.setTextColor(...C.muted);
+        doc.text(k.toUpperCase(), sx + 7, ry);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9.5);
+        doc.setTextColor(...C.dark);
+        doc.text(v, sx + 7, ry + 4.5);
+        ry += rowH;
+      });
+      return y + blockH;
+    };
+
+    const platSup = SUPORTE_PLATAFORMA[ecPlatform];
+    const platBlockH = 10 + 3 * 14 + 6;
+    checkY(platBlockH);
+    if (platSup) {
+      drawInfoBlock('Suporte ' + ecPlatform + ' (plataforma)', [
+        ['Canal de atendimento', platSup.canal, false],
+        ['Central de ajuda', platSup.site, true],
+        ['Horário', platSup.horario, false],
+      ], [37, 99, 235]);
+    } else {
+      drawInfoBlock('Suporte da plataforma', [
+        ['Canal de atendimento', '—', false],
+        ['Central de ajuda', '—', false],
+        ['Horário', '—', false],
+      ], [37, 99, 235]);
+    }
+    y += 6;
+
+    checkY(10 + 3 * 14 + 6 + 10);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...C.muted);
+    doc.text('AJUDA ECOMMERCE', margin, y + 6);
+    const ajLw = doc.getTextWidth('AJUDA ECOMMERCE');
+    doc.setDrawColor(...C.border);
+    doc.setLineWidth(0.3);
+    doc.line(margin + ajLw + 5, y + 5, margin + contentW, y + 5);
+    y += 10;
+
+    const comH = drawSupportColumn('Suporte Comercial', margin, [
+      ['WhatsApp', AJUDA.whatsappComercial],
+      ['E-mail',   AJUDA.emailComercial],
+      ['Horário',  AJUDA.horario],
+    ]);
+    const tecH = drawSupportColumn('Suporte Técnico', margin + halfW + 6, [
+      ['WhatsApp', AJUDA.whatsappTecnico],
+      ['E-mail',   AJUDA.emailTecnico],
+      ['Horário',  AJUDA.horario],
+    ]);
+    y = Math.max(comH, tecH) + 6;
+
+    const ajudaBlockH = 10 + 2 * 14 + 6;
+    checkY(ajudaBlockH);
+    drawInfoBlock('Ajuda Ecommerce', [
+      ['Site', AJUDA.site, true],
+      ['Instagram', AJUDA.instagram, false],
+    ], C.accent);
+    y += 10;
+
+    checkY(60);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(...C.dark);
+    doc.text('Orientações importantes', margin, y);
+    y += 8;
+    const orient = [
+      'Não compartilhe senhas por canais não seguros.',
+      'Altere as senhas após a entrega caso deseje.',
+      'Ative autenticação em dois fatores onde possível.',
+      'Mantenha este documento em local seguro.',
+    ];
+    orient.forEach(it => {
+      doc.setFillColor(...C.accent);
+      doc.circle(margin + 2, y - 1.2, 1.3, 'F');
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.setTextColor(...C.dark);
+      doc.text(it, margin + 7, y);
+      y += 7;
+    });
+  };
+
+  // CREDENCIAIS helpers
+  const ROW_H = 17, FIELD_H = 15, ARROW_H = 21, CARD_TITLE_H = 18;
+  const CARD_PAD = 8, CARD_GAP = 5, TOPIC_H = 14, TOPIC_GAP = 5;
+  const GROUP_GAP = 8, SUB_H = 10, SUB_PAD = 4;
+
+  const calcFieldH = (row) => {
+    if (Array.isArray(row)) return row.some(f => f.value) ? ROW_H : 0;
+    if (!row.value) return 0;
+    if (row.value.indexOf('  ->  ') !== -1) return ARROW_H;
+    return FIELD_H;
+  };
+  const calcCardH = (rows) => {
+    let h = CARD_TITLE_H;
+    rows.forEach(r => { h += calcFieldH(r); });
+    return h + CARD_PAD;
+  };
+  const calcCompositeH = (sections) => {
+    let h = CARD_TITLE_H;
+    sections.forEach(({ rows }) => {
+      const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
+      if (!hasData) return;
+      h += SUB_H;
+      rows.forEach(r => { h += calcFieldH(r); });
+      h += SUB_PAD;
+    });
+    return h + CARD_PAD;
+  };
+
+  const sectionTitle = (label) => {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...C.dark);
+    doc.text(label.toUpperCase(), margin, y + 7);
+    const lw = doc.getTextWidth(label.toUpperCase());
+    doc.setDrawColor(...C.border);
+    doc.setLineWidth(0.4);
+    doc.line(margin + lw + 5, y + 6, margin + contentW, y + 6);
+    y += TOPIC_H;
+  };
+
+  const sectionCard = (title, color, rows) => {
+    const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
+    if (!hasData) return;
+    const h = calcCardH(rows);
+    doc.setFillColor(...C.white);
+    doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
+    doc.setDrawColor(...C.cardBdr);
+    doc.setLineWidth(0.25);
+    doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
+    doc.setFillColor(...color);
+    doc.roundedRect(margin, y, 4, h, 2, 2, 'F');
+    doc.rect(margin, y + 1, 4, h - 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...C.dark);
+    doc.text(title, margin + 9, y + 10);
+    let ry = y + CARD_TITLE_H + 2;
+    rows.forEach(row => {
+      if (Array.isArray(row)) {
+        row.forEach((field, i) => {
+          if (!field.value) return;
+          const x = margin + 9 + i * (contentW / 2 - 4);
+          doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+          doc.text(field.label.toUpperCase(), x, ry);
+          if (field.value.startsWith('http')) {
+            drawLink(field.value.length > 38 ? field.value.substring(0, 35) + '...' : field.value, x, ry + 6, field.value, 10.5);
+          } else {
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+            doc.text(field.value, x, ry + 6);
+          }
+        });
+        if (row.some(f => f.value)) ry += ROW_H;
+      } else {
+        if (!row.value) return;
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+        doc.text(row.label.toUpperCase(), margin + 9, ry);
+        const arrowIdx = row.value.indexOf('  ->  ');
+        if (arrowIdx !== -1) {
+          const lbl2 = row.value.substring(0, arrowIdx);
+          const link = row.value.substring(arrowIdx + 6);
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+          doc.text(lbl2, margin + 9, ry + 6);
+          drawLink(link.length > 58 ? link.substring(0, 55) + '...' : link, margin + 9, ry + 13, link, 8.5);
+          ry += ARROW_H;
+        } else if (row.value.startsWith('http')) {
+          drawLink(row.value.length > 68 ? row.value.substring(0, 65) + '...' : row.value, margin + 9, ry + 6, row.value, 10.5);
+          ry += FIELD_H;
+        } else {
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+          doc.text(row.value, margin + 9, ry + 6);
+          ry += FIELD_H;
+        }
+      }
+    });
+    y += h + CARD_GAP;
+  };
+
+  const subSection = (title, color, rows) => {
+    const hasData = rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value);
+    if (!hasData) return;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...color);
+    doc.text(('-- ' + title).toUpperCase(), margin + 9, y + 5);
+    doc.setDrawColor(...color); doc.setLineWidth(0.2);
+    doc.line(margin + 9, y + 6.5, margin + contentW - 4, y + 6.5);
+    y += SUB_H;
+    rows.forEach(row => {
+      if (Array.isArray(row)) {
+        row.forEach((field, i) => {
+          if (!field.value) return;
+          const x = margin + 9 + i * (contentW / 2 - 4);
+          doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+          doc.text(field.label.toUpperCase(), x, y);
+          if (field.value.startsWith('http')) {
+            drawLink(field.value.length > 38 ? field.value.substring(0, 35) + '...' : field.value, x, y + 6, field.value, 10.5);
+          } else {
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+            doc.text(field.value, x, y + 6);
+          }
+        });
+        if (row.some(f => f.value)) y += ROW_H;
+      } else {
+        if (!row.value) return;
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+        doc.text(row.label.toUpperCase(), margin + 9, y);
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark);
+        doc.text(row.value, margin + 9, y + 6);
+        y += FIELD_H;
+      }
+    });
+    y += SUB_PAD;
+  };
+
+  const compositeCard = (title, color, sections) => {
+    const hasAny = sections.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value));
+    if (!hasAny) return;
+    const h = calcCompositeH(sections);
+    doc.setFillColor(...C.white);
+    doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
+    doc.setDrawColor(...C.cardBdr);
+    doc.setLineWidth(0.25);
+    doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
+    doc.setFillColor(...color);
+    doc.roundedRect(margin, y, 4, h, 2, 2, 'F');
+    doc.rect(margin, y + 1, 4, h - 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...C.dark);
+    doc.text(title, margin + 9, y + 10);
+    y += CARD_TITLE_H;
+    sections.forEach(s => subSection(s.title, color, s.rows));
+    y += CARD_GAP - SUB_PAD;
+  };
+
+  const drawCredenciais = () => {
+    const blocks = [];
+
+    const ecPlatform = val('ec_platform');
+    const ecUrl      = val('ec_url');
+    const ecEmail    = val('ec_email');
+
+    // E-commerce
+    const ecRows = [
+      { label: 'Plataforma', value: ecPlatform },
+      { label: 'URL / Painel Admin', value: ecUrl },
+      [{ label: 'E-mail / Login', value: ecEmail }, { label: 'Senha', value: val('ec_senha') }],
+    ];
+    if (ecRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
+      blocks.push({ group: 'E-commerce', type: 'card', title: 'Plataforma de E-commerce', color: C.sections.ecommerce, rows: ecRows });
+
+    // E-mail
+    const emRows = [
+      { label: 'Provedor', value: val('em_provider') },
+      [{ label: 'E-mail / Login', value: val('em_email') }, { label: 'Senha', value: val('em_senha') }],
+    ];
+    if (emRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
+      blocks.push({ group: 'E-mail e Domínio', type: 'card', title: 'E-mail Profissional', color: C.sections.email, rows: emRows });
+
+    // Domínio
+    const domEmailLogin = val('dom_login') || val('dom_dominio');
+    const domRows = [
+      { label: 'Registradora', value: val('dom_provider') },
+      { label: 'Domínio', value: val('dom_dominio') },
+      [{ label: 'E-mail / Login', value: domEmailLogin }, { label: 'Senha', value: val('dom_senha') }],
+    ];
+    if (domRows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value))
+      blocks.push({ group: 'E-mail e Domínio', type: 'card', title: 'Domínio', color: C.sections.dominio, rows: domRows });
+
+    // Envio
+    const envioSecs = [
+      { title: 'Melhor Envio', rows: [[{ label: 'E-mail / Login', value: val('me_email') }, { label: 'Senha', value: val('me_senha') }]] },
+      { title: 'Correios',     rows: [[{ label: 'Login / CNPJ', value: val('cor_login') },  { label: 'Senha', value: val('cor_senha') }]] },
+      { title: 'Outro Transportador', rows: [[{ label: 'Transportador', value: val('out_nome') }, { label: 'E-mail / Login', value: val('out_login') }], [{ label: 'Senha', value: val('out_senha') }]] },
+    ];
+    if (envioSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
+      blocks.push({ group: 'Envio', type: 'composite', title: 'Meios de Envio', color: C.sections.envio, sections: envioSecs });
+
+    // Facebook
+    const fbSecs = [
+      { title: 'Conta Facebook', rows: [[{ label: 'E-mail / Telefone', value: val('fb_email') }, { label: 'Senha', value: val('fb_senha') }]] },
+      { title: 'Business Manager', rows: [[{ label: 'URL Business Manager', value: val('fb_bm_url') }, { label: 'URL da Página', value: val('fb_page') }]] },
+    ];
+    if (fbSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
+      blocks.push({ group: 'Meta e Google', type: 'composite', title: 'Facebook / Meta', color: C.sections.facebook, sections: fbSecs });
+
+    // Google
+    const ggSecs = [
+      { title: 'Acesso', rows: [[{ label: 'E-mail / Login', value: val('gg_email') }, { label: 'Senha', value: val('gg_senha') }]] },
+      { title: 'Ferramentas', rows: [
+        [{ label: 'Google Ads', value: val('gg_ads') }, { label: 'Google Analytics', value: val('gg_analytics') }],
+        [{ label: 'Search Console', value: val('gg_gsc') }, { label: 'Tag Manager', value: val('gg_gtm') }],
+      ]},
+    ];
+    if (ggSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
+      blocks.push({ group: 'Meta e Google', type: 'composite', title: 'Conta Google', color: C.sections.google, sections: ggSecs });
+
+    // ERP
+    const erpSecs = [
+      { title: 'Bling',    rows: [[{ label: 'E-mail / Login', value: val('bling_login') }, { label: 'Senha', value: val('bling_senha') }]] },
+      { title: 'Olist',    rows: [[{ label: 'E-mail / Login', value: val('olist_login') }, { label: 'Senha', value: val('olist_senha') }]] },
+      { title: 'Outro ERP',rows: [[{ label: 'Sistema', value: val('erp_outro_nome') }, { label: 'E-mail / Login', value: val('erp_outro_login') }], [{ label: 'Senha', value: val('erp_outro_senha') }]] },
+    ];
+    if (erpSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
+      blocks.push({ group: 'ERP', type: 'composite', title: 'ERP', color: C.sections.erp, sections: erpSecs });
+
+    // Marketplace
+    const mktpSecs = [
+      { title: 'Amazon',        rows: [[{ label: 'E-mail / Login', value: val('amz_login') }, { label: 'Senha', value: val('amz_senha') }]] },
+      { title: 'Shopee',        rows: [[{ label: 'E-mail / Login', value: val('shp_login') }, { label: 'Senha', value: val('shp_senha') }]] },
+      { title: 'Mercado Livre', rows: [[{ label: 'E-mail / Login', value: val('ml_login')  }, { label: 'Senha', value: val('ml_senha')  }]] },
+      { title: 'TikTok Shop',   rows: [[{ label: 'E-mail / Login', value: val('tkt_login') }, { label: 'Senha', value: val('tkt_senha') }]] },
+    ];
+    if (mktpSecs.some(s => s.rows.some(r => Array.isArray(r) ? r.some(f => f.value) : r.value)))
+      blocks.push({ group: 'Marketplace', type: 'composite', title: 'Marketplace', color: C.sections.marketplace, sections: mktpSecs });
+
+    if (blocks.length === 0) return;
+
+    addPage(); drawTopBand(); y = 32;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...C.muted);
+    doc.text('03  ·  CREDENCIAIS E ACESSOS', margin, y);
+    y += 12;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(...C.dark);
+    doc.text('Credenciais', margin, y);
+    y += 12;
+
+    const PAGE_BOTTOM = pageH - 25;
+    const chunkBlock = (b) => {
+      const h = b.type === 'card' ? calcCardH(b.rows) : calcCompositeH(b.sections);
+      return { block: b, h };
+    };
+    const queued = blocks.map(chunkBlock);
+    let pageBlocks = [], pageH_used = 0, lastGroup = null, i = 0;
+
+    const flushPage = () => {
+      if (pageBlocks.length === 0) return;
+      let prevGroup = null;
+      pageBlocks.forEach((it, idx) => {
+        const b = it.block;
+        if (b.group !== prevGroup) {
+          if (prevGroup !== null) y += GROUP_GAP;
+          sectionTitle(b.group);
+          y += TOPIC_GAP;
+          prevGroup = b.group;
+        }
+        if (b.type === 'card') sectionCard(b.title, b.color, b.rows);
+        else compositeCard(b.title, b.color, b.sections);
+        const next = pageBlocks[idx + 1];
+        if (next && next.block.group !== b.group) y -= CARD_GAP;
+      });
+      pageBlocks = []; pageH_used = 0; lastGroup = null;
+    };
+
+    while (i < queued.length) {
+      const it = queued[i];
+      const b  = it.block;
+      let addH = it.h;
+      if (b.group !== lastGroup) {
+        if (lastGroup !== null) addH += GROUP_GAP;
+        addH += TOPIC_H + TOPIC_GAP;
+      }
+      const wrapBottom = y + pageH_used + addH;
+      if (pageBlocks.length > 0 && wrapBottom > PAGE_BOTTOM) {
+        flushPage();
+        addPage(); drawTopBand(); y = 32;
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8);
+        doc.setTextColor(...C.muted);
+        doc.text('03  ·  CREDENCIAIS E ACESSOS  (continuação)', margin, y);
+        y += 12;
+        continue;
+      }
+      pageBlocks.push(it);
+      pageH_used += addH;
+      lastGroup = b.group;
+      i++;
+    }
+    flushPage();
+  };
+
+  // BUILD
+  drawCover();
+  drawMensagem();
+  drawResumoContatos();
+  drawCredenciais();
+
+  // FOOTER
+  const totalPages = doc.internal.getNumberOfPages();
+  for (let p = 2; p <= totalPages; p++) {
+    doc.setPage(p);
+    doc.setDrawColor(...C.border);
+    doc.setLineWidth(0.2);
+    doc.line(margin, pageH - 15, pageW - margin, pageH - 15);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...C.muted);
+    doc.text(AJUDA.nome + '  ·  Documento Confidencial  ·  ' + clientName, margin, pageH - 9);
+    doc.text('Página ' + p + ' de ' + totalPages, pageW - margin, pageH - 9, { align: 'right' });
+  }
+
+  const safeName = clientName.replace(/\s+/g, '-').toLowerCase();
+  doc.save('documento-entrega-' + safeName + '.pdf');
+  showToast('Documento de entrega gerado!');
+}
+</script>
+</body>
+</html>

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajuda Ecommerce — Central de Ferramentas</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
@@ -546,21 +545,18 @@
     .admin-toolbar { gap:8px !important; margin-bottom:4px; }
   </style>
 </head>
-<body>
+<body class="admin-mode">
 
 <!-- ═══ SIDEBAR ═══ -->
 <nav id="sidebar">
   <div class="sb-logo">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAAAuCAYAAADObTDHAAAgFklEQVR4nO19eZhdVbHvr9be+0w9T0lIQpKGJCQkIBAZBCVERRS5wBO7vc7IRbxPnjgP8Lyv03oFFR9ekMsTrgLK6GkUQS4zdIKBy0wIHZJ0hu50upP0fOY9rlX3j7336dNj4hPwI1Lfl6/PObWqVlWt2rVq1Vprh/AmAFHwgQF+Mzo42P4B8N9CgHfgjQQm4EXD/9eu/236b9f9/pPaW9w5MbPBzMaLzMZUDZqSSY2Zjc7OzmhLC4u3WL63DySTTRoAXPTvqz7U+vCR3Vc+Or/7m3ctvwcgtDDedMM1JaEBwCevO+Wk//NgY9eV7XO7v3b7svsAAjPoQPR/DTCzBgB7h9M/YuZuT8rdu/pTZ4U4ZiYAuO3Zzsqs6bzEzN05y16X7OiIBCzeVPneSnjDIsjmzQMEAImYU9fYmFmoaxYMnfoBYC2A1jeqowNANOaUzzs8vyiRKMAtGDl/rN70eU8xM5muex6AhZ5iUyW0V0IcAAFAnrZ41inlMeMEAADzhuaVKx1m1onIe7MFfKtgKoc6mKdl2hEyXV2lsuXQyUCuEJfTNCvJsmbEz9gXGNTU1iQAoGZ0lwBeUiylMgtQAgTPg30Q/KfnfjCNmAURqa19mWWNs+JLASjFat3iioqBEBdGqIaK+PvhOxiZCvcAwLqD6eRtBJMciugAhmRA+VMYl7ZtbV0vAaBv3+yHzGfrjwccFAoiC3SCCGoylwP1MjMkGVozQbahLXRaSQTU1XsOEQsigIindJwD6hjAx38Hra0Z0z0UIQgw8xzLPSOi6wYAuAqPFXG+A0m0tAih6EwAwnbd9HDK2QAAZ+CA/N9WMMGhCMxKwwGeYCLhTTHmDAAPtz6cAWjj9NQtuj8JvkTAKg+giYwIaA+S6TMYoEkGJwKaCRJHfbvik5c+uzxeacUK+Wjq7kv/vHl//3GFRYsIIAGiqVI3ArM6iKle99qapcSB50wFIuZ84aOAAU8qOZSynwhxYZR64vktS0nQMQDgKX5h2bzKoRB3YFnePqADQDIJrbkZ8rLbVl65aMmiC7JpyWAfRyTArMAASBEbESLXady+cdPhX7z3u+v7WtaCWluhkskmrbm5TV5046qPrjhm+AZDs7l/f9WmH5237VxmprXrVmuta9Z7X7n9999evPTmL4IY3Tsqb/35J/GDZBLa5s3g1laoi244demSoy58MFFuYXSkvGvtR/hDBFIcOHkLg1qJ8Z0/rPiX+ro7v2gYap6uMTyX5LGPLXytq6fiz9JjScRa6cPflGzS2prbZNM1p7z/hBOW3CgdW3mKtbEnRwAggJlJMKKxeYW+3eX/dt3nXr+lpQWitXVSlAUzExGpzqGhyoRhnAQArlJbXppdvjnEMbMOQJ1wzBHviUf8CCZBD5V0eug51OYGf7CqqgpLGhdnlmaGABHEKWaAwQAzWAGOCVTURY50nf4r7iV8Ge3Q0AoVJuURw6mqri0sMISNfM4YCPohYD0AIBqxZ9fU5hoBoJsTjSX9MwBUVapIVbV1RHmFCSuvj4skvjMJ9b17l9y17Nj0P1ppB0aMoGkGdMEaicJxlbX546QjFU+Y7Y4O5Kuvt8oWHpFeLG3HD3VEQa2KQfDnQrvAMKIKJN2bzv7W2Q+1tj64vwRdCgKALDdip0UMfRYAeFI90RwhGTiSF+pFUp0d4GWmYD8e0B9SzgQEDrVi0Fc6l4t393SX95gZzxZEGgNg36MIEGzoXmUsblcV8lJEE4U5ALDijPFGZhaebUJJTUAqMSkplopc2/QN6biTpySpiB2blKMTFMgMf29pX6210nrv0ttXfGrxUfv/MT9s2RLx6N6uxOOFbPnzQsiquvrsB2ob8stMF8wTKpqvr5jFAJBNGfk93WW9UIZNJMh/Vvxx9T1GcSTiLIg4ShhR1qO1o4cD2N/U3CRK8rUQ/JWtoZ0V/mBK9XDRFH6Uko9s3Fim6+I0AHCk3ParV198PYxgBxiftx3oANDcDMkMIur4NsCXY/EVNVDO2CNek9UwWiE/fdl/fei007fdRizBauqlLiuPAIjwwZyI1zSw0EgoZhgR5RYRazFWWyAWEApQY/WrFYPrGSAcNjvzZShHaVEj2rO94oaffLzr0uKDfu63K370tbv/XF+XPZaZQCUl87Zm3xluv+z5JwH9cODqahzb69eBcn6bRJ0pCqPl+trr77rv8Or0CQUTLFVkpvxJrl7dogvQBwHAcb3+Liv/TIArlguOP+LoE+JR4zAAYOYnWtes8daORbBDCnQAaGmBIIL6n79e+ZnGpQu/AuXNZTXmDP7TBCbiqPI8j0noLGZI3P2oNqGauRrAehhRtpRiTMpz14YfXH96LcWR7/Srv/HResN4+RjpQhQKhtrWedi1zDvpsocWR06Iu/SFNVdn9378mBtmzSncyNIZ10WYB33i56sXHXPsnqtj0atXSQ8RCvgzM5hB0hN6LG5W2yazIJABF1NBmFBv3j18VMzQjwIAyfzMKfX1GWbWiEiG5YJ4lM4UwcNlexzmT4fkppDelGzSWpvb5EW/OvH0Y0/ouy0ey4GJEIkGCy1i39gEsAtkRoQHEoCawZ+AwHylNvNzKF2X/lNJhERC5orotfAjVMRAuAnIQeRRCkQEnjVv6DBNkxWAgm3pVtfWqjwRGC073KYVIDCI7sEWyyTEY1ykL/J/4EbjqKU/vrfxyMxx+bREvJKgCQaDwGAw+2vOXBpwbWISM465ICI1uz62xtA1HQAUis4SGkeipUUQq48AgO24Qz2D5n8FuENuugMA/YNHtIk2QC6aN/QPiYTFVkHzRkfKdqbSsQ1gEoCChBLMpCIaz503L/Mh31ozb5NN3pT1I5QQCKYiBqspmDjuVI8uAeB8hmo0XSMiAkEgn5U0oRXzHexx8HOYR7UBopUg13z/7mOqq83jMsOOZ1txt7ur4o+ey3kICCIiAQUmeHW1+bMrq815TvYAKjIjYRhnAYArpTNiqvYAVywXdPT0H6kL8S4AUBBPH99YkzoUywUh6EtX+eMXi5KmFBOEYezeXfWd/3fR5j9NbHxO6+nvOXzR1g8zu5iY9JYCIdzxLx1vP0JJl8PQh1xOq2hhiH03gQ5b509LoxEDYPKjxtiqngEgHo8Ns4QCSAhSYt584NMtwcy6eTU1Jddr8FCu6QArggiWqk0Bk3LDLFdMHI2Tvrcvse7K83d+airp//WJ+U9GotY8zhAwxRZvmGxv2p2q0Ui8BwA8pV5bUBXbWVouICK1oKH6jKjhlwscpR4NWBxy5YIQisvyYFaDYEYsombVrLqk6rxLti6I6qNHVVW5Kyqq3GWxyK4TWXoSTJpS09hj2rKoH6FcS7eZwUSKKspktJWgAt8kIsjP/9KaH12qwExQSmTgOxMB4I7Oxp6TT+4cZnBDosKLzW8caGz9BnrbGfoZWM9EkN/9g/m+WExCegIgDaXTLkOoQFcYOldg/v+Nf/hTj9XNWji4pK4uv9zQ5PGxmLu8LJ57t1VgJsE0TQolAMj5s8veG9G1Op8nPwYiRkm5gJmhJM4FANfzXNdRxYLnwQzO2xGKDuW6iAqNlCc9NW/B8LXf+elDrZGYNzsWc/VoXCIa9Z/69AhcgISuTapwF4GnyLnDTatMrvJV6aVJSVvWNVgf+dQ1q04jevFZAPS+b5x1eGPjtn8hOEroggqWthkgXrsOWpJBzXRLNvOxxmfr5xTOAdu8ZPnIT1d/5X80raH7ewFP++z17z5v1uy9X3VMKfUotIlRlDRiXQdZBXBVTe7kK2+9ZrMmuDqWkDWxhItIhBGJAdlRwHNJ0fRpol9zA84O9R3KmqGzFMsFD2zaXWPodCoAeMxbrr8muv1QLReEoN910yoCXsJoxtjdGNUEZ1yvvMIui0btMghAsYBt60gPR4fNghiurcsujcQYJOSU532kVPC9icdFqtbW9ZIZ9K7PLl83f/7gnrnz7cOZ85WrTuxZt+yhhbs8T8hEmTWvotKqVEp6tp3Q93fX/hrYhdcHwa+3NQFow/YdddfOmWv/g46sbJiVPuXD5z372gfOnr+dxILy8kp7eUWFjUIOjh5jJnBYN2IA2NM/d6dtdxfKa5Fg0/MaZmcbdR2AILiuhtRojK1CdJuu5efWzXIqVZ6hiQkVUn/lJl98kQ0h3A8AgCvl3le27nsuaFEsF6ycU31qImrUAYCS/ERrK6m1aw/NckEI4qZLXvKYQRtfXn5z1/aqFyKJeIQRRypVnt+/t/qlXZ21P9/ROf+8/3zwvSs2bZr3xXyhMjcyGM+l0/EJRctB0dLSInRBgoorvPE1z+Y2iE23357fubvm86l0ZbasQtNq6229cWlm6dIVo8vnzDMrjTgAvVzftrXuh7d89aX1LQzR1gzZ1twmWxjid1974YmdWyq/w6Jcj8aA2fMK1Y1L0ycuWpJdXlWt0NdXlY6WRSIV1aQDsibsO5mEtvEXbYMD+6t+YLoJaNGIns8lMDBQ2d2zu66tc9vcy157df5Jl3+g65hsrmK9aVXkUiOxrMnaOD2TbRBExNUL0+8yhHYkALhKPXP+e5dng3JBOEWjqjx6VmgJy1OHdLkgBCr5y8CLxv/67ZffJ3RH29dTv63te0/2lE73TcmjI1seObYGyCNhuebzdzycmcjwkl+tPP+4Vf33GpqLoYGapy//YPd7/VWNzyisB33w2x9ccuqa3ReXl7knsVINIIAlco7Utvb2VN9208WvPNHCEK0TTiqEvzX/+MSzVqwa/lx5mbucFXTXEebwcPzRrdsW3nvSe3Z9OarZor8vvvOaT3f+KKyjhdsnF/zbyccumJ+fPzRQse+2L39oC9BqlRrk9K+eV21xPGqODPOmI08dQmtrUYbw/NJIwfpeTTx6FQCkLOeimnj01pL6E9raIM45390UN4yjbdcb6Erri5c3UDaY8g5ppwphUsZABLS0Q08mm7QZTj0SAJz2tbNWnNXy/hMuvOld373h5Qb+j001fNXjizYEJybH1ThbWkq/E/xMXkNpKXSmU57jcWIS7UwwlR5JhtbSvloP5JrxpAWzf2w3Z9ntzMyu51n7U6kjQlyI35e1V7qe5zEzFxznDwH+rT6S/DcHako2aU3JJm38oJeAXwUkBIZPsl9L+v79Sx66/qXD+GdPzXZ/8Wy1ddOmavfKxw9fN5VDAb5TtbRDZ0Zwdskf7CRDC4/zzgRNySYtydCIgvDKoJZ26CHf9nboyWn4tLRAJJNNWuCYkx0o1HGC84WV79cHcofZnpthZjZt9wWAKcQxs04AhnOFb3EAKdP5Uog7kF5/9xA61NXrD3/y9/11fPOWOv7V5jq+c08d//Cxha9N51BvR2gPHGLIsi5gZo+Z3bxpXwWMOUsYofK2/RAzu47n2V2DmWWluEMZ/uonZvNaP8ns7qn7zWi+8mWnoDxmRZEE0cD+WC/QAxwiiegZgR4JIT6DYKvAhSgtFwgiUp17huZHjciHAUAyb7+1vqLz7yV3OmRuW7xVwMw0nM1fXldRVtM3MKKnUPsvK2dTLpjyiIjUQNpaWlcevSSVycXTpvXsEXMbbjuUt1tK4Q1zqGQSWkMDaF3JbysGwc0HPpP9DhxC8E6E+v+AYLUW7lZKTJjKgmgVLgjU30NkegfegXfgHXgbAjMTM+vhEnfi94Ok1Wjsu3YwBb1xtOQfPTgY2qCNHl75DoqLpf3rJTUiEX4P8FoyOf37D0ra6wfBmybzPii9tVB2wjh9pk1HJsg18d+U41Sqe+n3loMb1ylpZ5KxSDgTPskzGv+gKsxTwYGUCgbrr8r3Zur/r60PHYD3jI5xAL5vSI57EP1Mi08e+IEeR6uXIvwThqnaRbMSFxP4A2CaLYRIu0q+vHcof8syqt001fI3rLEkOzoiHz5y6YW6hrNJYQFIWHnT3qFFxa1E9ORUtZiWFhatROq3GzeWnbPk6AsNgTPBcqGuGa5SaluB1D1EdF9pP6XyDmYLn7byhdNc1zHK6mt+LPNupKY8fgUEViiGBaD9+a6BnxPR0M6RwoLZZcY3dUEnKqniCujcn85eR0RPT8V7c9e+i2rKIifMbqjNjmSzvxmymRsi2tp4JLKciRyl1IbhrPtTItrf1Z+bU18Z/bqh02ksucxRXtdwzryWiNa3tLBobZ1kM0FEaiDjrNbgXhiN6Ms1UASE7oKHh//5P/94KxE5U8k1MJI+p6Gm8tTRbM6wbM+IRXXH8xhVFXEv7/KDtYnIhrBtUZc9A0vm11ZdpGk4RTBVQ2BIQnu6s6//FiLaPc24CiKS/SlzcXmZfjExnczSqyZN9DuOWvdCz67/IKLhSbShl20ZTK2yHLebpwDH9ew9w5kvlbYH/OhCRHhmW8+8rGW/MBUtM3O6YF0H/3U3YmK/oyY3mq63aXpaO9ly4/2JINSGYVcDgHTWeiRst3cke7PryZFJ9DnruR2DqXc7nuyZiLMc1+vuT5/KzBQ+jSHvrOndH7YbzGR/bTnO8ET6nOm8/uqeoVPytrNzCpt5W/YMnsHB1F+itwYAedv9wXQ65yxrw+u9vXXM47d1AMCV8hfT0Y2a9r+GbTmw71DeusBy3OxU7S3HHdq0s+/MieMaft47kvu843lT0tqOu2P3cHbFONpQ4Meee70uZ9t7wsYFy32up2/gN6lc4XHX8yQzs2Lm/nThVBozCjGzOLqpJTKSzT3NzKyU4rztbOsdSLWl89ajjut6UkqLmXkoV/gcALS3t+sI+r0+2V6et5yOsX6dnb0Dw78fSGXvtVxvgJViZuaBVPY3pYKHg5LJW79jZtfz3AIzs2U7OdNx70jlzGcCUoeZ2bTsPDNzwXYeyJrOH0zLsUK5Mpb9UCnPIm/TvZ2ZXSllnpnZcd1c3nHvTOXMDVIp9jzpMjObjmMyM6dzhUdztpe0bKcQ8s7a9sNT8d49mPqSr7FUtuNm+4dT9+7ZN3BH3na6Qp2zBfv+CTr7DuXKqwK5LNN2tnlSPpDOFR6VzA8MZfIXBG0NZqZ9WXul43kuM7PruV6uYD+6fyh9t2k5HVJKycwqb9n9Dz71ckPoCxzkdHtT+RNd6TEzs+t6XrZgP7h7b/8d2by5MRyvvGXvvLf9leqQtijkUM7630EbNZozb28qSVa379l3ufKVVHnbCY0vQuN09g6cExhH5iz3uRsfe7EqpO0byV421rmzM3jhFoX97k1lLgnQnmm7T93S/kp1SPvyjoEledvpYWZPMXPvaO54AEj6PPwIVbDvCekd1+t/tqP76JA+a9r3+VJJm5m5bzRzcYjrGRr9QqhvwXb2P7JxX1nJAxY4q3OXrxZ7pmWnNnR0HRfS7xtO3RfobDEzd+7p/16I6x5Mfzbkbbtu7zPP9MQBf3pnZuphjhdsp5eZpe245tY9g+8PaR/ZuGNWJm9tYmbJzNw9nDktdMQSh/pJaNOBkcwVmAJCHXKmdbevglT9o+lvhfhb2rtipus9W+STtb4eOi0XI7T9ADOzJz3Vn81fGtJ+5dpro3nLuZP9GMO9g6PfLDo8+zciUXDcl5lZOa7rbtgyOHeigFnL3sHMbDluui/D9eFTAACDqfwtIfPRnPmFABdjZtHTw/Gs5dwime9IF5wbW5Lt5aUKZwr2o6HxegfS5wS4KDNHAWAkZ10RKj2SNYsbsVM4FA/nCtcF+DIiwmjO/KcSZ95eMjBaL3Od7bq5QKfMzizPnuRQZuBQzJy17F+W8u7eP/LpotM4bg98ZxHMrG3ty9RbAW/HdbMDuVx4yVMHgF39qbNCvpm8dfdEW2/tHfhEyHswlbumROdwyis61HA6vzbQyeCxlS4BQOfQUGXBdoaYWVmOO9Le0V8eyBgDgJTpnimZ75DMtw/l7H8qlXFHNjvLsp0sM3PBdrZMlLGjPzfH9aTDfpBpRzBb6UTET3XubRDAYsC/vb9iQcXNBU9mCYJZKSIhWLBXoZTyNEFlEeUuBDCEYLNUE7QcYdWd9DQz07p18NasIQXABPCFiQIFB9GE5XqLAAipGJ6r9gbGcEMB8579akijCT4++KjC/kqXGK7Hr7M/PUhmJl2IfLE/Ftt5bL/NSzEzEWwAZUTgRPmBXmOkOphZdPu84TgybE8eoxetpLDWT2K7RtkjknkAZYIElZWVhas1AQBmIX8qUMUAVDSiH19w5D0UZiAKcF33MAAOABE1tCUlOk9ajTExh5dKifw31QQ24PpoxcKIrtUCIE9yIWt5KkjU7aD9Y0Dx1UMAgLY23w61WnRZ1DDKoRTrQtQXHNnmG9z3CQhE4R9lJmYsakl2GETk6ABw9LzDooJkFAAMQ9erDb14Vx9aqINetIjUuLZUiMqycde1BRFxezsHFmKCfxmJAHDpymXzwEBiSU1teUioJxKKiDh8wohIma5bvHcSjUQSEw1aCvXliUxgsEnnjzWN7IB36c8HvSyPCCNfwhtzZtUX37sgXW/cQCv/BtFUvDloUAmAlFIqomtLASwdExSIG9Hi10Q0Uj+zZFOu+AkARnKZhpry+mCLiEVqeLAoU2ALDWMrfUlEXkPw4hRimgUCKwVl6Fq9AXx8TMbxfWpE8z5y3JxYK+A71MhIARWzfafwpHQ9hT9pxAUI4V/bFQBDMAEqlS1UZArcV2og15OkRcYWMeM085e8zlRaDxYK3uKaWhk0hOsWZhxgKXmKPbExEjmzg8zsPLkZsZj4XjApPQrHQs3AekLYIwCoSMTzACCEEI7ndTLwgvBt7TcXAgR4uhDCctwtk1mNDaia4UaWoUUnXAKbPV4YP6KNU+yMMxCUKKQF6CQ0QbbrDguih8mPToAI+ldKabqgnGnZPUMFFwgs0rdjYGjBnPn9ABZIqdSG3txFZx5Zm54oYFOStbabr9Dx8C/GHdx3PB6NRfz7c5oGZmZt+3ZoYaTIuu5pFYYRzVmW/POePc8QURhyrYLlDjLzfAGC7TqJ4KkR2wHBzEibTm3MHzf2pLc3tMVY7wd3xGhKs5f6QflkdCnnv3h3lyd9KH4Rhr4z+K45rnq8IhG9FBOgKaiyt7Xd74taGl1LJj8xtWAMAIau97ietA1diwpBWLx8juKx1TkP5jGroQwrPM+jrGX111ZUbAoZ5Bx3d3lUY0PXhVSqOxaLfWZSL02sNTUBbf/+M8L6Vg/wB01bs6bRylr2iwA4GjGiJ8yJf6KUbsOWwbk50+6/42NqNH/fNdt3jnC4ihMA4Er1DMLhYbyPiOTSpWQTkXxu2/6F5YbxFIDHdKHfO7eiIgyxfoLpyeeICETAYbXVZxKRJCJ3Kfn0ui7ODQxEnqvWBbR/cQV56v2Iks8HiFB/cSm9WL8dJ6oCAKlH1rue5yqlWNPo7G/+9pGy0kb7R7NX3vkxlbrrAoyO3nreD4Dpjw9P5U/hez03PB7v9SRvB6A0TTRUeANLA/t6RCQjZH0dwGO6rj9qWvLroarMTJma8m0uoxuAMnRtRcfeoaNL+9gzmv+Yc5dK3XkBRkYf/N4fAxlFUchs1rm2vrzsYwC8iojxo5ztyaF09pWyeHlNwuDvJ6LGLABwpHz0yFpKB54uAaB3JH17RTzy/Yiu6TGdLhnNO7vT+fxTUUOviuliLflTXsTx5EPHHXZYfhztYOamZYn6fxZEMq6L76RylplzzUc0KouURbk5KqgJANmuN7itt+ueIL+SGBvjYr6kaRPDlQzxpX+LwGO004W5Im6aCBXQTXkvfxLvtSie6tzVn8o+NKuq/Nx4BAu+f/777vnmSOEqRSoT0/XTyyLia7pGcQDI2LL0+lWQF4/xFWLaN3pozc3kDWWtm+NR/RpD09SRc2tu6c+ZV1imPSgg352IGBcBsAFEh9KFZECnAGgriZzhnPXLhKH/xNB0vbG2/HcjeesKW7ldkUh8ebnAzwxNJACIdN4svWI/toQfyZvF5Sgzsytl6Ve2XK+vb6SwIFiajiswDmTzl5W29YLiXAgF2xnZ2jW4bAKtX8nN5S4fRzuhX9v1uHckfW5pf+HfbMG+t9jO488GuKiPK3yqiHPknwKcDgAp5lonuGjgeF5+H/OsAE9jvJ1kUSbbu6iU92jevSDEpfPmi6X67BzhKsd1R5iZPU9aeea5ANDS0hKWFqgnn59nWk6xkDyV3vtH09cBY/tpPFY2uDpsM5o1W0txRW8O7NzRwZGcZT85fmzG95M2rTtK5Q9pkx0dkbxlP1ra1nGdccQ5y36iJdkRCfUSwNgSvrYs/t3+VO4bjlQ7pJSsB8mXJ1XGkuqeHSO51fNqEz0BjSqlnVVRdt2+0fyFridfl8qTWnCP25Mqb7ruw3tHsqcva2zYiuCYbMgjmUxq9eXlV+3L5D9vefI1qZSrhf0qZVmefHr3wPBZ82ur7udgb6nUcJI5A2AUwOiWXXsjpTgWwgpxTBiXE6b9sDKkgFHJGMpmJ0cpy/PyIX3Kssb1O5hOI8R5iofHyaSGWQHDChiV4CEuCXBEpNauXUsLysr6Nm/fd4bpyj84nswCgCYElFJwPLUrZdrfmlNTdRkzi+axfTIGgEzBcsK+LSkLE+UO+mEAvHIlOY+/uOu8VN68wVOqHwA0Ktq3L2d5P7z4T9HPBf+rA5fSfuKYlc7z+/aem3Ocn7lS7gcAQzf8NEep/oxpX3/3wy+c/4PmlQ78Ffx4G3KwXE92cGQkZ7/LYWd1wXFO6xnKzytpM+3xCABAC4vhrL3CYV6dcZzT+wqFBQdNC9BQxlruMK8uOM7qlMmLD0S7j7mMmauZufrBzs5oKa6DORLi9jGPy1OYmUaYq5i5umuUq0PdS2HjvjHeyWeeiQeUBAAPPtgZ/Qt4T3GNbOy3V/fsmT9ScN7L7KzO5ezjQj1ompcr9DDHw767giLldFCq1+5UqiblOCc57KxO5Z0TO/p5iqXI1LSvdI1Wp/LOSY7jrE47fPKm3amaqdpNxWTK4wpcconxLaal6XBvd5jJLu3tb9z/kzOTDf3fZzxiMyPtRGf6bxIBUsMsU60sAAAAAElFTkSuQmCC"
-         alt="Ajuda // ecommerce"
-         style="display:block;height:auto;opacity:.92;"
-         draggable="false"/>
+    <img src="data:image/png;base64,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" alt="Ajuda // ecommerce" style="display:block;height:auto;opacity:.92;" draggable="false">
   </div>
 
   <div class="sb-nav">
     <div class="sb-section">Principal</div>
 
-    <button class="sb-item active" id="nav-home" onclick="showPage('home',this)">
+    <button class="sb-item" id="nav-home" onclick="showPage('home',this)">
       <span class="lbl">Início</span>
     </button>
     <button class="sb-item" id="nav-pdf" onclick="showPage('pdf',this)">
@@ -571,7 +567,7 @@
 
     <!-- CopyPastes group -->
     <div class="sb-grp" id="grpCP">
-      <button class="sb-grp-btn" id="grpCPBtn" onclick="toggleGrp('grpCP',event)">
+      <button class="sb-grp-btn grp-open" id="grpCPBtn" onclick="toggleGrp('grpCP',event)">
         <span class="lbl">CopyPastes</span>
         <span class="grp-arr">▶</span>
       </button>
@@ -581,7 +577,7 @@
         <button class="sb-flyout-item" id="fly-pages" onclick="showSubPage('pages')">Páginas Institucionais</button>
       </div>
       <!-- sub items for expanded mode -->
-      <div class="sb-sub" id="subCP" style="display:none;">
+      <div class="sb-sub" id="subCP" style="display: block;">
         <button class="sb-sub-item" id="sub-msgs" onclick="showSubPage('msgs')">
           <span class="lbl">Mensagens Padrão</span>
         </button>
@@ -593,7 +589,7 @@
 
     <div class="sb-section" style="margin-top:4px;">Recursos</div>
 
-    <button class="sb-item" id="nav-docs" onclick="showPage('docs',this)">
+    <button class="sb-item active" id="nav-docs" onclick="showPage('docs',this)">
       <span class="lbl">PDFs e Documentos</span>
     </button>
   </div>
@@ -601,7 +597,7 @@
   <div class="sb-bottom">
     <button class="sb-admin-row" onclick="toggleAdmin()">
       <span class="sb-admin-ico">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="adminIcoSvg"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="adminIcoSvg" style="stroke: var(--lime);"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-1a6 6 0 0 1 12 0v1"></path></svg>
       </span>
       <span class="sb-admin-lbl">Admin</span>
       <span class="sb-switch"></span>
@@ -613,11 +609,7 @@
 <div id="main">
 
   <div class="topbar">
-    <div class="topbar-bc" id="topbarBC">
-      <span>ajuda ecommerce</span>
-      <span class="bc-sep">/</span>
-      <span class="bc-cur">Início</span>
-    </div>
+    <div class="topbar-bc" id="topbarBC"><span>ajuda ecommerce</span><span class="bc-sep">/</span><span class="bc-cur">PDFs e Documentos</span></div>
   </div>
 
   <div class="admin-banner">
@@ -629,7 +621,7 @@
   </div>
 
   <!-- ══ HOME ══ -->
-  <div class="page active" id="page-home" style="width:100%;">
+  <div class="page" id="page-home" style="width:100%;">
 
     <!-- dashboard hero -->
     <div style="background:var(--navy); padding:32px 28px 28px; position:relative; overflow:hidden; width:100%;">
@@ -647,17 +639,17 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:#9ca3af;margin-bottom:12px;">Visão geral</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
           <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;border-left:3px solid var(--accent);">
-            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-msgs">0</div>
+            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-msgs">19</div>
             <div style="font-size:12px;color:#6b7280;margin-top:4px;">Mensagens padrão</div>
             <div style="font-size:11px;color:var(--accent);font-weight:600;margin-top:6px;cursor:pointer;" onclick="showSubPage('msgs')">Ver todas →</div>
           </div>
           <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;border-left:3px solid var(--lime-dk);">
-            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-pages">0</div>
+            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-pages">5</div>
             <div style="font-size:12px;color:#6b7280;margin-top:4px;">Páginas institucionais</div>
             <div style="font-size:11px;color:var(--lime-dk);font-weight:600;margin-top:6px;cursor:pointer;" onclick="showSubPage('pages')">Ver todas →</div>
           </div>
           <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;border-left:3px solid #7c3aed;">
-            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-docs">0</div>
+            <div style="font-size:28px;font-weight:800;color:var(--navy);line-height:1;" id="stat-docs">3</div>
             <div style="font-size:12px;color:#6b7280;margin-top:4px;">PDFs e documentos</div>
             <div style="font-size:11px;color:#7c3aed;font-weight:600;margin-top:6px;cursor:pointer;" onclick="showPage('docs',document.getElementById('nav-docs'))">Ver todos →</div>
           </div>
@@ -674,45 +666,33 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:#9ca3af;margin-bottom:12px;">Acesso rápido</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
 
-          <button onclick="showPage('pdf',document.getElementById('nav-pdf'))"
-            style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;"
-            onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.1)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showPage('pdf',document.getElementById('nav-pdf'))" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(37,99,235,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#eff6ff;border-radius:8px;display:flex;align-items:center;justify-content:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
             </div>
             <div style="font-size:14px;font-weight:700;color:#0f1117;">Novo doc. de entrega</div>
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">Gerar PDF de finalização de projeto</div>
           </button>
 
-          <button onclick="showSubPage('msgs')"
-            style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;"
-            onmouseover="this.style.borderColor='#7c3aed';this.style.boxShadow='0 4px 16px rgba(124,58,237,.1)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showSubPage('msgs')" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#7c3aed';this.style.boxShadow='0 4px 16px rgba(124,58,237,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#f5f3ff;border-radius:8px;display:flex;align-items:center;justify-content:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
             </div>
             <div style="font-size:14px;font-weight:700;color:#0f1117;">Mensagens padrão</div>
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">Copiar mensagens de WhatsApp e e-mail</div>
           </button>
 
-          <button onclick="showSubPage('pages')"
-            style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;"
-            onmouseover="this.style.borderColor='#65a30d';this.style.boxShadow='0 4px 16px rgba(101,163,13,.1)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showSubPage('pages')" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#65a30d';this.style.boxShadow='0 4px 16px rgba(101,163,13,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#f3fae0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#65a30d" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#65a30d" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
             </div>
             <div style="font-size:14px;font-weight:700;color:#0f1117;">Páginas institucionais</div>
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">HTML pronto para colar na plataforma</div>
           </button>
 
-          <button onclick="showPage('docs',document.getElementById('nav-docs'))"
-            style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;"
-            onmouseover="this.style.borderColor='#0891b2';this.style.boxShadow='0 4px 16px rgba(8,145,178,.1)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showPage('docs',document.getElementById('nav-docs'))" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#0891b2';this.style.boxShadow='0 4px 16px rgba(8,145,178,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#ecfeff;border-radius:8px;display:flex;align-items:center;justify-content:center;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             </div>
             <div style="font-size:14px;font-weight:700;color:#0f1117;">PDFs e documentos</div>
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">Materiais prontos para envio</div>
@@ -723,7 +703,7 @@
       <!-- dica do dia / info strip -->
       <div style="background:var(--navy);border-radius:10px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;">
         <div style="width:32px;height:32px;background:rgba(132,204,22,.15);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84cc16" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </div>
         <div>
           <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Modo Admin</div>
@@ -742,9 +722,9 @@
 
     <div class="s-card" style="border-left:3px solid var(--accent);">
       <div class="s-card-bd open" style="display:flex;">
-        <div class="field-group"><label>Nome do Cliente / Loja</label><input type="text" id="clientName" placeholder="Ex: Loja da Maria – Maria Silva"/></div>
-        <div class="field-group"><label>URL da Loja</label><input type="url" id="lojaUrl" placeholder="https://minhaloja.com.br"/></div>
-        <div class="field-group"><label>Responsável pelo projeto <span class="opt">opcional</span></label><input type="text" id="responsavel" placeholder="Ex: João Silva"/></div>
+        <div class="field-group"><label>Nome do Cliente / Loja</label><input type="text" id="clientName" placeholder="Ex: Loja da Maria – Maria Silva"></div>
+        <div class="field-group"><label>URL da Loja</label><input type="url" id="lojaUrl" placeholder="https://minhaloja.com.br"></div>
+        <div class="field-group"><label>Responsável pelo projeto <span class="opt">opcional</span></label><input type="text" id="responsavel" placeholder="Ex: João Silva"></div>
       </div>
     </div>
 
@@ -754,36 +734,36 @@
       <div class="s-card-hd open" onclick="toggleCard(this)"><h3>Plataforma de E-commerce</h3><span class="ch-sub">Nuvemshop, Shopify, VTEX, WooCommerce…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd open">
         <div class="field-group"><label>Plataforma</label><select id="ec_platform"><option value="">Selecione…</option><option>Nuvemshop</option><option>Shopify</option><option>VTEX</option><option>WooCommerce</option><option>Loja Integrada</option><option>Tray</option><option>Outra</option></select></div>
-        <div class="field-group"><label>URL do painel admin</label><input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin"/></div>
-        <div class="field-row"><div class="field-group"><label>E-mail / Login</label><input type="email" id="ec_email" placeholder="email@loja.com.br"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ec_senha"/></div></div>
+        <div class="field-group"><label>URL do painel admin</label><input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin"></div>
+        <div class="field-row"><div class="field-group"><label>E-mail / Login</label><input type="email" id="ec_email" placeholder="email@loja.com.br"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ec_senha"></div></div>
       </div>
     </div>
     <div class="s-card sc-em">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>E-mail Profissional</h3><span class="ch-sub">Gmail Workspace, Outlook, Zoho…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
         <div class="field-group"><label>Provedor</label><select id="em_provider"><option value="">Selecione…</option><option>Google Workspace</option><option>Microsoft 365</option><option>Zoho Mail</option><option>Titan Mail</option><option>Cpanel</option><option>Outro</option></select></div>
-        <div class="field-group"><label>E-mail / Login</label><input type="email" id="em_email" placeholder="contato@empresa.com.br"/></div>
-        <div class="field-row"><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="em_senha"/></div></div>
+        <div class="field-group"><label>E-mail / Login</label><input type="email" id="em_email" placeholder="contato@empresa.com.br"></div>
+        <div class="field-row"><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="em_senha"></div></div>
       </div>
     </div>
     <div class="s-card sc-env">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Meios de Envio</h3><span class="ch-sub">Melhor Envio, Correios, Jadlog…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
         <p class="f-sub">Melhor Envio</p>
-        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="email" id="me_email"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="me_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="email" id="me_email"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="me_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Correios</p>
-        <div class="field-row"><div class="field-group"><label>Login / CNPJ <span class="opt">opcional</span></label><input type="text" id="cor_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="cor_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login / CNPJ <span class="opt">opcional</span></label><input type="text" id="cor_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="cor_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Outro Transportador</p>
-        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="out_nome"/></div>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="out_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="out_senha"/></div></div>
+        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="out_nome"></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="out_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="out_senha"></div></div>
       </div>
     </div>
     <div class="s-card sc-dom">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Domínio</h3><span class="ch-sub">Registro.br, GoDaddy, Cloudflare…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
         <div class="field-group"><label>Registradora</label><select id="dom_provider"><option value="">Selecione…</option><option>Registro.br</option><option>GoDaddy</option><option>Cloudflare</option><option>Hostinger</option><option>Locaweb</option><option>HostGator</option><option>Outro</option></select></div>
-        <div class="field-group"><label>Domínio</label><input type="text" id="dom_dominio" placeholder="meusite.com.br"/></div>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="dom_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="dom_senha"/></div></div>
+        <div class="field-group"><label>Domínio</label><input type="text" id="dom_dominio" placeholder="meusite.com.br"></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="dom_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="dom_senha"></div></div>
       </div>
     </div>
 
@@ -793,16 +773,16 @@
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Facebook / Meta</h3><span class="ch-sub">Conta pessoal, Business Manager…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
         <p class="f-sub">Conta Facebook</p>
-        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="text" id="fb_email"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="fb_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="text" id="fb_email"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="fb_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Business Manager</p>
-        <div class="field-group"><label>URL Business Manager <span class="opt">opcional</span></label><input type="url" id="fb_bm_url"/></div>
-        <div class="field-group"><label>URL da Página <span class="opt">opcional</span></label><input type="url" id="fb_page"/></div>
+        <div class="field-group"><label>URL Business Manager <span class="opt">opcional</span></label><input type="url" id="fb_bm_url"></div>
+        <div class="field-group"><label>URL da Página <span class="opt">opcional</span></label><input type="url" id="fb_page"></div>
       </div>
     </div>
     <div class="s-card sc-gg">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Conta Google</h3><span class="ch-sub">Google Ads, Analytics, Search Console…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
-        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="email" id="gg_email"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="gg_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="email" id="gg_email"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="gg_senha"></div></div>
       </div>
     </div>
 
@@ -813,12 +793,12 @@
       <div class="s-card-bd">
         <div class="field-group"><label>ERP utilizado <span class="opt">opcional</span></label><select id="erp_choice"><option value="">Selecione…</option><option>Bling</option><option>Olist</option><option>Tiny</option><option>Omie</option><option>Outro</option></select></div>
         <div class="f-div"></div><p class="f-sub">Bling</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="bling_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="bling_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="bling_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="bling_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Olist</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="olist_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="olist_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="olist_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="olist_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Outro ERP</p>
-        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="erp_outro_nome"/></div>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="erp_outro_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="erp_outro_senha"/></div></div>
+        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="erp_outro_nome"></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="erp_outro_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="erp_outro_senha"></div></div>
       </div>
     </div>
 
@@ -828,19 +808,19 @@
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Marketplace</h3><span class="ch-sub">Amazon, Shopee, Mercado Livre, TikTok…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
         <p class="f-sub">Amazon</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="amz_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="amz_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="amz_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="amz_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Shopee</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="shp_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="shp_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="shp_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="shp_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">Mercado Livre</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="ml_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ml_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="ml_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ml_senha"></div></div>
         <div class="f-div"></div><p class="f-sub">TikTok Shop</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="tkt_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="tkt_senha"/></div></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="tkt_login"></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="tkt_senha"></div></div>
       </div>
     </div>
 
     <div class="action-bar">
-      <button class="btn btn-ghost" onclick="clearAll()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.82"/></svg>Limpar</button>
-      <button class="btn btn-primary" onclick="generatePDF()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Gerar Documento de Entrega</button>
+      <button class="btn btn-ghost" onclick="clearAll()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.82"></path></svg>Limpar</button>
+      <button class="btn btn-primary" onclick="generatePDF()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Gerar Documento de Entrega</button>
     </div>
   </div>
   </div>
@@ -856,7 +836,7 @@
     <div class="only-user">
       <div class="search-box">
         <span class="search-icon-mask"></span>
-        <input type="text" id="msgSearch" placeholder="Buscar mensagem…" oninput="filterMsgs(this.value)"/>
+        <input type="text" id="msgSearch" placeholder="Buscar mensagem…" oninput="filterMsgs(this.value)">
       </div>
     </div>
     <div class="admin-toolbar">
@@ -864,8 +844,229 @@
       <button class="tool-btn" onclick="openMsgModal()">+ Nova mensagem</button>
       <button class="tool-btn" onclick="openManageCats('msg')">Gerenciar filtros</button>
     </div>
-    <div class="tab-row" id="msgTabs"></div>
-    <div id="msgContent"></div>
+    <div class="tab-row" id="msgTabs"><button class="tab-btn active" onclick="filterTab('msg','todas')">Todas</button><button class="tab-btn" onclick="filterTab('msg','encerramento')">Encerramento</button><button class="tab-btn" onclick="filterTab('msg','boas-vindas')">Boas-vindas</button><button class="tab-btn" onclick="filterTab('msg','pagamento')">Pagamento</button><button class="tab-btn" onclick="filterTab('msg','frete')">Frete</button><button class="tab-btn" onclick="filterTab('msg','banners')">Banners</button><button class="tab-btn" onclick="filterTab('msg','reuniao')">Reuniões</button><button class="tab-btn" onclick="filterTab('msg','followup')">Follow-up</button><button class="tab-btn" onclick="filterTab('msg','suporte')">Suporte</button><button class="tab-btn" onclick="filterTab('msg','cobranca')">Cobrança</button></div>
+    <div id="msgContent"><div class="sec-sep" data-cat="encerramento">Encerramento do Projeto<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'encerramento')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="encerramento" style="border-radius:10px;overflow:hidden;border:1px solid #1e40af44;box-shadow:0 2px 8px #1e40af14;" data-hidden="false"><div style="background:#1e40af18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1e40af44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Encerramento — Grupo WhatsApp</div><div style="font-size:13px;font-weight:600;color:#374151;">Para enviar no grupo do cliente ao finalizar</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME DO CLIENTE]! 🎉
+
+É com muito orgulho que comunicamos a conclusão do seu projeto de e-commerce!
+
+✅ Sua loja está configurada e pronta para operar
+✅ Os acessos foram organizados no documento em anexo
+✅ Todas as integrações foram validadas
+
+📎 Enviamos o *Documento de Entrega* com todos os dados importantes — guarde em local seguro!
+
+Para suporte, estamos disponíveis:
+📞 WhatsApp: (48) 99999-9999
+📧 E-mail: contato@ajudaecom.com.br
+🕐 Seg–Sex, 9h–18h
+
+Foi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀</div><div class="msg-card-ft"><button style="background:#1e40af;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m1',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m1')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m1',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m1',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m1')">Excluir</button></div></div><div class="msg-card" data-cat="encerramento" style="border-radius:10px;overflow:hidden;border:1px solid #1e40af44;box-shadow:0 2px 8px #1e40af14;" data-hidden="false"><div style="background:#1e40af18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1e40af44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Encerramento — E-mail formal</div><div style="font-size:13px;font-weight:600;color:#374151;">Versão mais formal para envio por e-mail</div></div><div class="msg-card-txt" style="background:#fff;">Prezado(a) [NOME DO CLIENTE],
+
+Informamos com satisfação a conclusão do seu projeto de e-commerce.
+
+Segue em anexo o Documento de Entrega com o resumo do projeto, dados de suporte e todas as credenciais de acesso organizadas por serviço.
+
+Recomendamos:
+• Guardar o documento em local seguro
+• Alterar as senhas após o recebimento
+• Ativar autenticação em dois fatores
+
+Em caso de dúvidas, nossa equipe está disponível de segunda a sexta, das 9h às 18h, pelo WhatsApp (48) 99999-9999 ou pelo e-mail suporte@ajudaecom.com.br.
+
+Atenciosamente,
+Equipe Ajuda Ecommerce</div><div class="msg-card-ft"><button style="background:#1e40af;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m2',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m2')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m2',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m2',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m2')">Excluir</button></div></div><div class="msg-card" data-cat="encerramento" style="border-radius:10px;overflow:hidden;border:1px solid #1e40af44;box-shadow:0 2px 8px #1e40af14;" data-hidden="false"><div style="background:#1e40af18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1e40af44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Orientações de Segurança</div><div style="font-size:13px;font-weight:600;color:#374151;">Mensagem complementar sobre senhas e acessos</div></div><div class="msg-card-txt" style="background:#fff;">⚠️ *Orientações de segurança importantes*
+
+Agora que seu projeto foi entregue, recomendamos:
+
+🔑 Altere as senhas dos acessos recebidos
+🔐 Ative a verificação em dois fatores onde possível
+📵 Não compartilhe senhas por WhatsApp ou e-mail
+💾 Salve o documento de entrega em local seguro (Google Drive, nuvem)
+
+Qualquer dúvida, fale conosco! 😊</div><div class="msg-card-ft"><button style="background:#1e40af;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m3',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m3')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m3',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m3',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m3')">Excluir</button></div></div></div><div class="sec-sep" data-cat="boas-vindas">Boas-vindas e Início de Projeto<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'boas-vindas')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="boas-vindas" style="border-radius:10px;overflow:hidden;border:1px solid #16653444;box-shadow:0 2px 8px #16653414;" data-hidden="false"><div style="background:#16653418;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #16653444;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Convite para o Grupo — WhatsApp</div><div style="font-size:13px;font-weight:600;color:#374151;">Mensagem privada para adicionar o cliente ao grupo</div></div><div class="msg-card-txt" style="background:#fff;">Olá, tudo bem? 😊
+
+Meu nome é [NOME DO RESPONSÁVEL] e faço parte da equipe da Ajuda Ecommerce.
+
+O [NOME DO VENDEDOR] me passou o seu contato para que eu pudesse te adicionar ao grupo de acompanhamento do seu projeto — é por lá que vamos dar início a todo o processo de criação da sua loja virtual.
+
+Vou te enviar o convite em seguida!</div><div class="msg-card-ft"><button style="background:#166534;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m4',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m4')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m4',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m4',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m4')">Excluir</button></div></div><div class="msg-card" data-cat="boas-vindas" style="border-radius:10px;overflow:hidden;border:1px solid #16653444;box-shadow:0 2px 8px #16653414;" data-hidden="false"><div style="background:#16653418;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #16653444;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Boas-vindas no Grupo</div><div style="font-size:13px;font-weight:600;color:#374151;">Primeira mensagem quando o cliente entra no grupo</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉
+
+Meu nome é [NOME] e estou aqui junto com toda a nossa equipe para acompanhar cada etapa da criação da sua loja virtual e garantir que tudo seja desenvolvido com excelência.
+
+Para começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅</div><div class="msg-card-ft"><button style="background:#166534;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m5',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m5')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m5',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m5',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m5')">Excluir</button></div></div><div class="msg-card" data-cat="boas-vindas" style="border-radius:10px;overflow:hidden;border:1px solid #16653444;box-shadow:0 2px 8px #16653414;" data-hidden="false"><div style="background:#16653418;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #16653444;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Solicitação de Dados Iniciais</div><div style="font-size:13px;font-weight:600;color:#374151;">Pedir informações necessárias para início</div></div><div class="msg-card-txt" style="background:#fff;">Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:
+
+📌 *Dados necessários:*
+• Nome completo / razão social
+• CNPJ ou CPF
+• Endereço completo
+• Logo da empresa (PNG com fundo transparente)
+• Fotos dos produtos (mínimo 5 por produto)
+• Descrições dos produtos e preços
+• Forma de pagamento desejada (cartão, PIX, boleto)
+
+Assim que recebermos, iniciamos imediatamente! ✅</div><div class="msg-card-ft"><button style="background:#166534;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m6',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m6')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m6',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m6',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m6')">Excluir</button></div></div></div><div class="sec-sep" data-cat="pagamento">Meios de Pagamento<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'pagamento')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card mc-full" data-cat="pagamento" style="border-radius:10px;overflow:hidden;border:1px solid #0e749044;box-shadow:0 2px 8px #0e749014;" data-hidden="false"><div style="background:#0e749018;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #0e749044;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Apresentação dos Meios de Pagamento</div><div style="font-size:13px;font-weight:600;color:#374151;">Enviar junto com o PDF comparativo de pagamentos</div></div><div class="msg-card-txt" style="background:#fff;">Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎
+
+*Principais opções disponíveis na Nuvemshop:*
+
+✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.
+
+Além do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.
+
+*Sobre as taxas:*
+As taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.
+
+Uma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.
+
+No cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.
+
+*Recomendação:*
+Para uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.
+
+Assim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊</div><div class="msg-card-ft"><button style="background:#0e7490;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m7',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m7')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m7',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m7',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m7')">Excluir</button></div></div></div><div class="sec-sep" data-cat="frete">Meios de Frete<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'frete')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card mc-full" data-cat="frete" style="border-radius:10px;overflow:hidden;border:1px solid #1d4ed844;box-shadow:0 2px 8px #1d4ed814;" data-hidden="false"><div style="background:#1d4ed818;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1d4ed844;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Apresentação dos Meios de Frete Nuvemshop</div><div style="font-size:13px;font-weight:600;color:#374151;">Explicar as opções de envio disponíveis na plataforma</div></div><div class="msg-card-txt" style="background:#fff;">Agora vamos conversar sobre as opções de frete para a sua loja! 📦
+
+A Nuvemshop possui integração nativa com os principais meios de envio do mercado. Veja as principais opções:
+
+📮 *Correios*
+Opção mais tradicional, com ampla cobertura nacional. Oferece modalidades como PAC (econômico) e SEDEX (expresso).
+
+🚀 *Melhor Envio*
+Plataforma que agrega diversos transportadores (Correios, Jadlog, Azul Cargo, Latam Cargo e outros) em um só lugar. Permite comparar fretes e escolher o mais vantajoso por pedido. A integração é direta com a Nuvemshop e a utilização é gratuita — você paga apenas o frete no momento do envio.
+
+☁️ *Nuvem Envio*
+É a solução mais integrada para quem usa Nuvemshop, porque permite cotar, pagar e gerar etiquetas diretamente pelo painel da loja.
+
+🏭 *Transportadoras próprias*
+Caso você já trabalhe com alguma transportadora específica, também é possível configurar frete manual ou personalizado na plataforma.
+
+📍 *Frete grátis e frete fixo*
+Você pode configurar condições especiais, como frete grátis a partir de um valor mínimo de compra ou frete fixo por região.
+
+*Nossa recomendação:*
+Se a prioridade for ter mais opções de transportadoras e comparar preços, o Melhor Envio atende bem. Se a prioridade for praticidade dentro da própria Nuvemshop, o Nuvem Envio pode ser o mais interessante.
+
+Assim que você decidir, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊</div><div class="msg-card-ft"><button style="background:#1d4ed8;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m8',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m8')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m8',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m8',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m8')">Excluir</button></div></div></div><div class="sec-sep" data-cat="banners">Produção de Banners<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'banners')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card mc-full" data-cat="banners" style="border-radius:10px;overflow:hidden;border:1px solid #6d28d944;box-shadow:0 2px 8px #6d28d914;" data-hidden="false"><div style="background:#6d28d918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #6d28d944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Início da Etapa de Banners</div><div style="font-size:13px;font-weight:600;color:#374151;">Solicitar materiais e formulário para criação dos banners</div></div><div class="msg-card-txt" style="background:#fff;">Bom dia, [NOME DO CLIENTE]! 😊
+
+Chegamos a uma das etapas mais visuais do projeto: a produção dos banners da sua loja! 🎨✨
+
+Para que nossa equipe de design possa criar as artes com a identidade ideal para o seu negócio, precisamos de duas coisas:
+
+*1. Formulário preenchido*
+Por favor, acesse o link abaixo e preencha as informações solicitadas — quanto mais detalhes, melhor o resultado!
+📋 *Formulário:* https://docs.google.com/forms/d/e/1FAIpQLSf9mOg-9WFFxRfQpE30Mj3bSWTs_J9u7gOcmNsMjNoHUVp_XA/viewform
+
+*2. Envio dos materiais visuais*
+📸 *Full Banners:* envie de 2 a 4 fotos de alta qualidade
+📸 *Mini Banners:* envie no mínimo 1 foto para cada mini banner
+
+Caso tenha logos, referências visuais ou outros arquivos, envie pelo e-mail: 📧 ajudaecomm@gmail.com
+
+*Serão produzidos para a sua loja:*
+✅ 2 Full Banners
+✅ 3 Mini Banners
+
+Qualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀</div><div class="msg-card-ft"><button style="background:#6d28d9;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m9',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m9')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m9',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m9',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m9')">Excluir</button></div></div></div><div class="sec-sep" data-cat="reuniao">Reuniões e Agendamentos<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'reuniao')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="reuniao" style="border-radius:10px;overflow:hidden;border:1px solid #0f766e44;box-shadow:0 2px 8px #0f766e14;" data-hidden="false"><div style="background:#0f766e18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #0f766e44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Confirmação de Reunião</div><div style="font-size:13px;font-weight:600;color:#374151;">Confirmar agendamento de call ou reunião</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 😊
+
+Passando para confirmar nosso agendamento:
+
+📅 *Data:* [DATA]
+🕐 *Horário:* [HORA]
+🔗 *Link:* [LINK MEET/ZOOM]
+
+Estaremos disponíveis no horário combinado. Caso precise reagendar, é só nos avisar com antecedência — sem problema algum!
+
+Até lá! 👍</div><div class="msg-card-ft"><button style="background:#0f766e;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m10',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m10')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m10',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m10',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m10')">Excluir</button></div></div><div class="msg-card" data-cat="reuniao" style="border-radius:10px;overflow:hidden;border:1px solid #0f766e44;box-shadow:0 2px 8px #0f766e14;" data-hidden="false"><div style="background:#0f766e18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #0f766e44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Ausência em Reunião</div><div style="font-size:13px;font-weight:600;color:#374151;">Cliente não compareceu após 15 minutos de espera</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! Tudo bem?
+
+Estávamos te aguardando na reunião agendada para as [HORA] de hoje, mas não conseguimos fazer o contato.
+
+Nossa política é aguardar até 15 minutos — após esse período, precisamos considerar a reunião cancelada para não comprometer a agenda das demais equipes.
+
+Fique tranquilo(a)! Estamos disponíveis para reagendar em um horário mais conveniente. É só nos dizer quando funciona melhor. 😊</div><div class="msg-card-ft"><button style="background:#0f766e;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m11',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m11')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m11',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m11',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m11')">Excluir</button></div></div><div class="msg-card" data-cat="reuniao" style="border-radius:10px;overflow:hidden;border:1px solid #0f766e44;box-shadow:0 2px 8px #0f766e14;" data-hidden="false"><div style="background:#0f766e18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #0f766e44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Reagendamento de Reunião</div><div style="font-size:13px;font-weight:600;color:#374151;">Propor novo horário para reunião</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 😊
+
+Gostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:
+
+📅 Opção 1: [DATA] às [HORA]
+📅 Opção 2: [DATA] às [HORA]
+📅 Opção 3: [DATA] às [HORA]
+
+Qual desses funciona melhor para você? Caso prefira outro horário, é só nos informar!
+
+Aguardamos seu retorno. 😊</div><div class="msg-card-ft"><button style="background:#0f766e;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m12',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m12')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m12',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m12',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m12')">Excluir</button></div></div></div><div class="sec-sep" data-cat="followup">Follow-up e Andamento<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'followup')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="followup" style="border-radius:10px;overflow:hidden;border:1px solid #b4530944;box-shadow:0 2px 8px #b4530914;" data-hidden="false"><div style="background:#b4530918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #b4530944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Atualização de Status</div><div style="font-size:13px;font-weight:600;color:#374151;">Informar andamento do projeto</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 👋
+
+Atualização do seu projeto — [DATA]:
+
+✅ Concluído:
+• [ITEM 1]
+• [ITEM 2]
+
+🔄 Em andamento:
+• [ITEM 3]
+
+⏳ Próximos passos:
+• [ITEM 4]
+
+Prazo estimado de conclusão: [PRAZO] 🎯</div><div class="msg-card-ft"><button style="background:#b45309;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m13',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m13')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m13',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m13',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m13')">Excluir</button></div></div><div class="msg-card" data-cat="followup" style="border-radius:10px;overflow:hidden;border:1px solid #b4530944;box-shadow:0 2px 8px #b4530914;" data-hidden="false"><div style="background:#b4530918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #b4530944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Aguardando Retorno do Cliente</div><div style="font-size:13px;font-weight:600;color:#374151;">Cobrar informação ou aprovação pendente</div></div><div class="msg-card-txt" style="background:#fff;">Oi, [NOME]! Como vai?
+
+Passando para lembrar que estamos aguardando:
+
+📋 [DESCREVA O QUE ESTÁ AGUARDANDO]
+
+Assim que recebermos, seguimos imediatamente com o projeto!
+
+Qualquer dúvida ou dificuldade, pode chamar. 😊</div><div class="msg-card-ft"><button style="background:#b45309;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m14',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m14')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m14',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m14',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m14')">Excluir</button></div></div><div class="msg-card" data-cat="followup" style="border-radius:10px;overflow:hidden;border:1px solid #b4530944;box-shadow:0 2px 8px #b4530914;" data-hidden="false"><div style="background:#b4530918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #b4530944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Aprovação de Etapa</div><div style="font-size:13px;font-weight:600;color:#374151;">Solicitar aprovação de layout ou etapa</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 🎨
+
+A etapa de [NOME DA ETAPA] está pronta para aprovação!
+
+🔗 Link para visualização: [LINK]
+
+Por favor, revise e nos diga:
+👍 Aprovado — seguimos para a próxima etapa
+✏️ Solicitar ajustes — nos informe o que alterar
+
+Aguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅</div><div class="msg-card-ft"><button style="background:#b45309;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m15',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m15')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m15',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m15',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m15')">Excluir</button></div></div></div><div class="sec-sep" data-cat="suporte">Suporte Pós-entrega<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'suporte')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="suporte" style="border-radius:10px;overflow:hidden;border:1px solid #1e3a5f44;box-shadow:0 2px 8px #1e3a5f14;" data-hidden="false"><div style="background:#1e3a5f18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1e3a5f44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Abertura de Chamado de Suporte</div><div style="font-size:13px;font-weight:600;color:#374151;">Confirmação ao receber solicitação de suporte</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 👋
+
+Recebemos sua solicitação de suporte. ✅
+
+📋 *Protocolo:* #[NÚMERO]
+🔎 *Assunto:* [ASSUNTO]
+⏱️ *Prazo de retorno:* até [PRAZO]
+
+Nossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!
+
+Ajuda Ecommerce — Suporte Técnico</div><div class="msg-card-ft"><button style="background:#1e3a5f;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m16',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m16')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m16',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m16',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m16')">Excluir</button></div></div><div class="msg-card" data-cat="suporte" style="border-radius:10px;overflow:hidden;border:1px solid #1e3a5f44;box-shadow:0 2px 8px #1e3a5f14;" data-hidden="false"><div style="background:#1e3a5f18;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #1e3a5f44;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Resolução de Chamado</div><div style="font-size:13px;font-weight:600;color:#374151;">Informar que o problema foi resolvido</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 😊
+
+O problema reportado foi resolvido com sucesso! ✅
+
+🔧 *O que foi feito:* [DESCRIÇÃO DA SOLUÇÃO]
+
+Por favor, verifique se está tudo funcionando corretamente e nos informe.
+
+Qualquer outra dúvida, estamos à disposição!
+Equipe Ajuda Ecommerce 🚀</div><div class="msg-card-ft"><button style="background:#1e3a5f;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m17',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m17')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m17',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m17',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m17')">Excluir</button></div></div></div><div class="sec-sep" data-cat="cobranca">Cobrança e Financeiro<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openMsgModal(null,'cobranca')">+ Mensagem</button></span></div><div class="msg-grid"><div class="msg-card" data-cat="cobranca" style="border-radius:10px;overflow:hidden;border:1px solid #9f123944;box-shadow:0 2px 8px #9f123914;" data-hidden="false"><div style="background:#9f123918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #9f123944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Envio de Proposta</div><div style="font-size:13px;font-weight:600;color:#374151;">Encaminhar proposta comercial</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! 😊
+
+Conforme conversamos, segue nossa proposta para o seu projeto:
+
+📎 [LINK OU ANEXO DA PROPOSTA]
+
+📋 *Resumo:*
+• Serviço: [DESCRIÇÃO]
+• Investimento: R$ [VALOR]
+• Prazo de entrega: [PRAZO]
+• Forma de pagamento: [FORMA]
+
+Ficamos à disposição para esclarecer qualquer dúvida!
+
+Ajuda Ecommerce</div><div class="msg-card-ft"><button style="background:#9f1239;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m18',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m18')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveMsg('m18',-1)">↑</button><button class="mini-btn" onclick="moveMsg('m18',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m18')">Excluir</button></div></div><div class="msg-card" data-cat="cobranca" style="border-radius:10px;overflow:hidden;border:1px solid #9f123944;box-shadow:0 2px 8px #9f123914;" data-hidden="false"><div style="background:#9f123918;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #9f123944;"><div style="font-size:15px;font-weight:800;color:#0f1117;line-height:1.25;">Lembrete de Pagamento</div><div style="font-size:13px;font-weight:600;color:#374151;">Cobrar pagamento de forma gentil</div></div><div class="msg-card-txt" style="background:#fff;">Olá, [NOME]! Como vai?
+
+Passando para lembrar que temos um pagamento pendente:
+
+💳 *Referente a:* [SERVIÇO]
+💰 *Valor:* R$ [VALOR]
+📅 *Vencimento:* [DATA]
+
+Chave PIX: [CHAVE PIX]
+Ou acesse: [LINK DO BOLETO]
+
+Em caso de dúvidas, estamos à disposição! 😊</div><div class="msg-card-ft"><button style="background: rgb(159, 18, 57); color: rgb(0, 0, 0); border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 6px; padding: 7px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; opacity: 1;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m19',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m19')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m19',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m19',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m19')">Excluir</button></div></div></div></div>
   </div>
   </div>
 
@@ -883,7 +1084,7 @@
       <h4>Personalização</h4>
       <p class="cp-sub">Opcional — preencha para substituir os campos variáveis. Sem preencher, o HTML sai com os textos padrão.</p>
       <div class="cp-fr">
-        <div class="field-group"><label>Nome da loja</label><input type="text" id="cp_nomeLoja" placeholder="Ex: Minha Loja" oninput="updatePagePreviews()"/></div>
+        <div class="field-group"><label>Nome da loja</label><input type="text" id="cp_nomeLoja" placeholder="Ex: Minha Loja" oninput="updatePagePreviews()"></div>
         <button class="cp-clear" onclick="clearCpField('cp_nomeLoja')">Limpar</button>
       </div>
       <div class="cp-ta-row">
@@ -899,12 +1100,12 @@
       <button class="tool-btn t-primary" onclick="openPageEditor()">+ Nova página</button>
     </div>
 
-    <div class="cp-cards-grid" id="cpCardsGrid"></div>
+    <div class="cp-cards-grid" id="cpCardsGrid"><div class="cp-card" style="border-top:2px solid #1e40af;"><h4>Trocas e Devoluções</h4><p>Políticas de devolução, troca, condições e formas de restituição de valores.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg1',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg1')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="movePage('pg1',-1)">↑</button><button class="mini-btn" onclick="movePage('pg1',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg1')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #0e7490;"><h4>Política de Entrega</h4><p>Prazos, tentativas de entrega, responsabilidades e regras operacionais.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg2',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg2')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg2',-1)">↑</button><button class="mini-btn" onclick="movePage('pg2',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg2')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #166534;"><h4>Quem Somos</h4><p>Apresentação da empresa — substitua o bloco padrão pelo texto da loja.</p><span class="cp-badge dyn">Personalizável</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg3',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg3')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg3',-1)">↑</button><button class="mini-btn" onclick="movePage('pg3',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg3')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #0f766e;"><h4>Regras de Frete Grátis</h4><p>Condições para frete grátis por região e valor mínimo de pedido.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg4',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg4')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg4',-1)">↑</button><button class="mini-btn" onclick="movePage('pg4',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg4')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #6d28d9;"><h4>Política de Privacidade</h4><p>LGPD, cookies, direitos do titular e certificados de segurança.</p><span class="cp-badge dyn">Personalizável</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg5',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg5')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg5',-1)">↑</button><button class="mini-btn" disabled="" onclick="movePage('pg5',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg5')">Excluir</button></div></div></div>
   </div>
   </div>
 
   <!-- ══ DOCS ══ -->
-  <div class="page" id="page-docs">
+  <div class="page active" id="page-docs">
   <div class="page-wrap-wide">
     <div class="page-hd">
       <h1 class="only-user">PDFs e Documentos</h1>
@@ -917,8 +1118,8 @@
       <button class="tool-btn" onclick="openDocModal()">+ Novo documento</button>
       <button class="tool-btn" onclick="openManageCats('doc')">Gerenciar filtros</button>
     </div>
-    <div class="tab-row" id="docTabs"></div>
-    <div id="docContent"></div>
+    <div class="tab-row" id="docTabs"><button class="tab-btn active" onclick="filterTab('doc','todas')">Todas</button><button class="tab-btn" onclick="filterTab('doc','geradores')">Geradores</button><button class="tab-btn" onclick="filterTab('doc','modelos')">Modelos</button></div>
+    <div id="docContent"><div class="sec-sep" data-cat="geradores">Geradores e Ferramentas<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openDocModal(null,'geradores')">+ Documento</button></span></div><div class="docs-grid"><div class="doc-card" data-cat="geradores" style="border-top:2px solid #1e3a5f;"><h4>Documento de Entrega</h4><p>Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.</p><span class="dc-tag">Gerador dinâmico</span><button class="btn-use" onclick="showPage('pdf',document.getElementById('nav-pdf'))">Gerar PDF ↗</button><div class="doc-admin-row"><button class="mini-btn" onclick="openDocModal('d1')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveDoc('d1',-1)">↑</button><button class="mini-btn" onclick="moveDoc('d1',1)">↓</button></span><button class="mini-btn danger" onclick="deleteDoc('d1')">Excluir</button></div></div><div class="doc-card" data-cat="geradores" style="border-top:2px solid #0e7490;"><h4>Comparativo de Meios de Pagamento</h4><p>Tabela comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal.</p><span class="dc-tag">PDF Pronto para envio</span><button class="btn-use" onclick="showComparativoPagamento()">📤 Ver e Copiar mensagem</button><div class="doc-admin-row"><button class="mini-btn" onclick="openDocModal('d2')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveDoc('d2',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveDoc('d2',1)">↓</button></span><button class="mini-btn danger" onclick="deleteDoc('d2')">Excluir</button></div></div></div><div class="sec-sep" data-cat="modelos">Modelos e Materiais<span class="sep-ln"></span><span class="sep-adm"><button class="mini-btn" onclick="openDocModal(null,'modelos')">+ Documento</button></span></div><div class="docs-grid"><div class="doc-card" data-cat="modelos" style="border-top:2px solid #b45309;"><h4>Manual do Cliente</h4><p>Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.</p><span class="dc-tag">Em breve</span><button class="btn-use" style="opacity:.45;cursor:not-allowed;" disabled="">Disponível em breve</button><div class="doc-admin-row"><button class="mini-btn" onclick="openDocModal('d5')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveDoc('d5',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveDoc('d5',1)">↓</button></span><button class="mini-btn danger" onclick="deleteDoc('d5')">Excluir</button></div></div></div></div>
   </div>
   </div>
 
@@ -941,8 +1142,8 @@
       <div class="modal-head"><div><h3 id="msgModalTitle">Nova mensagem</h3></div><button class="modal-x" onclick="closeModal('modal-msg')">×</button></div>
       <div class="modal-body">
         <div class="field-group"><label>Categoria</label><select id="m_cat"></select></div>
-        <div class="field-group"><label>Título</label><input type="text" id="m_title" placeholder="Ex: Boas-vindas no Grupo"/></div>
-        <div class="field-group"><label>Subtítulo</label><input type="text" id="m_sub"/></div>
+        <div class="field-group"><label>Título</label><input type="text" id="m_title" placeholder="Ex: Boas-vindas no Grupo"></div>
+        <div class="field-group"><label>Subtítulo</label><input type="text" id="m_sub"></div>
         <div class="field-group"><label>Cor do marcador lateral</label><div class="color-row" id="m_colorPick"></div></div>
         <div class="field-group"><label>Largura total</label><select id="m_full"><option value="false">Não</option><option value="true">Sim</option></select></div>
         <div class="field-group"><label>Texto</label><textarea id="m_text" rows="9"></textarea></div>
@@ -958,10 +1159,10 @@
       <div class="modal-body">
         <div class="field-group"><label>Categoria</label><select id="d_cat"></select></div>
         <div class="field-group"><label>Cor do topo</label><div class="color-row" id="d_colorPick"></div></div>
-        <div class="field-group"><label>Título</label><input type="text" id="d_title"/></div>
+        <div class="field-group"><label>Título</label><input type="text" id="d_title"></div>
         <div class="field-group"><label>Descrição</label><textarea id="d_desc" rows="3"></textarea></div>
-        <div class="field-group"><label>Tag</label><input type="text" id="d_tag"/></div>
-        <div class="field-group"><label>Texto do botão</label><input type="text" id="d_btn"/></div>
+        <div class="field-group"><label>Tag</label><input type="text" id="d_tag"></div>
+        <div class="field-group"><label>Texto do botão</label><input type="text" id="d_btn"></div>
         <div class="field-group"><label>Estado</label><select id="d_state"><option value="placeholder">Placeholder</option><option value="active">Ativo</option></select></div>
       </div>
       <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-doc')">Cancelar</button><button class="btn btn-primary" onclick="saveDoc()">Salvar</button></div>
@@ -973,8 +1174,8 @@
     <div class="modal-box">
       <div class="modal-head"><div><h3 id="catModalTitle">Novo filtro</h3></div><button class="modal-x" onclick="closeModal('modal-cat')">×</button></div>
       <div class="modal-body">
-        <div class="field-group"><label>Nome do filtro (aba)</label><input type="text" id="c_label" placeholder="Ex: Pós-venda"/></div>
-        <div class="field-group"><label>Título da seção</label><input type="text" id="c_section" placeholder="Ex: Mensagens de Pós-venda"/></div>
+        <div class="field-group"><label>Nome do filtro (aba)</label><input type="text" id="c_label" placeholder="Ex: Pós-venda"></div>
+        <div class="field-group"><label>Título da seção</label><input type="text" id="c_section" placeholder="Ex: Mensagens de Pós-venda"></div>
       </div>
       <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-cat')">Cancelar</button><button class="btn btn-primary" onclick="saveCat()">Salvar</button></div>
     </div>
@@ -994,9 +1195,9 @@
     <div class="modal-box" style="max-width:640px;">
       <div class="modal-head"><div><h3 id="pageEditorTitle">Nova página institucional</h3><p>Use <code style="background:var(--surface-2);padding:1px 5px;border-radius:2px;">[[NOME_LOJA]]</code> ou <code style="background:var(--surface-2);padding:1px 5px;border-radius:2px;">[[QUEM_SOMOS_BLOCK]]</code> como campos dinâmicos</p></div><button class="modal-x" onclick="closeModal('modal-page-editor')">×</button></div>
       <div class="modal-body">
-        <div class="field-group"><label>Título</label><input type="text" id="pe_title" placeholder="Ex: Política de Privacidade"/></div>
+        <div class="field-group"><label>Título</label><input type="text" id="pe_title" placeholder="Ex: Política de Privacidade"></div>
         <div class="field-group"><label>Cor do card</label><div class="color-row" id="pe_colorPick"></div></div>
-        <div class="field-group"><label>Descrição</label><input type="text" id="pe_desc" placeholder="Uma linha descrevendo o conteúdo"/></div>
+        <div class="field-group"><label>Descrição</label><input type="text" id="pe_desc" placeholder="Uma linha descrevendo o conteúdo"></div>
         <div class="field-group"><label>Campo dinâmico</label><select id="pe_dynamic"><option value="none">Nenhum</option><option value="nome_loja">Nome da loja ([[NOME_LOJA]])</option><option value="quem_somos">Quem Somos ([[QUEM_SOMOS_BLOCK]])</option></select></div>
         <div class="field-group"><label>HTML do template</label><textarea id="pe_html" rows="14" style="font-family:monospace;font-size:12px;"></textarea></div>
       </div>
@@ -1004,7 +1205,7 @@
     </div>
   </div>
 
-  <div id="toast"></div>
+  <div id="toast" class="">HTML exportado!</div>
 <script>
 const AJUDA={whatsappComercial:'(48) 99999-9999',emailComercial:'contato@ajudaecom.com.br',whatsappTecnico:'(48) 98888-8888',emailTecnico:'suporte@ajudaecom.com.br',horario:'Seg-Sex, 9h-18h',site:'ajudaecom.com.br',instagram:'@ajudaecommerce',nome:'Ajuda Ecommerce'};
 const SUPORTE_PLATAFORMA={'Nuvemshop':{canal:'atendimento@nuvemshop.com.br',site:'atendimento.nuvemshop.com.br',horario:'24/7 via chat'},'Shopify':{canal:'support@shopify.com',site:'help.shopify.com',horario:'24/7 via chat'},'VTEX':{canal:'suporte@vtex.com.br',site:'help.vtex.com',horario:'Seg-Sex comercial'},'WooCommerce':{canal:'wordpress.org/support/woocommerce',site:'woocommerce.com/contact-us',horario:'Forum/tickets'},'Loja Integrada':{canal:'ajuda@lojaintegrada.com.br',site:'ajuda.lojaintegrada.com.br',horario:'Seg-Sex comercial'},'Tray':{canal:'atendimento@tray.com.br',site:'atendimento.tray.com.br',horario:'Seg-Sex comercial'}};
@@ -1098,58 +1299,339 @@ const HTML_PRIVACIDADE = `<p>A Loja <strong>[[NOME_LOJA]]</strong> se compromete
    ─────────────────────────── */
 /*__DATA_START__*/
 const DEFAULT_DATA = {
-  msgCats: [
-    {id:'encerramento',label:'Encerramento',section:'Encerramento do Projeto'},
-    {id:'boas-vindas', label:'Boas-vindas', section:'Boas-vindas e Início de Projeto'},
-    {id:'pagamento',   label:'Pagamento',   section:'Meios de Pagamento'},
-    {id:'frete',       label:'Frete',       section:'Meios de Frete'},
-    {id:'banners',     label:'Banners',     section:'Produção de Banners'},
-    {id:'reuniao',     label:'Reuniões',    section:'Reuniões e Agendamentos'},
-    {id:'followup',    label:'Follow-up',   section:'Follow-up e Andamento'},
-    {id:'suporte',     label:'Suporte',     section:'Suporte Pós-entrega'},
-    {id:'cobranca',    label:'Cobrança',    section:'Cobrança e Financeiro'},
+  "msgCats": [
+    {
+      "id": "encerramento",
+      "label": "Encerramento",
+      "section": "Encerramento do Projeto"
+    },
+    {
+      "id": "boas-vindas",
+      "label": "Boas-vindas",
+      "section": "Boas-vindas e Início de Projeto"
+    },
+    {
+      "id": "pagamento",
+      "label": "Pagamento",
+      "section": "Meios de Pagamento"
+    },
+    {
+      "id": "frete",
+      "label": "Frete",
+      "section": "Meios de Frete"
+    },
+    {
+      "id": "banners",
+      "label": "Banners",
+      "section": "Produção de Banners"
+    },
+    {
+      "id": "reuniao",
+      "label": "Reuniões",
+      "section": "Reuniões e Agendamentos"
+    },
+    {
+      "id": "followup",
+      "label": "Follow-up",
+      "section": "Follow-up e Andamento"
+    },
+    {
+      "id": "suporte",
+      "label": "Suporte",
+      "section": "Suporte Pós-entrega"
+    },
+    {
+      "id": "cobranca",
+      "label": "Cobrança",
+      "section": "Cobrança e Financeiro"
+    }
   ],
-  msgs: [
-    {id:'m1',cat:'encerramento',icon:'🎉',color:'#1e40af',full:false,title:'Encerramento — Grupo WhatsApp',sub:'Para enviar no grupo do cliente ao finalizar',text:`Olá, [NOME DO CLIENTE]! 🎉\n\nÉ com muito orgulho que comunicamos a conclusão do seu projeto de e-commerce!\n\n✅ Sua loja está configurada e pronta para operar\n✅ Os acessos foram organizados no documento em anexo\n✅ Todas as integrações foram validadas\n\n📎 Enviamos o *Documento de Entrega* com todos os dados importantes — guarde em local seguro!\n\nPara suporte, estamos disponíveis:\n📞 WhatsApp: (48) 99999-9999\n📧 E-mail: contato@ajudaecom.com.br\n🕐 Seg–Sex, 9h–18h\n\nFoi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀`},
-    {id:'m2',cat:'encerramento',icon:'📬',color:'#1e40af',full:false,title:'Encerramento — E-mail formal',sub:'Versão mais formal para envio por e-mail',text:`Prezado(a) [NOME DO CLIENTE],\n\nInformamos com satisfação a conclusão do seu projeto de e-commerce.\n\nSegue em anexo o Documento de Entrega com o resumo do projeto, dados de suporte e todas as credenciais de acesso organizadas por serviço.\n\nRecomendamos:\n• Guardar o documento em local seguro\n• Alterar as senhas após o recebimento\n• Ativar autenticação em dois fatores\n\nEm caso de dúvidas, nossa equipe está disponível de segunda a sexta, das 9h às 18h, pelo WhatsApp (48) 99999-9999 ou pelo e-mail suporte@ajudaecom.com.br.\n\nAtenciosamente,\nEquipe Ajuda Ecommerce`},
-    {id:'m3',cat:'encerramento',icon:'🔒',color:'#1e40af',full:false,title:'Orientações de Segurança',sub:'Mensagem complementar sobre senhas e acessos',text:`⚠️ *Orientações de segurança importantes*\n\nAgora que seu projeto foi entregue, recomendamos:\n\n🔑 Altere as senhas dos acessos recebidos\n🔐 Ative a verificação em dois fatores onde possível\n📵 Não compartilhe senhas por WhatsApp ou e-mail\n💾 Salve o documento de entrega em local seguro (Google Drive, nuvem)\n\nQualquer dúvida, fale conosco! 😊`},
-    {id:'m4',cat:'boas-vindas',icon:'📲',color:'#166534',full:false,title:'Convite para o Grupo — WhatsApp',sub:'Mensagem privada para adicionar o cliente ao grupo',text:`Olá, tudo bem? 😊\n\nMeu nome é [NOME DO RESPONSÁVEL] e faço parte da equipe da Ajuda Ecommerce.\n\nO [NOME DO VENDEDOR] me passou o seu contato para que eu pudesse te adicionar ao grupo de acompanhamento do seu projeto — é por lá que vamos dar início a todo o processo de criação da sua loja virtual.\n\nVou te enviar o convite em seguida!`},
-    {id:'m5',cat:'boas-vindas',icon:'👋',color:'#166534',full:false,title:'Boas-vindas no Grupo',sub:'Primeira mensagem quando o cliente entra no grupo',text:`Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉\n\nMeu nome é [NOME] e estou aqui junto com toda a nossa equipe para acompanhar cada etapa da criação da sua loja virtual e garantir que tudo seja desenvolvido com excelência.\n\nPara começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅`},
-    {id:'m6',cat:'boas-vindas',icon:'📝',color:'#166534',full:false,title:'Solicitação de Dados Iniciais',sub:'Pedir informações necessárias para início',text:`Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:\n\n📌 *Dados necessários:*\n• Nome completo / razão social\n• CNPJ ou CPF\n• Endereço completo\n• Logo da empresa (PNG com fundo transparente)\n• Fotos dos produtos (mínimo 5 por produto)\n• Descrições dos produtos e preços\n• Forma de pagamento desejada (cartão, PIX, boleto)\n\nAssim que recebermos, iniciamos imediatamente! ✅`},
-    {id:'m7',cat:'pagamento',icon:'💳',color:'#0e7490',full:true,title:'Apresentação dos Meios de Pagamento',sub:'Enviar junto com o PDF comparativo de pagamentos',text:`Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎\n\n*Principais opções disponíveis na Nuvemshop:*\n\n✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.\n\nAlém do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.\n\n*Sobre as taxas:*\nAs taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.\n\nUma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.\n\nNo cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.\n\n*Recomendação:*\nPara uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.\n\nAssim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊`},
-    {id:'m8',cat:'frete',icon:'🚚',color:'#1d4ed8',full:true,title:'Apresentação dos Meios de Frete Nuvemshop',sub:'Explicar as opções de envio disponíveis na plataforma',text:`Agora vamos conversar sobre as opções de frete para a sua loja! 📦\n\nA Nuvemshop possui integração nativa com os principais meios de envio do mercado. Veja as principais opções:\n\n📮 *Correios*\nOpção mais tradicional, com ampla cobertura nacional. Oferece modalidades como PAC (econômico) e SEDEX (expresso).\n\n🚀 *Melhor Envio*\nPlataforma que agrega diversos transportadores (Correios, Jadlog, Azul Cargo, Latam Cargo e outros) em um só lugar. Permite comparar fretes e escolher o mais vantajoso por pedido. A integração é direta com a Nuvemshop e a utilização é gratuita — você paga apenas o frete no momento do envio.\n\n☁️ *Nuvem Envio*\nÉ a solução mais integrada para quem usa Nuvemshop, porque permite cotar, pagar e gerar etiquetas diretamente pelo painel da loja.\n\n🏭 *Transportadoras próprias*\nCaso você já trabalhe com alguma transportadora específica, também é possível configurar frete manual ou personalizado na plataforma.\n\n📍 *Frete grátis e frete fixo*\nVocê pode configurar condições especiais, como frete grátis a partir de um valor mínimo de compra ou frete fixo por região.\n\n*Nossa recomendação:*\nSe a prioridade for ter mais opções de transportadoras e comparar preços, o Melhor Envio atende bem. Se a prioridade for praticidade dentro da própria Nuvemshop, o Nuvem Envio pode ser o mais interessante.\n\nAssim que você decidir, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊`},
-    {id:'m9',cat:'banners',icon:'🎨',color:'#6d28d9',full:true,title:'Início da Etapa de Banners',sub:'Solicitar materiais e formulário para criação dos banners',text:`Bom dia, [NOME DO CLIENTE]! 😊\n\nChegamos a uma das etapas mais visuais do projeto: a produção dos banners da sua loja! 🎨✨\n\nPara que nossa equipe de design possa criar as artes com a identidade ideal para o seu negócio, precisamos de duas coisas:\n\n*1. Formulário preenchido*\nPor favor, acesse o link abaixo e preencha as informações solicitadas — quanto mais detalhes, melhor o resultado!\n📋 *Formulário:* https://docs.google.com/forms/d/e/1FAIpQLSf9mOg-9WFFxRfQpE30Mj3bSWTs_J9u7gOcmNsMjNoHUVp_XA/viewform\n\n*2. Envio dos materiais visuais*\n📸 *Full Banners:* envie de 2 a 4 fotos de alta qualidade\n📸 *Mini Banners:* envie no mínimo 1 foto para cada mini banner\n\nCaso tenha logos, referências visuais ou outros arquivos, envie pelo e-mail: 📧 ajudaecomm@gmail.com\n\n*Serão produzidos para a sua loja:*\n✅ 2 Full Banners\n✅ 3 Mini Banners\n\nQualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀`},
-    {id:'m10',cat:'reuniao',icon:'📅',color:'#0f766e',full:false,title:'Confirmação de Reunião',sub:'Confirmar agendamento de call ou reunião',text:`Olá, [NOME]! 😊\n\nPassando para confirmar nosso agendamento:\n\n📅 *Data:* [DATA]\n🕐 *Horário:* [HORA]\n🔗 *Link:* [LINK MEET/ZOOM]\n\nEstaremos disponíveis no horário combinado. Caso precise reagendar, é só nos avisar com antecedência — sem problema algum!\n\nAté lá! 👍`},
-    {id:'m11',cat:'reuniao',icon:'⏰',color:'#0f766e',full:false,title:'Ausência em Reunião',sub:'Cliente não compareceu após 15 minutos de espera',text:`Olá, [NOME]! Tudo bem?\n\nEstávamos te aguardando na reunião agendada para as [HORA] de hoje, mas não conseguimos fazer o contato.\n\nNossa política é aguardar até 15 minutos — após esse período, precisamos considerar a reunião cancelada para não comprometer a agenda das demais equipes.\n\nFique tranquilo(a)! Estamos disponíveis para reagendar em um horário mais conveniente. É só nos dizer quando funciona melhor. 😊`},
-    {id:'m12',cat:'reuniao',icon:'🔁',color:'#0f766e',full:false,title:'Reagendamento de Reunião',sub:'Propor novo horário para reunião',text:`Olá, [NOME]! 😊\n\nGostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:\n\n📅 Opção 1: [DATA] às [HORA]\n📅 Opção 2: [DATA] às [HORA]\n📅 Opção 3: [DATA] às [HORA]\n\nQual desses funciona melhor para você? Caso prefira outro horário, é só nos informar!\n\nAguardamos seu retorno. 😊`},
-    {id:'m13',cat:'followup',icon:'📊',color:'#b45309',full:false,title:'Atualização de Status',sub:'Informar andamento do projeto',text:`Olá, [NOME]! 👋\n\nAtualização do seu projeto — [DATA]:\n\n✅ Concluído:\n• [ITEM 1]\n• [ITEM 2]\n\n🔄 Em andamento:\n• [ITEM 3]\n\n⏳ Próximos passos:\n• [ITEM 4]\n\nPrazo estimado de conclusão: [PRAZO] 🎯`},
-    {id:'m14',cat:'followup',icon:'⏰',color:'#b45309',full:false,title:'Aguardando Retorno do Cliente',sub:'Cobrar informação ou aprovação pendente',text:`Oi, [NOME]! Como vai?\n\nPassando para lembrar que estamos aguardando:\n\n📋 [DESCREVA O QUE ESTÁ AGUARDANDO]\n\nAssim que recebermos, seguimos imediatamente com o projeto!\n\nQualquer dúvida ou dificuldade, pode chamar. 😊`},
-    {id:'m15',cat:'followup',icon:'✅',color:'#b45309',full:false,title:'Aprovação de Etapa',sub:'Solicitar aprovação de layout ou etapa',text:`Olá, [NOME]! 🎨\n\nA etapa de [NOME DA ETAPA] está pronta para aprovação!\n\n🔗 Link para visualização: [LINK]\n\nPor favor, revise e nos diga:\n👍 Aprovado — seguimos para a próxima etapa\n✏️ Solicitar ajustes — nos informe o que alterar\n\nAguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅`},
-    {id:'m16',cat:'suporte',icon:'🛠️',color:'#1e3a5f',full:false,title:'Abertura de Chamado de Suporte',sub:'Confirmação ao receber solicitação de suporte',text:`Olá, [NOME]! 👋\n\nRecebemos sua solicitação de suporte. ✅\n\n📋 *Protocolo:* #[NÚMERO]\n🔎 *Assunto:* [ASSUNTO]\n⏱️ *Prazo de retorno:* até [PRAZO]\n\nNossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!\n\nAjuda Ecommerce — Suporte Técnico`},
-    {id:'m17',cat:'suporte',icon:'✔️',color:'#1e3a5f',full:false,title:'Resolução de Chamado',sub:'Informar que o problema foi resolvido',text:`Olá, [NOME]! 😊\n\nO problema reportado foi resolvido com sucesso! ✅\n\n🔧 *O que foi feito:* [DESCRIÇÃO DA SOLUÇÃO]\n\nPor favor, verifique se está tudo funcionando corretamente e nos informe.\n\nQualquer outra dúvida, estamos à disposição!\nEquipe Ajuda Ecommerce 🚀`},
-    {id:'m18',cat:'cobranca',icon:'💰',color:'#9f1239',full:false,title:'Envio de Proposta',sub:'Encaminhar proposta comercial',text:`Olá, [NOME]! 😊\n\nConforme conversamos, segue nossa proposta para o seu projeto:\n\n📎 [LINK OU ANEXO DA PROPOSTA]\n\n📋 *Resumo:*\n• Serviço: [DESCRIÇÃO]\n• Investimento: R$ [VALOR]\n• Prazo de entrega: [PRAZO]\n• Forma de pagamento: [FORMA]\n\nFicamos à disposição para esclarecer qualquer dúvida!\n\nAjuda Ecommerce`},
-    {id:'m19',cat:'cobranca',icon:'🔔',color:'#9f1239',full:false,title:'Lembrete de Pagamento',sub:'Cobrar pagamento de forma gentil',text:`Olá, [NOME]! Como vai?\n\nPassando para lembrar que temos um pagamento pendente:\n\n💳 *Referente a:* [SERVIÇO]\n💰 *Valor:* R$ [VALOR]\n📅 *Vencimento:* [DATA]\n\nChave PIX: [CHAVE PIX]\nOu acesse: [LINK DO BOLETO]\n\nEm caso de dúvidas, estamos à disposição! 😊`},
+  "msgs": [
+    {
+      "id": "m1",
+      "cat": "encerramento",
+      "icon": "🎉",
+      "color": "#1e40af",
+      "full": false,
+      "title": "Encerramento — Grupo WhatsApp",
+      "sub": "Para enviar no grupo do cliente ao finalizar",
+      "text": "Olá, [NOME DO CLIENTE]! 🎉\n\nÉ com muito orgulho que comunicamos a conclusão do seu projeto de e-commerce!\n\n✅ Sua loja está configurada e pronta para operar\n✅ Os acessos foram organizados no documento em anexo\n✅ Todas as integrações foram validadas\n\n📎 Enviamos o *Documento de Entrega* com todos os dados importantes — guarde em local seguro!\n\nPara suporte, estamos disponíveis:\n📞 WhatsApp: (48) 99999-9999\n📧 E-mail: contato@ajudaecom.com.br\n🕐 Seg–Sex, 9h–18h\n\nFoi um prazer trabalhar com você. Conte sempre com a Ajuda Ecommerce! 🚀"
+    },
+    {
+      "id": "m2",
+      "cat": "encerramento",
+      "icon": "📬",
+      "color": "#1e40af",
+      "full": false,
+      "title": "Encerramento — E-mail formal",
+      "sub": "Versão mais formal para envio por e-mail",
+      "text": "Prezado(a) [NOME DO CLIENTE],\n\nInformamos com satisfação a conclusão do seu projeto de e-commerce.\n\nSegue em anexo o Documento de Entrega com o resumo do projeto, dados de suporte e todas as credenciais de acesso organizadas por serviço.\n\nRecomendamos:\n• Guardar o documento em local seguro\n• Alterar as senhas após o recebimento\n• Ativar autenticação em dois fatores\n\nEm caso de dúvidas, nossa equipe está disponível de segunda a sexta, das 9h às 18h, pelo WhatsApp (48) 99999-9999 ou pelo e-mail suporte@ajudaecom.com.br.\n\nAtenciosamente,\nEquipe Ajuda Ecommerce"
+    },
+    {
+      "id": "m3",
+      "cat": "encerramento",
+      "icon": "🔒",
+      "color": "#1e40af",
+      "full": false,
+      "title": "Orientações de Segurança",
+      "sub": "Mensagem complementar sobre senhas e acessos",
+      "text": "⚠️ *Orientações de segurança importantes*\n\nAgora que seu projeto foi entregue, recomendamos:\n\n🔑 Altere as senhas dos acessos recebidos\n🔐 Ative a verificação em dois fatores onde possível\n📵 Não compartilhe senhas por WhatsApp ou e-mail\n💾 Salve o documento de entrega em local seguro (Google Drive, nuvem)\n\nQualquer dúvida, fale conosco! 😊"
+    },
+    {
+      "id": "m4",
+      "cat": "boas-vindas",
+      "icon": "📲",
+      "color": "#166534",
+      "full": false,
+      "title": "Convite para o Grupo — WhatsApp",
+      "sub": "Mensagem privada para adicionar o cliente ao grupo",
+      "text": "Olá, tudo bem? 😊\n\nMeu nome é [NOME DO RESPONSÁVEL] e faço parte da equipe da Ajuda Ecommerce.\n\nO [NOME DO VENDEDOR] me passou o seu contato para que eu pudesse te adicionar ao grupo de acompanhamento do seu projeto — é por lá que vamos dar início a todo o processo de criação da sua loja virtual.\n\nVou te enviar o convite em seguida!"
+    },
+    {
+      "id": "m5",
+      "cat": "boas-vindas",
+      "icon": "👋",
+      "color": "#166534",
+      "full": false,
+      "title": "Boas-vindas no Grupo",
+      "sub": "Primeira mensagem quando o cliente entra no grupo",
+      "text": "Olá, [NOME DO CLIENTE]! Seja muito bem-vindo(a)! 🎉\n\nMeu nome é [NOME] e estou aqui junto com toda a nossa equipe para acompanhar cada etapa da criação da sua loja virtual e garantir que tudo seja desenvolvido com excelência.\n\nPara começarmos com o pé direito, vou precisar de algumas informações iniciais. Assim que você confirmar por aqui, já te passo tudo certinho! ✅"
+    },
+    {
+      "id": "m6",
+      "cat": "boas-vindas",
+      "icon": "📝",
+      "color": "#166534",
+      "full": false,
+      "title": "Solicitação de Dados Iniciais",
+      "sub": "Pedir informações necessárias para início",
+      "text": "Olá! Para darmos início ao seu projeto, precisamos das seguintes informações:\n\n📌 *Dados necessários:*\n• Nome completo / razão social\n• CNPJ ou CPF\n• Endereço completo\n• Logo da empresa (PNG com fundo transparente)\n• Fotos dos produtos (mínimo 5 por produto)\n• Descrições dos produtos e preços\n• Forma de pagamento desejada (cartão, PIX, boleto)\n\nAssim que recebermos, iniciamos imediatamente! ✅"
+    },
+    {
+      "id": "m7",
+      "cat": "pagamento",
+      "icon": "💳",
+      "color": "#0e7490",
+      "full": true,
+      "title": "Apresentação dos Meios de Pagamento",
+      "sub": "Enviar junto com o PDF comparativo de pagamentos",
+      "text": "Sobre as opções de meio de pagamento disponíveis para a sua loja, separei um comparativo completo para te ajudar na decisão. 📎\n\n*Principais opções disponíveis na Nuvemshop:*\n\n✅ *Nuvem Pago* — meio de pagamento nativo da plataforma. Aceita Pix, boleto e cartão de crédito parcelado, com checkout transparente (o cliente finaliza a compra diretamente na loja, sem redirecionamentos). É a opção que mais recomendamos, pois proporciona uma experiência de compra mais fluida e profissional.\n\nAlém do Nuvem Pago, também estão disponíveis: *Mercado Pago, PagSeguro, Pagar.me, AppMax, iPag, Cielo e PayPal* — cada um com suas próprias condições, taxas e formas de pagamento suportadas.\n\n*Sobre as taxas:*\nAs taxas variam conforme o meio de pagamento escolhido, a forma de pagamento utilizada pelo cliente, o número de parcelas e o prazo de recebimento selecionado.\n\nUma informação importante: ao utilizar um meio de pagamento externo ao Nuvem Pago, pode ser cobrada uma *tarifa adicional pela plataforma Nuvemshop*, que varia conforme o plano contratado — quanto maior o plano, menor essa tarifa. O Nuvem Pago é isento dessa tarifa por ser o meio nativo.\n\nNo cartão de crédito parcelado, quanto maior o número de parcelas, maior tende a ser a taxa. O mesmo vale para antecipar recebimentos.\n\n*Recomendação:*\nPara uma experiência de pagamento mais simples e confiável — especialmente no Pix — recomendamos o *Nuvem Pago*. Ele centraliza todos os meios de pagamento dentro da própria loja, elimina redirecionamentos e transmite mais segurança ao comprador.\n\nAssim que você decidir qual meio de pagamento prefere utilizar, te passo o passo a passo completo para configuração. Qualquer dúvida, é só chamar! 😊"
+    },
+    {
+      "id": "m8",
+      "cat": "frete",
+      "icon": "🚚",
+      "color": "#1d4ed8",
+      "full": true,
+      "title": "Apresentação dos Meios de Frete Nuvemshop",
+      "sub": "Explicar as opções de envio disponíveis na plataforma",
+      "text": "Agora vamos conversar sobre as opções de frete para a sua loja! 📦\n\nA Nuvemshop possui integração nativa com os principais meios de envio do mercado. Veja as principais opções:\n\n📮 *Correios*\nOpção mais tradicional, com ampla cobertura nacional. Oferece modalidades como PAC (econômico) e SEDEX (expresso).\n\n🚀 *Melhor Envio*\nPlataforma que agrega diversos transportadores (Correios, Jadlog, Azul Cargo, Latam Cargo e outros) em um só lugar. Permite comparar fretes e escolher o mais vantajoso por pedido. A integração é direta com a Nuvemshop e a utilização é gratuita — você paga apenas o frete no momento do envio.\n\n☁️ *Nuvem Envio*\nÉ a solução mais integrada para quem usa Nuvemshop, porque permite cotar, pagar e gerar etiquetas diretamente pelo painel da loja.\n\n🏭 *Transportadoras próprias*\nCaso você já trabalhe com alguma transportadora específica, também é possível configurar frete manual ou personalizado na plataforma.\n\n📍 *Frete grátis e frete fixo*\nVocê pode configurar condições especiais, como frete grátis a partir de um valor mínimo de compra ou frete fixo por região.\n\n*Nossa recomendação:*\nSe a prioridade for ter mais opções de transportadoras e comparar preços, o Melhor Envio atende bem. Se a prioridade for praticidade dentro da própria Nuvemshop, o Nuvem Envio pode ser o mais interessante.\n\nAssim que você decidir, te passo o passo a passo de configuração. Qualquer dúvida, estou à disposição! 😊"
+    },
+    {
+      "id": "m9",
+      "cat": "banners",
+      "icon": "🎨",
+      "color": "#6d28d9",
+      "full": true,
+      "title": "Início da Etapa de Banners",
+      "sub": "Solicitar materiais e formulário para criação dos banners",
+      "text": "Bom dia, [NOME DO CLIENTE]! 😊\n\nChegamos a uma das etapas mais visuais do projeto: a produção dos banners da sua loja! 🎨✨\n\nPara que nossa equipe de design possa criar as artes com a identidade ideal para o seu negócio, precisamos de duas coisas:\n\n*1. Formulário preenchido*\nPor favor, acesse o link abaixo e preencha as informações solicitadas — quanto mais detalhes, melhor o resultado!\n📋 *Formulário:* https://docs.google.com/forms/d/e/1FAIpQLSf9mOg-9WFFxRfQpE30Mj3bSWTs_J9u7gOcmNsMjNoHUVp_XA/viewform\n\n*2. Envio dos materiais visuais*\n📸 *Full Banners:* envie de 2 a 4 fotos de alta qualidade\n📸 *Mini Banners:* envie no mínimo 1 foto para cada mini banner\n\nCaso tenha logos, referências visuais ou outros arquivos, envie pelo e-mail: 📧 ajudaecomm@gmail.com\n\n*Serão produzidos para a sua loja:*\n✅ 2 Full Banners\n✅ 3 Mini Banners\n\nQualquer dúvida, estou à disposição. Mal podemos esperar para ver o resultado! 🚀"
+    },
+    {
+      "id": "m10",
+      "cat": "reuniao",
+      "icon": "📅",
+      "color": "#0f766e",
+      "full": false,
+      "title": "Confirmação de Reunião",
+      "sub": "Confirmar agendamento de call ou reunião",
+      "text": "Olá, [NOME]! 😊\n\nPassando para confirmar nosso agendamento:\n\n📅 *Data:* [DATA]\n🕐 *Horário:* [HORA]\n🔗 *Link:* [LINK MEET/ZOOM]\n\nEstaremos disponíveis no horário combinado. Caso precise reagendar, é só nos avisar com antecedência — sem problema algum!\n\nAté lá! 👍"
+    },
+    {
+      "id": "m11",
+      "cat": "reuniao",
+      "icon": "⏰",
+      "color": "#0f766e",
+      "full": false,
+      "title": "Ausência em Reunião",
+      "sub": "Cliente não compareceu após 15 minutos de espera",
+      "text": "Olá, [NOME]! Tudo bem?\n\nEstávamos te aguardando na reunião agendada para as [HORA] de hoje, mas não conseguimos fazer o contato.\n\nNossa política é aguardar até 15 minutos — após esse período, precisamos considerar a reunião cancelada para não comprometer a agenda das demais equipes.\n\nFique tranquilo(a)! Estamos disponíveis para reagendar em um horário mais conveniente. É só nos dizer quando funciona melhor. 😊"
+    },
+    {
+      "id": "m12",
+      "cat": "reuniao",
+      "icon": "🔁",
+      "color": "#0f766e",
+      "full": false,
+      "title": "Reagendamento de Reunião",
+      "sub": "Propor novo horário para reunião",
+      "text": "Olá, [NOME]! 😊\n\nGostaríamos de reagendar nossa reunião. Seguem alguns horários disponíveis:\n\n📅 Opção 1: [DATA] às [HORA]\n📅 Opção 2: [DATA] às [HORA]\n📅 Opção 3: [DATA] às [HORA]\n\nQual desses funciona melhor para você? Caso prefira outro horário, é só nos informar!\n\nAguardamos seu retorno. 😊"
+    },
+    {
+      "id": "m13",
+      "cat": "followup",
+      "icon": "📊",
+      "color": "#b45309",
+      "full": false,
+      "title": "Atualização de Status",
+      "sub": "Informar andamento do projeto",
+      "text": "Olá, [NOME]! 👋\n\nAtualização do seu projeto — [DATA]:\n\n✅ Concluído:\n• [ITEM 1]\n• [ITEM 2]\n\n🔄 Em andamento:\n• [ITEM 3]\n\n⏳ Próximos passos:\n• [ITEM 4]\n\nPrazo estimado de conclusão: [PRAZO] 🎯"
+    },
+    {
+      "id": "m14",
+      "cat": "followup",
+      "icon": "⏰",
+      "color": "#b45309",
+      "full": false,
+      "title": "Aguardando Retorno do Cliente",
+      "sub": "Cobrar informação ou aprovação pendente",
+      "text": "Oi, [NOME]! Como vai?\n\nPassando para lembrar que estamos aguardando:\n\n📋 [DESCREVA O QUE ESTÁ AGUARDANDO]\n\nAssim que recebermos, seguimos imediatamente com o projeto!\n\nQualquer dúvida ou dificuldade, pode chamar. 😊"
+    },
+    {
+      "id": "m15",
+      "cat": "followup",
+      "icon": "✅",
+      "color": "#b45309",
+      "full": false,
+      "title": "Aprovação de Etapa",
+      "sub": "Solicitar aprovação de layout ou etapa",
+      "text": "Olá, [NOME]! 🎨\n\nA etapa de [NOME DA ETAPA] está pronta para aprovação!\n\n🔗 Link para visualização: [LINK]\n\nPor favor, revise e nos diga:\n👍 Aprovado — seguimos para a próxima etapa\n✏️ Solicitar ajustes — nos informe o que alterar\n\nAguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅"
+    },
+    {
+      "id": "m16",
+      "cat": "suporte",
+      "icon": "🛠️",
+      "color": "#1e3a5f",
+      "full": false,
+      "title": "Abertura de Chamado de Suporte",
+      "sub": "Confirmação ao receber solicitação de suporte",
+      "text": "Olá, [NOME]! 👋\n\nRecebemos sua solicitação de suporte. ✅\n\n📋 *Protocolo:* #[NÚMERO]\n🔎 *Assunto:* [ASSUNTO]\n⏱️ *Prazo de retorno:* até [PRAZO]\n\nNossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!\n\nAjuda Ecommerce — Suporte Técnico"
+    },
+    {
+      "id": "m17",
+      "cat": "suporte",
+      "icon": "✔️",
+      "color": "#1e3a5f",
+      "full": false,
+      "title": "Resolução de Chamado",
+      "sub": "Informar que o problema foi resolvido",
+      "text": "Olá, [NOME]! 😊\n\nO problema reportado foi resolvido com sucesso! ✅\n\n🔧 *O que foi feito:* [DESCRIÇÃO DA SOLUÇÃO]\n\nPor favor, verifique se está tudo funcionando corretamente e nos informe.\n\nQualquer outra dúvida, estamos à disposição!\nEquipe Ajuda Ecommerce 🚀"
+    },
+    {
+      "id": "m18",
+      "cat": "cobranca",
+      "icon": "💰",
+      "color": "#9f1239",
+      "full": false,
+      "title": "Envio de Proposta",
+      "sub": "Encaminhar proposta comercial",
+      "text": "Olá, [NOME]! 😊\n\nConforme conversamos, segue nossa proposta para o seu projeto:\n\n📎 [LINK OU ANEXO DA PROPOSTA]\n\n📋 *Resumo:*\n• Serviço: [DESCRIÇÃO]\n• Investimento: R$ [VALOR]\n• Prazo de entrega: [PRAZO]\n• Forma de pagamento: [FORMA]\n\nFicamos à disposição para esclarecer qualquer dúvida!\n\nAjuda Ecommerce"
+    },
+    {
+      "id": "m19",
+      "cat": "cobranca",
+      "icon": "🔔",
+      "color": "#9f1239",
+      "full": false,
+      "title": "Lembrete de Pagamento",
+      "sub": "Cobrar pagamento de forma gentil",
+      "text": "Olá, [NOME]! Como vai?\n\nPassando para lembrar que temos um pagamento pendente:\n\n💳 *Referente a:* [SERVIÇO]\n💰 *Valor:* R$ [VALOR]\n📅 *Vencimento:* [DATA]\n\nChave PIX: [CHAVE PIX]\nOu acesse: [LINK DO BOLETO]\n\nEm caso de dúvidas, estamos à disposição! 😊"
+    }
   ],
-  docCats: [
-    {id:'geradores',label:'Geradores',section:'Geradores e Ferramentas'},
-    {id:'modelos',  label:'Modelos',  section:'Modelos e Materiais'},
+  "docCats": [
+    {
+      "id": "geradores",
+      "label": "Geradores",
+      "section": "Geradores e Ferramentas"
+    },
+    {
+      "id": "modelos",
+      "label": "Modelos",
+      "section": "Modelos e Materiais"
+    }
   ],
-  docs: [
-    {id:'d1',cat:'geradores',icon:'📄',color:'#1e3a5f',title:'Documento de Entrega',desc:'Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.',tag:'Gerador dinâmico',btn:'Gerar PDF ↗',state:'gen-pdf'},
-    {id:'d2',cat:'geradores',icon:'💳',color:'#0e7490',title:'Comparativo de Meios de Pagamento',desc:'Tabela comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal.',tag:'PDF Pronto para envio',btn:'📤 Ver e Copiar mensagem',state:'comparativo'},
-    {id:'d3',cat:'modelos',icon:'📋',color:'#6d28d9',title:'Proposta Comercial',desc:'Modelo de proposta padronizado com serviços, valores, cronograma e condições de pagamento.',tag:'Em breve',btn:'Disponível em breve',state:'placeholder'},
-    {id:'d4',cat:'modelos',icon:'✅',color:'#166534',title:'Checklist de Lançamento',desc:'Lista de verificação antes do go-live: domínio, pagamentos, frete, SEO e mais.',tag:'Em breve',btn:'Disponível em breve',state:'placeholder'},
-    {id:'d5',cat:'modelos',icon:'📖',color:'#b45309',title:'Manual do Cliente',desc:'Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.',tag:'Em breve',btn:'Disponível em breve',state:'placeholder'},
-    {id:'d6',cat:'modelos',icon:'📜',color:'#1e40af',title:'Contrato de Prestação de Serviços',desc:'Modelo de contrato com escopo, prazo, valores e cláusulas de suporte e manutenção.',tag:'Em breve',btn:'Disponível em breve',state:'placeholder'},
-    {id:'d7',cat:'modelos',icon:'📊',color:'#0f766e',title:'Relatório Mensal de Resultados',desc:'Template de relatório para apresentar métricas de tráfego, conversão e campanhas ao cliente.',tag:'Em breve',btn:'Disponível em breve',state:'placeholder'},
+  "docs": [
+    {
+      "id": "d1",
+      "cat": "geradores",
+      "icon": "📄",
+      "color": "#1e3a5f",
+      "title": "Documento de Entrega",
+      "desc": "Kit completo de finalização com credenciais, resumo do projeto e contatos de suporte.",
+      "tag": "Gerador dinâmico",
+      "btn": "Gerar PDF ↗",
+      "state": "gen-pdf"
+    },
+    {
+      "id": "d2",
+      "cat": "geradores",
+      "icon": "💳",
+      "color": "#0e7490",
+      "title": "Comparativo de Meios de Pagamento",
+      "desc": "Tabela comparando Mercado Pago, PagSeguro, Pagar.me, Nuvem Pago, AppMax, iPag, Cielo e PayPal.",
+      "tag": "PDF Pronto para envio",
+      "btn": "📤 Ver e Copiar mensagem",
+      "state": "comparativo"
+    },
+    {
+      "id": "d5",
+      "cat": "modelos",
+      "icon": "📖",
+      "color": "#b45309",
+      "title": "Manual do Cliente",
+      "desc": "Guia passo a passo para o cliente gerenciar a loja: produtos, pedidos e configurações.",
+      "tag": "Em breve",
+      "btn": "Disponível em breve",
+      "state": "placeholder"
+    }
   ],
-  pages: [
-    {id:'pg1',icon:'🔄',color:'#1e40af',title:'Trocas e Devoluções',desc:'Políticas de devolução, troca, condições e formas de restituição de valores.',dynamic:'none',html:HTML_TROCAS},
-    {id:'pg2',icon:'🚚',color:'#0e7490',title:'Política de Entrega',desc:'Prazos, tentativas de entrega, responsabilidades e regras operacionais.',dynamic:'none',html:HTML_ENTREGA},
-    {id:'pg3',icon:'🏛️',color:'#166534',title:'Quem Somos',desc:'Apresentação da empresa — substitua o bloco padrão pelo texto da loja.',dynamic:'quem_somos',html:HTML_QUEM_SOMOS},
-    {id:'pg4',icon:'📦',color:'#0f766e',title:'Regras de Frete Grátis',desc:'Condições para frete grátis por região e valor mínimo de pedido.',dynamic:'none',html:HTML_FRETE_GRATIS},
-    {id:'pg5',icon:'🔒',color:'#6d28d9',title:'Política de Privacidade',desc:'LGPD, cookies, direitos do titular e certificados de segurança.',dynamic:'nome_loja',html:HTML_PRIVACIDADE},
-  ],
+  "pages": [
+    {
+      "id": "pg1",
+      "icon": "🔄",
+      "color": "#1e40af",
+      "title": "Trocas e Devoluções",
+      "desc": "Políticas de devolução, troca, condições e formas de restituição de valores.",
+      "dynamic": "none",
+      "html": "<p>Olá! Aqui temos algumas dicas se precisar fazer uma troca ou devolução de um dos nossos produtos.</p>\n\n<h2>Política de Devolução</h2>\n<p>Se você recebeu um produto e não ficou satisfeito ou se arrependeu da compra, é possível fazer a solicitação de devolução para estorno em até 7 (sete) dias corridos. Para isso, o pedido deverá estar em sua embalagem original, sem indícios de uso e com todos os itens e acessórios recebidos. Para solicitar a troca, basta enviar um e-mail ou mensagem no WhatsApp, informando o número do seu pedido e anexar imagens do produto que demonstrem que não houve uso.</p>\n\n<hr>\n<h2>Política de Troca</h2>\n<p>Se você recebeu um produto diferente do comprado em nosso site ou sem algum acessório, entre em contato por meio de nosso e-mail ou WhatsApp. Esta solicitação deverá ser feita no prazo máximo de 7 (sete) dias corridos após o recebimento do produto.</p>\n<p>Para comprovar o erro, solicitamos que sejam enviadas fotos do produto recebido, bem como que seja informado o número do pedido realizado. Iremos analisar as fotografias e, comprovado o erro, iniciaremos o procedimento de troca sem custos adicionais ao cliente.</p>\n\n<hr>\n<h2>Condições de Troca e Devolução</h2>\n<p>Para que a troca ou a devolução seja efetuada, o produto deverá respeitar as seguintes exigências:</p>\n<ul>\n  <li>Não possuir sinais de uso, manchas, sujeira, suor ou deterioração da peça;</li>\n  <li>Preservar a embalagem interna e etiquetas originais aplicadas à peça;</li>\n  <li>Respeitar os seguintes prazos: 7 (sete) dias corridos em casos de erro no pedido ou arrependimento de compra, contados a partir da data de recebimento da mercadoria.</li>\n</ul>\n<p>Para trocar um produto, entre em contato por meio de nosso e-mail ou WhatsApp, anexando as devidas evidências e iremos retornar com as instruções de troca.</p>\n\n<hr>\n<h2>Formas de Restituição de Valores</h2>\n<p><strong>Estorno — cartão de crédito:</strong><br>Após o recebimento do produto em nosso Centro de Distribuição e aprovação da devolução, a loja envia a solicitação de estorno para a administradora do cartão em até 7 (sete) dias úteis. O prazo para o valor ser devolvido pode variar de um a dois meses, dependendo da data de vencimento da sua fatura.</p>\n<p><strong>Estorno — PIX:</strong><br>Após o recebimento e aprovação da devolução, a loja realizará o estorno do valor em até 7 (sete) dias para a conta do intermediador de pagamento, e você poderá solicitar o saque do mesmo.</p>\n<p><strong>Estorno — boleto:</strong><br>Após o recebimento e aprovação da devolução, a loja realizará o estorno do valor em até 7 (sete) dias para a conta do intermediador de pagamento, e você poderá solicitar o saque do mesmo.</p>"
+    },
+    {
+      "id": "pg2",
+      "icon": "🚚",
+      "color": "#0e7490",
+      "title": "Política de Entrega",
+      "desc": "Prazos, tentativas de entrega, responsabilidades e regras operacionais.",
+      "dynamic": "none",
+      "html": "<p>Entenda todas as nossas políticas para você receber os produtos que pediu:</p>\n<ul>\n  <li>A preparação dos pedidos e entregas são realizadas de segunda-feira a sexta-feira, das 9h às 18h.</li>\n  <li>O prazo de entrega é contado a partir da confirmação do pagamento em dias úteis, ou seja, não inclui sábados, domingos e feriados.</li>\n  <li>Algumas entregas podem ocorrer aos sábados, domingos e feriados.</li>\n  <li>Após a confirmação do pagamento, o prazo para emissão da Nota Fiscal é de até 2 dias úteis.</li>\n  <li>No caso de envio via correios serão feitas até 3 tentativas de entrega no endereço indicado; no caso de transportadora será feita 1 tentativa. As demais tentativas serão cobradas, assim como o armazenamento no galpão da transportadora. É de responsabilidade do cliente acompanhar o produto pelo código rastreador enviado por e-mail.</li>\n  <li>É indispensável que no endereço solicitado haja você ou outra pessoa autorizada pelo comprador, maior de 18 anos, com documento de identificação, para receber a mercadoria em horário comercial.</li>\n  <li>Após a finalização do pedido não é possível alterar a forma de entrega, solicitar adiantamento ou prioridade. Qualquer problema, envie o mais rápido possível uma mensagem no WhatsApp para vermos se ainda há tempo de solucionar.</li>\n</ul>"
+    },
+    {
+      "id": "pg3",
+      "icon": "🏛️",
+      "color": "#166534",
+      "title": "Quem Somos",
+      "desc": "Apresentação da empresa — substitua o bloco padrão pelo texto da loja.",
+      "dynamic": "quem_somos",
+      "html": "<p>Seja bem-vindo à nossa loja! 💙</p>\n[[QUEM_SOMOS_BLOCK]]"
+    },
+    {
+      "id": "pg4",
+      "icon": "📦",
+      "color": "#0f766e",
+      "title": "Regras de Frete Grátis",
+      "desc": "Condições para frete grátis por região e valor mínimo de pedido.",
+      "dynamic": "none",
+      "html": "<p>Na página de carrinho da nossa loja virtual, você pode inserir o seu CEP para descobrir se você tem direito ao benefício do frete grátis.</p>\n<ul>\n  <li><strong>Para todo o Brasil:</strong> frete grátis para pedidos acima de R$ 400,00</li>\n  <li><strong>Estado de Santa Catarina:</strong> frete grátis para pedidos acima de R$ 200,00</li>\n</ul>"
+    },
+    {
+      "id": "pg5",
+      "icon": "🔒",
+      "color": "#6d28d9",
+      "title": "Política de Privacidade",
+      "desc": "LGPD, cookies, direitos do titular e certificados de segurança.",
+      "dynamic": "nome_loja",
+      "html": "<p>A Loja <strong>[[NOME_LOJA]]</strong> se compromete com a segurança de seus dados e mantém suas informações no mais absoluto sigilo!</p>\n<p>Priorizamos a privacidade e a segurança de nossos clientes durante todo o processo de navegação e compra pelo site. Todos os dados cadastrados (nome, endereço, CPF) nunca serão comercializados ou trocados. Alguns dados, necessários para que empresas de logística e meios de pagamento possam realizar a cobrança e envio de seu pedido, serão divulgados para terceiros quando tais informações forem necessárias para o processo de entrega e cobrança.</p>\n<p>Utilizamos cookies e informações de sua navegação com o objetivo de traçar um perfil do público que visita o site e, assim, aperfeiçoar nossos serviços, produtos e conteúdos, em conformidade com a Lei Geral de Proteção de Dados.</p>\n\n<h2>O que é a LGPD?</h2>\n<p>A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) regulamenta o tratamento de dados pessoais de clientes e usuários por parte de empresas públicas e privadas.</p>\n\n<h2>O que são dados pessoais?</h2>\n<p>Dados pessoais são quaisquer informações capazes de identificar você e/ou qualquer pessoa física — nome, CPF, RG, e-mail, telefone, entre outros.</p>\n\n<h2>O que são cookies?</h2>\n<p>São pequenos arquivos de texto enviados para seu navegador, contendo registros sobre seu comportamento ao acessar um site. Utilizamos cookies, pixels e outras tecnologias para reconhecer seu navegador ou dispositivo, aprender mais sobre seus interesses, apresentar serviços essenciais e melhorar sua experiência de navegação.</p>\n<p><strong>Cookies de Sessão:</strong> temporários, perdem a validade quando você fecha o navegador.</p>\n<p><strong>Cookies Persistentes:</strong> permanecem no seu dispositivo e nos permitem analisar o comportamento do usuário e oferecer anúncios segmentados.</p>\n\n<h2>Como usamos seus dados?</h2>\n<p>Quando você realiza um cadastro ou pedido em nosso site, os dados pessoais solicitados serão mantidos em sigilo e utilizados apenas para o propósito que motivou o cadastro, não sendo divulgados a terceiros, salvo no cumprimento de ordens judiciais ou emitidas por autoridades públicas.</p>\n\n<h2>Por quanto tempo usamos seus dados?</h2>\n<p>Os dados são armazenados apenas pelo tempo necessário para cumprir as finalidades para as quais foram coletados, salvo obrigações legais, regulatórias ou contratuais.</p>\n\n<h2>Quais são seus direitos?</h2>\n<p>Você pode solicitar à <strong>[[NOME_LOJA]]</strong>:</p>\n<ul>\n  <li>Confirmação da existência de tratamento e acesso aos seus dados;</li>\n  <li>Correção de dados incompletos, inexatos ou desatualizados;</li>\n  <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>\n  <li>Portabilidade dos dados a outro fornecedor, conforme regulamentação da Autoridade Nacional;</li>\n  <li>Informação sobre compartilhamento de dados com entidades públicas e privadas;</li>\n  <li>Revogação do consentimento em relação às atividades de tratamento que o requerem.</li>\n</ul>\n<p>Para qualquer um dos pedidos acima, entre em contato conosco pelos canais disponíveis.</p>\n\n<h2>Certificados de segurança</h2>\n<p><strong>CERTIFICADO SSL:</strong> Toda a navegação realizada em nosso site, bem como as transações de pagamento, estão criptografadas com tecnologia SSL. Verifique o cadeado e o prefixo HTTPS no seu navegador.</p>"
+    }
+  ]
 };
 /*__DATA_END__*/
 
@@ -1961,10 +2443,10 @@ function generatePDF() {
   showToast('Documento de entrega gerado!');
 }
 </script>
-</body>
-</html>
 
-</script>
+
+
+
 </div><!-- #main -->
-</body>
-</html>  
+
+  </body></html>

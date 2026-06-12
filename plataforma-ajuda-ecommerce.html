@@ -441,7 +441,7 @@
     /* ── MODAL ── */
     .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:1000; align-items:center; justify-content:center; padding:16px; }
     .modal-overlay.show { display:flex; }
-    #modal-cat.show,#modal-msg.show,#modal-doc.show,#modal-page-editor.show { z-index:1100; }
+    #modal-cat.show,#modal-msg.show,#modal-doc.show,#modal-page-editor.show,#modal-link.show,#modal-link-detail.show { z-index:1100; }
     .modal-box {
       background:var(--surface); border:1px solid var(--border-2); border-radius:5px;
       max-width:500px; width:100%; max-height:92vh; overflow-y:auto;
@@ -538,7 +538,67 @@
     .home-card h3 { font-size:14.5px !important; }
     .home-card p  { font-size:13px !important; color:#6b7280 !important; }
 
-    /* tab row more presence */
+    /* ── LINKS PAGE ── */
+    .links-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+    .link-card {
+      background:var(--surface); border:1px solid var(--border); border-radius:10px;
+      padding:18px 18px 14px; display:flex; flex-direction:column; gap:10px;
+      transition:box-shadow .15s, border-color .15s;
+    }
+    .link-card:hover { box-shadow:0 3px 12px rgba(0,0,0,.08); border-color:var(--border-2); }
+    /* Fixed-height content area so all cards have same top/bottom */
+    .link-card-top { display:flex; align-items:flex-start; gap:12px; }
+    .link-card-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+    .link-card-meta { flex:1; min-width:0; }
+    .link-card-meta h4 { font-size:14px; font-weight:700; color:var(--text); }
+    .link-card-meta .link-url {
+      font-size:12px; color:var(--text-3); margin-top:2px;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      display:block; max-width:100%;
+    }
+    .link-desc-wrap {
+      height:58px; /* 2 lines desc + Ver mais line — fixed, never varies */
+      display:flex; flex-direction:column; justify-content:space-between;
+      overflow:hidden;
+    }
+    .link-card-meta .link-desc {
+      font-size:12.5px; color:var(--text-2); line-height:1.5;
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+      overflow:hidden; word-break:break-word;
+    }
+    .link-card-meta .link-desc.empty {
+      min-height:38px; /* holds space when no description */
+    }
+    .link-seemore {
+      background:none; border:none; padding:0; cursor:pointer;
+      font-size:11.5px; font-weight:600; color:var(--accent);
+      text-align:left;
+    }
+    .link-seemore:hover { text-decoration:underline; }
+
+    .link-card-actions { display:flex; gap:7px; flex-wrap:wrap; margin-top:auto; }
+    .link-card-admin { display:none; gap:6px; flex-wrap:wrap; padding-top:8px; border-top:1px solid var(--border); }
+    body.admin-mode .link-card-admin { display:flex; }
+    .btn-link-copy {
+      flex:1; padding:7px 12px; border:1px solid var(--border-2); border-radius:6px;
+      font-size:12.5px; font-weight:600; color:var(--text-2); background:var(--surface);
+      cursor:pointer; transition:all .13s; text-align:center;
+    }
+    .btn-link-copy:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
+    .btn-link-copy.share { background:var(--accent-bg); border-color:var(--accent-bdr); color:var(--accent); }
+    .btn-link-copy.share:hover { background:var(--accent); color:#fff; }
+    .btn-link-copy.copied { border-color:#166534; color:#166534; background:#f0fdf4; }
+
+    /* Link detail popup */
+    #modal-link-detail .modal-box { max-width:440px; }
+    .link-detail-section { display:flex; flex-direction:column; gap:6px; }
+    .link-detail-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--text-3); }
+    .link-detail-value { font-size:13.5px; color:var(--text); line-height:1.6; word-break:break-word; }
+    .link-detail-msg {
+      background:var(--surface-2); border:1px solid var(--border);
+      border-radius:6px; padding:12px 14px; font-size:13px; color:var(--text-2);
+      line-height:1.65; white-space:pre-wrap; word-break:break-word;
+    }
     .tab-row { padding-bottom:0; border-color:#e4e7ec; }
 
     /* admin toolbar spacing */
@@ -567,7 +627,7 @@
 
     <!-- CopyPastes group -->
     <div class="sb-grp" id="grpCP">
-      <button class="sb-grp-btn grp-open" id="grpCPBtn" onclick="toggleGrp('grpCP',event)">
+      <button class="sb-grp-btn" id="grpCPBtn" onclick="toggleGrp('grpCP',event)">
         <span class="lbl">CopyPastes</span>
         <span class="grp-arr">▶</span>
       </button>
@@ -577,7 +637,7 @@
         <button class="sb-flyout-item" id="fly-pages" onclick="showSubPage('pages')">Páginas Institucionais</button>
       </div>
       <!-- sub items for expanded mode -->
-      <div class="sb-sub" id="subCP" style="display: block;">
+      <div class="sb-sub" id="subCP" style="display:none;">
         <button class="sb-sub-item" id="sub-msgs" onclick="showSubPage('msgs')">
           <span class="lbl">Mensagens Padrão</span>
         </button>
@@ -589,6 +649,9 @@
 
     <div class="sb-section" style="margin-top:4px;">Recursos</div>
 
+    <button class="sb-item" id="nav-links" onclick="showPage('links',this)">
+      <span class="lbl">Links Úteis</span>
+    </button>
     <button class="sb-item active" id="nav-docs" onclick="showPage('docs',this)">
       <span class="lbl">PDFs e Documentos</span>
     </button>
@@ -682,7 +745,7 @@
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">Copiar mensagens de WhatsApp e e-mail</div>
           </button>
 
-          <button onclick="showSubPage('pages')" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#65a30d';this.style.boxShadow='0 4px 16px rgba(101,163,13,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showSubPage('pages')" style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;" onmouseover="this.style.borderColor='#65a30d';this.style.boxShadow='0 4px 16px rgba(101,163,13,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#f3fae0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#65a30d" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
             </div>
@@ -690,7 +753,7 @@
             <div style="font-size:12px;color:#6b7280;line-height:1.4;">HTML pronto para colar na plataforma</div>
           </button>
 
-          <button onclick="showPage('docs',document.getElementById('nav-docs'))" style="background: rgb(255, 255, 255); border-color: var(--border); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 10px; padding: 18px 18px 16px; text-align: left; cursor: pointer; transition: 0.15s; display: flex; flex-direction: column; gap: 6px; box-shadow: none;" onmouseover="this.style.borderColor='#0891b2';this.style.boxShadow='0 4px 16px rgba(8,145,178,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+          <button onclick="showPage('docs',document.getElementById('nav-docs'))" style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;text-align:left;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:6px;" onmouseover="this.style.borderColor='#0891b2';this.style.boxShadow='0 4px 16px rgba(8,145,178,.1)'" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
             <div style="width:34px;height:34px;background:#ecfeff;border-radius:8px;display:flex;align-items:center;justify-content:center;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             </div>
@@ -1066,7 +1129,7 @@ Passando para lembrar que temos um pagamento pendente:
 Chave PIX: [CHAVE PIX]
 Ou acesse: [LINK DO BOLETO]
 
-Em caso de dúvidas, estamos à disposição! 😊</div><div class="msg-card-ft"><button style="background: rgb(159, 18, 57); color: rgb(0, 0, 0); border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 6px; padding: 7px 18px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; opacity: 1;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m19',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m19')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m19',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m19',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m19')">Excluir</button></div></div></div></div>
+Em caso de dúvidas, estamos à disposição! 😊</div><div class="msg-card-ft"><button style="background:#9f1239;color:#000;border:none;border-radius:6px;padding:7px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" onclick="copyMsgById('m19',this)">Copiar</button></div><div class="card-admin-row"><button class="mini-btn" onclick="openMsgModal('m19')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveMsg('m19',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveMsg('m19',1)">↓</button></span><button class="mini-btn danger" onclick="deleteMsg('m19')">Excluir</button></div></div></div></div>
   </div>
   </div>
 
@@ -1101,6 +1164,28 @@ Em caso de dúvidas, estamos à disposição! 😊</div><div class="msg-card-ft"
     </div>
 
     <div class="cp-cards-grid" id="cpCardsGrid"><div class="cp-card" style="border-top:2px solid #1e40af;"><h4>Trocas e Devoluções</h4><p>Políticas de devolução, troca, condições e formas de restituição de valores.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg1',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg1')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="movePage('pg1',-1)">↑</button><button class="mini-btn" onclick="movePage('pg1',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg1')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #0e7490;"><h4>Política de Entrega</h4><p>Prazos, tentativas de entrega, responsabilidades e regras operacionais.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg2',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg2')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg2',-1)">↑</button><button class="mini-btn" onclick="movePage('pg2',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg2')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #166534;"><h4>Quem Somos</h4><p>Apresentação da empresa — substitua o bloco padrão pelo texto da loja.</p><span class="cp-badge dyn">Personalizável</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg3',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg3')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg3',-1)">↑</button><button class="mini-btn" onclick="movePage('pg3',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg3')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #0f766e;"><h4>Regras de Frete Grátis</h4><p>Condições para frete grátis por região e valor mínimo de pedido.</p><span class="cp-badge fix">HTML fixo</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg4',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg4')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg4',-1)">↑</button><button class="mini-btn" onclick="movePage('pg4',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg4')">Excluir</button></div></div><div class="cp-card" style="border-top:2px solid #6d28d9;"><h4>Política de Privacidade</h4><p>LGPD, cookies, direitos do titular e certificados de segurança.</p><span class="cp-badge dyn">Personalizável</span><div class="cp-card-act"><button class="btn-copy" onclick="copyPageHtml('pg5',this)">Copiar HTML</button></div><div class="cp-card-adm"><button class="mini-btn" onclick="openPageEditor('pg5')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="movePage('pg5',-1)">↑</button><button class="mini-btn" disabled="" onclick="movePage('pg5',1)">↓</button></span><button class="mini-btn danger" onclick="deletePage('pg5')">Excluir</button></div></div></div>
+  </div>
+  </div>
+
+  <!-- ══ LINKS ÚTEIS ══ -->
+  <div class="page" id="page-links">
+  <div class="page-wrap-wide">
+    <div class="page-hd">
+      <h1 class="only-user">Links Úteis</h1>
+      <h1 class="only-admin">Links Úteis — Configuração</h1>
+      <p class="only-user">Acesse e compartilhe os links mais usados pela equipe</p>
+      <p class="only-admin">Adicione, edite e reorganize os links</p>
+    </div>
+    <div class="only-user">
+      <div class="search-box">
+        <span class="search-icon-mask"></span>
+        <input type="text" id="linkSearch" placeholder="Buscar link…" oninput="filterLinks(this.value)">
+      </div>
+    </div>
+    <div class="admin-toolbar">
+      <button class="tool-btn t-primary" onclick="openLinkModal()">+ Novo link</button>
+    </div>
+    <div class="links-grid" id="linksGrid"><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#1e40af;margin-top:4px;"></div><div class="link-card-meta"><h4>Google Ads</h4><span class="link-url">https://ads.google.com</span><div class="link-desc-wrap"><span class="link-desc">Painel de campanhas pagas do Google</span><button class="link-seemore" onclick="openLinkDetail('lk1')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk1',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk1',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk1')">Editar</button><span class="reorder-grp"><button class="mini-btn" disabled="" onclick="moveLink('lk1',-1)">↑</button><button class="mini-btn" onclick="moveLink('lk1',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk1')">Excluir</button></div></div><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#0e7490;margin-top:4px;"></div><div class="link-card-meta"><h4>Google Analytics</h4><span class="link-url">https://analytics.google.com</span><div class="link-desc-wrap"><span class="link-desc">Relatórios de tráfego e conversão</span><button class="link-seemore" onclick="openLinkDetail('lk2')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk2',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk2',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk2')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveLink('lk2',-1)">↑</button><button class="mini-btn" onclick="moveLink('lk2',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk2')">Excluir</button></div></div><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#166534;margin-top:4px;"></div><div class="link-card-meta"><h4>Google Search Console</h4><span class="link-url">https://search.google.com/search-console</span><div class="link-desc-wrap"><span class="link-desc">Desempenho orgânico e indexação</span><button class="link-seemore" onclick="openLinkDetail('lk3')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk3',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk3',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk3')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveLink('lk3',-1)">↑</button><button class="mini-btn" onclick="moveLink('lk3',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk3')">Excluir</button></div></div><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#b45309;margin-top:4px;"></div><div class="link-card-meta"><h4>Google Tag Manager</h4><span class="link-url">https://tagmanager.google.com</span><div class="link-desc-wrap"><span class="link-desc">Gerenciamento de tags e pixels</span><button class="link-seemore" onclick="openLinkDetail('lk4')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk4',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk4',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk4')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveLink('lk4',-1)">↑</button><button class="mini-btn" onclick="moveLink('lk4',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk4')">Excluir</button></div></div><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#1e3a5f;margin-top:4px;"></div><div class="link-card-meta"><h4>Meta Business Suite</h4><span class="link-url">https://business.facebook.com</span><div class="link-desc-wrap"><span class="link-desc">Gerenciador de negócios do Facebook/Instagram</span><button class="link-seemore" onclick="openLinkDetail('lk5')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk5',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk5',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk5')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveLink('lk5',-1)">↑</button><button class="mini-btn" onclick="moveLink('lk5',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk5')">Excluir</button></div></div><div class="link-card"><div class="link-card-top"><div class="link-card-dot" style="background:#9f1239;margin-top:4px;"></div><div class="link-card-meta"><h4>Nuvemshop Admin</h4><span class="link-url">https://www.nuvemshop.com.br/admin</span><div class="link-desc-wrap"><span class="link-desc">Painel administrativo da plataforma</span><button class="link-seemore" onclick="openLinkDetail('lk6')">Ver mais</button></div></div></div><div class="link-card-actions"><button class="btn-link-copy" onclick="copyLinkUrl('lk6',this)">Copiar link</button><button class="btn-link-copy share" onclick="copyLinkShare('lk6',this)">Copiar para compartilhar</button></div><div class="link-card-admin"><button class="mini-btn" onclick="openLinkModal('lk6')">Editar</button><span class="reorder-grp"><button class="mini-btn" onclick="moveLink('lk6',-1)">↑</button><button class="mini-btn" disabled="" onclick="moveLink('lk6',1)">↓</button></span><button class="mini-btn danger" onclick="deleteLink('lk6')">Excluir</button></div></div></div>
   </div>
   </div>
 
@@ -1202,6 +1287,61 @@ Em caso de dúvidas, estamos à disposição! 😊</div><div class="msg-card-ft"
         <div class="field-group"><label>HTML do template</label><textarea id="pe_html" rows="14" style="font-family:monospace;font-size:12px;"></textarea></div>
       </div>
       <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('modal-page-editor')">Cancelar</button><button class="btn btn-primary" onclick="savePage()">Salvar</button></div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL: Editor de Link ══ -->
+  <div class="modal-overlay" id="modal-link">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><h3 id="linkModalTitle">Novo link</h3></div>
+        <button class="modal-x" onclick="closeModal('modal-link')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="field-group"><label>Nome do link</label><input type="text" id="lk_name" placeholder="Ex: Zoho Mail"></div>
+        <div class="field-group"><label>URL</label><input type="url" id="lk_url" placeholder="https://..."></div>
+        <div class="field-group"><label>Descrição <span class="opt">opcional</span></label><input type="text" id="lk_desc" placeholder="Ex: Acesso ao e-mail profissional da conta"></div>
+        <div class="field-group">
+          <label>Mensagem de compartilhamento <span class="opt">opcional</span></label>
+          <textarea id="lk_msg" rows="3" placeholder="Deixe vazio para usar o padrão: 
+
+Esse é o link para [Nome]: [URL]"></textarea>
+          <span class="f-hint">Variáveis disponíveis: [[NOME]] e [[URL]]</span>
+        </div>
+        <div class="field-group"><label>Cor do marcador</label><div class="color-row" id="lk_colorPick"></div></div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" onclick="closeModal('modal-link')">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveLink()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL: Link Detail ══ -->
+  <div class="modal-overlay" id="modal-link-detail">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div><h3 id="ldTitle">Detalhes do link</h3></div>
+        <button class="modal-x" onclick="closeModal('modal-link-detail')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="link-detail-section">
+          <span class="link-detail-label">URL</span>
+          <span class="link-detail-value" id="ldUrl"></span>
+        </div>
+        <div class="link-detail-section" id="ldDescSection">
+          <span class="link-detail-label">Descrição</span>
+          <span class="link-detail-value" id="ldDesc"></span>
+        </div>
+        <div class="link-detail-section">
+          <span class="link-detail-label">Mensagem de compartilhamento</span>
+          <div class="link-detail-msg" id="ldMsg"></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" style="flex:1;" onclick="copyFromDetail('ldUrl',this)">Copiar link</button>
+          <button class="btn btn-primary" style="flex:1;" onclick="copyFromDetail('ldMsg',this)">Copiar mensagem</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1631,16 +1771,66 @@ const DEFAULT_DATA = {
       "dynamic": "nome_loja",
       "html": "<p>A Loja <strong>[[NOME_LOJA]]</strong> se compromete com a segurança de seus dados e mantém suas informações no mais absoluto sigilo!</p>\n<p>Priorizamos a privacidade e a segurança de nossos clientes durante todo o processo de navegação e compra pelo site. Todos os dados cadastrados (nome, endereço, CPF) nunca serão comercializados ou trocados. Alguns dados, necessários para que empresas de logística e meios de pagamento possam realizar a cobrança e envio de seu pedido, serão divulgados para terceiros quando tais informações forem necessárias para o processo de entrega e cobrança.</p>\n<p>Utilizamos cookies e informações de sua navegação com o objetivo de traçar um perfil do público que visita o site e, assim, aperfeiçoar nossos serviços, produtos e conteúdos, em conformidade com a Lei Geral de Proteção de Dados.</p>\n\n<h2>O que é a LGPD?</h2>\n<p>A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) regulamenta o tratamento de dados pessoais de clientes e usuários por parte de empresas públicas e privadas.</p>\n\n<h2>O que são dados pessoais?</h2>\n<p>Dados pessoais são quaisquer informações capazes de identificar você e/ou qualquer pessoa física — nome, CPF, RG, e-mail, telefone, entre outros.</p>\n\n<h2>O que são cookies?</h2>\n<p>São pequenos arquivos de texto enviados para seu navegador, contendo registros sobre seu comportamento ao acessar um site. Utilizamos cookies, pixels e outras tecnologias para reconhecer seu navegador ou dispositivo, aprender mais sobre seus interesses, apresentar serviços essenciais e melhorar sua experiência de navegação.</p>\n<p><strong>Cookies de Sessão:</strong> temporários, perdem a validade quando você fecha o navegador.</p>\n<p><strong>Cookies Persistentes:</strong> permanecem no seu dispositivo e nos permitem analisar o comportamento do usuário e oferecer anúncios segmentados.</p>\n\n<h2>Como usamos seus dados?</h2>\n<p>Quando você realiza um cadastro ou pedido em nosso site, os dados pessoais solicitados serão mantidos em sigilo e utilizados apenas para o propósito que motivou o cadastro, não sendo divulgados a terceiros, salvo no cumprimento de ordens judiciais ou emitidas por autoridades públicas.</p>\n\n<h2>Por quanto tempo usamos seus dados?</h2>\n<p>Os dados são armazenados apenas pelo tempo necessário para cumprir as finalidades para as quais foram coletados, salvo obrigações legais, regulatórias ou contratuais.</p>\n\n<h2>Quais são seus direitos?</h2>\n<p>Você pode solicitar à <strong>[[NOME_LOJA]]</strong>:</p>\n<ul>\n  <li>Confirmação da existência de tratamento e acesso aos seus dados;</li>\n  <li>Correção de dados incompletos, inexatos ou desatualizados;</li>\n  <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>\n  <li>Portabilidade dos dados a outro fornecedor, conforme regulamentação da Autoridade Nacional;</li>\n  <li>Informação sobre compartilhamento de dados com entidades públicas e privadas;</li>\n  <li>Revogação do consentimento em relação às atividades de tratamento que o requerem.</li>\n</ul>\n<p>Para qualquer um dos pedidos acima, entre em contato conosco pelos canais disponíveis.</p>\n\n<h2>Certificados de segurança</h2>\n<p><strong>CERTIFICADO SSL:</strong> Toda a navegação realizada em nosso site, bem como as transações de pagamento, estão criptografadas com tecnologia SSL. Verifique o cadeado e o prefixo HTTPS no seu navegador.</p>"
     }
+  ],
+  "links": [
+    {
+      "id": "lk1",
+      "color": "#1e40af",
+      "name": "Google Ads",
+      "url": "https://ads.google.com",
+      "desc": "Painel de campanhas pagas do Google",
+      "msg": ""
+    },
+    {
+      "id": "lk2",
+      "color": "#0e7490",
+      "name": "Google Analytics",
+      "url": "https://analytics.google.com",
+      "desc": "Relatórios de tráfego e conversão",
+      "msg": ""
+    },
+    {
+      "id": "lk3",
+      "color": "#166534",
+      "name": "Google Search Console",
+      "url": "https://search.google.com/search-console",
+      "desc": "Desempenho orgânico e indexação",
+      "msg": ""
+    },
+    {
+      "id": "lk4",
+      "color": "#b45309",
+      "name": "Google Tag Manager",
+      "url": "https://tagmanager.google.com",
+      "desc": "Gerenciamento de tags e pixels",
+      "msg": ""
+    },
+    {
+      "id": "lk5",
+      "color": "#1e3a5f",
+      "name": "Meta Business Suite",
+      "url": "https://business.facebook.com",
+      "desc": "Gerenciador de negócios do Facebook/Instagram",
+      "msg": ""
+    },
+    {
+      "id": "lk6",
+      "color": "#9f1239",
+      "name": "Nuvemshop Admin",
+      "url": "https://www.nuvemshop.com.br/admin",
+      "desc": "Painel administrativo da plataforma",
+      "msg": ""
+    }
   ]
 };
 /*__DATA_END__*/
 
 /* ── STATE ── */
-const STORE_KEY='ajuda_central_v3';
+const STORE_KEY='ajuda_central_v4';
 let DATA=null, adminMode=false;
 
 function loadData(){
-  try{const s=localStorage.getItem(STORE_KEY);if(s){DATA=JSON.parse(s);if(!DATA.pages)DATA.pages=JSON.parse(JSON.stringify(DEFAULT_DATA.pages));rebuildPageHtml(true);return;}}catch(e){}
+  try{const s=localStorage.getItem(STORE_KEY);if(s){DATA=JSON.parse(s);if(!DATA.pages)DATA.pages=JSON.parse(JSON.stringify(DEFAULT_DATA.pages));if(!DATA.links)DATA.links=JSON.parse(JSON.stringify(DEFAULT_DATA.links));rebuildPageHtml(true);return;}}catch(e){}
   DATA=JSON.parse(JSON.stringify(DEFAULT_DATA));rebuildPageHtml(true);
 }
 
@@ -1691,7 +1881,7 @@ document.addEventListener('click',e=>{
 });
 
 /* ── NAV ── */
-const PAGE_LABELS={'home':'Início','pdf':'Documento de Entrega','msgs':'Mensagens Padrão','pages':'Páginas Institucionais','docs':'PDFs e Documentos'};
+const PAGE_LABELS={'home':'Início','pdf':'Documento de Entrega','msgs':'Mensagens Padrão','pages':'Páginas Institucionais','links':'Links Úteis','docs':'PDFs e Documentos'};
 
 function setBC(label){
   document.getElementById('topbarBC').innerHTML='<span>ajuda ecommerce</span><span class="bc-sep">/</span><span class="bc-cur">'+label+'</span>';
@@ -1735,7 +1925,7 @@ function toggleAdmin(){
   adminMode=!adminMode;
   document.body.classList.toggle('admin-mode',adminMode);
   updateAdminIco();
-  renderMsgs();renderDocs();renderPages();
+  renderMsgs();renderDocs();renderPages();renderLinks();
   showToast(adminMode?'Modo admin ativado':'Modo usuário ativado');
 }
 
@@ -1899,6 +2089,131 @@ function updateStats(){
   document.getElementById('stat-pages').textContent=DATA.pages.length;
 }
 
+/* ── RENDER LINKS ── */
+function renderLinks(){
+  const grid=document.getElementById('linksGrid');
+  if(!grid) return;
+  if(!DATA.links||DATA.links.length===0){
+    grid.innerHTML='<div class="empty-state">Nenhum link cadastrado ainda.</div>';
+    return;
+  }
+  const q=(document.getElementById('linkSearch')||{value:''}).value.toLowerCase();
+  const filtered=DATA.links.filter(lk=>
+    !q||lk.name.toLowerCase().includes(q)||lk.url.toLowerCase().includes(q)||(lk.desc||'').toLowerCase().includes(q)
+  );
+  if(filtered.length===0){grid.innerHTML='<div class="empty-state">Nenhum link encontrado.</div>';return;}
+  grid.innerHTML=filtered.map((lk)=>{
+    const col=lk.color||'#1e40af';
+    const realIdx=DATA.links.indexOf(lk);
+    let h='<div class="link-card">';
+    // Top: dot + meta
+    h+='<div class="link-card-top">';
+    h+='<div class="link-card-dot" style="background:'+col+';margin-top:4px;"></div>';
+    h+='<div class="link-card-meta">';
+    h+='<h4>'+esc(lk.name)+'</h4>';
+    h+='<span class="link-url">'+esc(lk.url)+'</span>';
+    // Fixed-height desc area
+    h+='<div class="link-desc-wrap">';
+    if(lk.desc){
+      h+='<span class="link-desc">'+esc(lk.desc)+'</span>';
+    } else {
+      h+='<span class="link-desc empty"></span>';
+    }
+    h+='<button class="link-seemore" onclick="openLinkDetail(\''+lk.id+'\')">Ver mais</button>';
+    h+='</div>';
+    h+='</div></div>';
+    // Actions — always at same vertical position
+    h+='<div class="link-card-actions">';
+    h+='<button class="btn-link-copy" onclick="copyLinkUrl(\''+lk.id+'\',this)">Copiar link</button>';
+    h+='<button class="btn-link-copy share" onclick="copyLinkShare(\''+lk.id+'\',this)">Copiar para compartilhar</button>';
+    h+='</div>';
+    // Admin row
+    h+='<div class="link-card-admin">';
+    h+='<button class="mini-btn" onclick="openLinkModal(\''+lk.id+'\')">Editar</button>';
+    h+='<span class="reorder-grp">';
+    h+='<button class="mini-btn" '+(realIdx===0?'disabled':'')+' onclick="moveLink(\''+lk.id+'\',-1)">↑</button>';
+    h+='<button class="mini-btn" '+(realIdx===DATA.links.length-1?'disabled':'')+' onclick="moveLink(\''+lk.id+'\',1)">↓</button>';
+    h+='</span>';
+    h+='<button class="mini-btn danger" onclick="deleteLink(\''+lk.id+'\')">Excluir</button>';
+    h+='</div>';
+    h+='</div>';
+    return h;
+  }).join('');
+}
+
+function filterLinks(){ renderLinks(); }
+
+function openLinkDetail(id){
+  const lk=DATA.links.find(x=>x.id===id); if(!lk) return;
+  document.getElementById('ldTitle').textContent=lk.name;
+  document.getElementById('ldUrl').textContent=lk.url;
+  const descSec=document.getElementById('ldDescSection');
+  if(lk.desc){ document.getElementById('ldDesc').textContent=lk.desc; descSec.style.display=''; }
+  else descSec.style.display='none';
+  const shareMsg=lk.msg&&lk.msg.trim()
+    ? lk.msg.replace(/\[\[NOME\]\]/g,lk.name).replace(/\[\[URL\]\]/g,lk.url)
+    : 'Esse é o link para '+lk.name+':\n\n'+lk.url;
+  document.getElementById('ldMsg').textContent=shareMsg;
+  openModal('modal-link-detail');
+}
+
+function copyFromDetail(elId,btn){
+  copyText(document.getElementById(elId).textContent,btn,btn.textContent);
+}
+
+function copyLinkUrl(id,btn){
+  const lk=DATA.links.find(x=>x.id===id);if(!lk)return;
+  copyText(lk.url,btn,'Copiar link');
+}
+function copyLinkShare(id,btn){
+  const lk=DATA.links.find(x=>x.id===id);if(!lk)return;
+  let msg=lk.msg&&lk.msg.trim()
+    ? lk.msg.replace(/\[\[NOME\]\]/g,lk.name).replace(/\[\[URL\]\]/g,lk.url)
+    : 'Esse é o link para '+lk.name+':\n\n'+lk.url;
+  copyText(msg,btn,'Copiar para compartilhar');
+}
+function moveLink(id,dir){
+  const i=DATA.links.findIndex(x=>x.id===id),t=i+dir;
+  if(t<0||t>=DATA.links.length)return;
+  [DATA.links[i],DATA.links[t]]=[DATA.links[t],DATA.links[i]];
+  saveData();renderLinks();
+}
+function deleteLink(id){
+  const lk=DATA.links.find(x=>x.id===id);if(!lk||!confirm('Excluir "'+lk.name+'"?'))return;
+  DATA.links=DATA.links.filter(x=>x.id!==id);saveData();renderLinks();showToast('Link excluído');
+}
+
+let editingLinkId=null;
+function openLinkModal(id){
+  editingLinkId=id||null;
+  buildColorPicker('lk_colorPick','link');
+  if(id){
+    const lk=DATA.links.find(x=>x.id===id);
+    document.getElementById('linkModalTitle').textContent='Editar link';
+    document.getElementById('lk_name').value=lk.name;
+    document.getElementById('lk_url').value=lk.url;
+    document.getElementById('lk_desc').value=lk.desc||'';
+    document.getElementById('lk_msg').value=lk.msg||'';
+    pickedColor.link=lk.color||CAT_COLORS[0];
+  } else {
+    document.getElementById('linkModalTitle').textContent='Novo link';
+    ['lk_name','lk_url','lk_desc','lk_msg'].forEach(x=>document.getElementById(x).value='');
+    pickedColor.link=CAT_COLORS[0];
+  }
+  pickColor('lk_colorPick','link',pickedColor.link);
+  openModal('modal-link');
+}
+function saveLink(){
+  const name=document.getElementById('lk_name').value.trim();
+  const url=document.getElementById('lk_url').value.trim();
+  if(!name){alert('Informe o nome.');return;}
+  if(!url){alert('Informe a URL.');return;}
+  const obj={name,url,desc:document.getElementById('lk_desc').value.trim(),msg:document.getElementById('lk_msg').value.trim(),color:pickedColor.link};
+  if(editingLinkId) Object.assign(DATA.links.find(x=>x.id===editingLinkId),obj);
+  else DATA.links.push(Object.assign({id:uid('lk')},obj));
+  saveData();closeModal('modal-link');renderLinks();showToast('Link salvo');
+}
+
 /* ── MOVE / DELETE ── */
 function moveItem(list,id,dir){const item=list.find(x=>x.id===id);if(!item)return false;const sc=list.filter(x=>x.cat===item.cat),pos=sc.indexOf(item),t=pos+dir;if(t<0||t>=sc.length)return false;const o=sc[t],ia=list.indexOf(item),oa=list.indexOf(o);list[ia]=o;list[oa]=item;return true;}
 function moveMsg(id,dir){if(moveItem(DATA.msgs,id,dir)){saveData();renderMsgs();}}
@@ -1916,7 +2231,7 @@ function showComparativoPagamento(){const m=DATA.msgs.find(x=>x.id==='m7')||DATA
 function buildColorPicker(containerId,scope){
   document.getElementById(containerId).innerHTML=CAT_COLORS.map(col=>'<button type="button" class="c-swatch" style="background:'+col+';" data-col="'+col+'" onclick="pickColor(\''+containerId+'\',\''+scope+'\',\''+col+'\')"></button>').join('');
 }
-const pickedColor={msg:CAT_COLORS[0],doc:CAT_COLORS[0],page:CAT_COLORS[0]};
+const pickedColor={msg:CAT_COLORS[0],doc:CAT_COLORS[0],page:CAT_COLORS[0],link:CAT_COLORS[0]};
 function pickColor(cid,scope,col){pickedColor[scope]=col;document.querySelectorAll('#'+cid+' .c-swatch').forEach(b=>b.classList.toggle('sel',b.dataset.col===col));}
 
 /* ── MSG MODAL ── */
@@ -2041,7 +2356,7 @@ function val(id){const el=document.getElementById(id);return el?el.value.trim():
 function clearAll(){document.querySelectorAll('#page-pdf input,#page-pdf select').forEach(el=>el.value='');showToast('Formulário limpo');}
 
 /* ── INIT ── */
-loadData();migrateColors();renderMsgs();renderDocs();renderPages();updateStats();
+loadData();migrateColors();renderMsgs();renderDocs();renderPages();renderLinks();updateStats();
 
 /* ══════════════════════════════════════════════════════
    GERADOR DE PDF (mantido da versão anterior)
@@ -2449,4 +2764,5 @@ function generatePDF() {
 
 </div><!-- #main -->
 
-  </body></html>
+
+</body></html>

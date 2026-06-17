@@ -1000,7 +1000,8 @@
     <div class="s-card sc-ec">
       <div class="s-card-hd open" onclick="toggleCard(this)"><h3>Plataforma de E-commerce</h3><span class="ch-sub">Nuvemshop, Shopify, VTEX, WooCommerce…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd open">
-        <div class="field-group"><label>Plataforma</label><select id="ec_platform"><option value="">Selecione…</option><option>Nuvemshop</option><option>Shopify</option><option>VTEX</option><option>WooCommerce</option><option>Loja Integrada</option><option>Tray</option><option>Outra</option></select></div>
+        <div class="field-group"><label>Plataforma</label><select id="ec_platform" onchange="toggleOutro('ec_platform','ec_platform_outro')"><option value="">Selecione…</option><option>Nuvemshop</option><option>Shopify</option><option>VTEX</option><option>WooCommerce</option><option>Loja Integrada</option><option>Tray</option><option value="Outra">Outra</option></select></div>
+        <div class="field-group" id="ec_platform_outro" style="display:none;"><label>Nome da plataforma</label><input type="text" id="ec_platform_nome" placeholder="Ex: Yampi, Nuvei…"/></div>
         <div class="field-group"><label>URL do painel admin</label><input type="url" id="ec_url" placeholder="https://minhaloja.com.br/admin"/></div>
         <div class="field-row"><div class="field-group"><label>E-mail / Login</label><input type="email" id="ec_email" placeholder="email@loja.com.br"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ec_senha"/></div></div>
       </div>
@@ -1008,7 +1009,8 @@
     <div class="s-card sc-em">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>E-mail Profissional</h3><span class="ch-sub">Gmail Workspace, Outlook, Zoho…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
-        <div class="field-group"><label>Provedor</label><select id="em_provider"><option value="">Selecione…</option><option>Google Workspace</option><option>Microsoft 365</option><option>Zoho Mail</option><option>Titan Mail</option><option>Cpanel</option><option>Outro</option></select></div>
+        <div class="field-group"><label>Provedor</label><select id="em_provider" onchange="toggleOutro('em_provider','em_provider_outro')"><option value="">Selecione…</option><option>Google Workspace</option><option>Microsoft 365</option><option>Zoho Mail</option><option>Titan Mail</option><option>Cpanel</option><option value="Outro">Outro</option></select></div>
+        <div class="field-group" id="em_provider_outro" style="display:none;"><label>Nome do provedor</label><input type="text" id="em_provider_nome" placeholder="Ex: Hostinger Mail…"/></div>
         <div class="field-group"><label>E-mail / Login</label><input type="email" id="em_email" placeholder="contato@empresa.com.br"/></div>
         <div class="field-row"><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="em_senha"/></div></div>
       </div>
@@ -1028,7 +1030,8 @@
     <div class="s-card sc-dom">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Domínio</h3><span class="ch-sub">Registro.br, GoDaddy, Cloudflare…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
-        <div class="field-group"><label>Registradora</label><select id="dom_provider"><option value="">Selecione…</option><option>Registro.br</option><option>GoDaddy</option><option>Cloudflare</option><option>Hostinger</option><option>Locaweb</option><option>HostGator</option><option>Outro</option></select></div>
+        <div class="field-group"><label>Registradora</label><select id="dom_provider" onchange="toggleOutro('dom_provider','dom_provider_outro')"><option value="">Selecione…</option><option>Registro.br</option><option>GoDaddy</option><option>Cloudflare</option><option>Hostinger</option><option>Locaweb</option><option>HostGator</option><option value="Outro">Outro</option></select></div>
+        <div class="field-group" id="dom_provider_outro" style="display:none;"><label>Nome da registradora</label><input type="text" id="dom_provider_nome" placeholder="Ex: Namecheap…"/></div>
         <div class="field-group"><label>Domínio</label><input type="text" id="dom_dominio" placeholder="meusite.com.br"/></div>
         <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="dom_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="dom_senha"/></div></div>
       </div>
@@ -1036,16 +1039,6 @@
 
     <div class="f-sub" style="padding:4px 0 2px;">Apps de Marketing</div>
 
-    <div class="s-card sc-fb">
-      <div class="s-card-hd" onclick="toggleCard(this)"><h3>Facebook / Meta</h3><span class="ch-sub">Conta pessoal, Business Manager…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
-      <div class="s-card-bd">
-        <p class="f-sub">Conta Facebook</p>
-        <div class="field-row"><div class="field-group"><label>E-mail <span class="opt">opcional</span></label><input type="text" id="fb_email"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="fb_senha"/></div></div>
-        <div class="f-div"></div><p class="f-sub">Business Manager</p>
-        <div class="field-group"><label>URL Business Manager <span class="opt">opcional</span></label><input type="url" id="fb_bm_url"/></div>
-        <div class="field-group"><label>URL da Página <span class="opt">opcional</span></label><input type="url" id="fb_page"/></div>
-      </div>
-    </div>
     <div class="s-card sc-gg">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>Conta Google</h3><span class="ch-sub">Google Ads, Analytics, Search Console…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
@@ -1058,14 +1051,9 @@
     <div class="s-card sc-erp">
       <div class="s-card-hd" onclick="toggleCard(this)"><h3>ERP</h3><span class="ch-sub">Bling, Olist, outros sistemas…</span><span class="ch-badge">Opcional</span><span class="ch-arr">▼</span></div>
       <div class="s-card-bd">
-        <div class="field-group"><label>ERP utilizado <span class="opt">opcional</span></label><select id="erp_choice"><option value="">Selecione…</option><option>Bling</option><option>Olist</option><option>Tiny</option><option>Omie</option><option>Outro</option></select></div>
-        <div class="f-div"></div><p class="f-sub">Bling</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="bling_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="bling_senha"/></div></div>
-        <div class="f-div"></div><p class="f-sub">Olist</p>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="olist_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="olist_senha"/></div></div>
-        <div class="f-div"></div><p class="f-sub">Outro ERP</p>
-        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="erp_outro_nome"/></div>
-        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="erp_outro_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="erp_outro_senha"/></div></div>
+        <div class="field-group"><label>ERP utilizado <span class="opt">opcional</span></label><select id="erp_choice" onchange="toggleOutro('erp_choice','erp_outro_wrap')"><option value="">Selecione…</option><option>Bling</option><option>Olist</option><option>Tiny</option><option>Omie</option><option value="Outro">Outro</option></select></div>
+        <div class="field-group" id="erp_outro_wrap" style="display:none;"><label>Nome do ERP</label><input type="text" id="erp_outro_nome" placeholder="Ex: Omie, SAP…"/></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="erp_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="erp_senha"/></div></div>
       </div>
     </div>
 
@@ -1082,6 +1070,9 @@
         <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="ml_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="ml_senha"/></div></div>
         <div class="f-div"></div><p class="f-sub">TikTok Shop</p>
         <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="tkt_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="tkt_senha"/></div></div>
+        <div class="f-div"></div><p class="f-sub">Outro Marketplace</p>
+        <div class="field-group"><label>Nome <span class="opt">opcional</span></label><input type="text" id="mkp_outro_nome" placeholder="Ex: Magalu, Americanas…"/></div>
+        <div class="field-row"><div class="field-group"><label>Login <span class="opt">opcional</span></label><input type="text" id="mkp_outro_login"/></div><div class="field-group"><label>Senha <span class="opt">opcional</span></label><input type="text" id="mkp_outro_senha"/></div></div>
       </div>
     </div>
 
@@ -1421,7 +1412,7 @@
 
   <div id="toast"></div>
 <script>
-const AJUDA={whatsappComercial:'(48) 9209-4070',emailComercial:'atendimento@agenciaajuda.com.br',whatsappTecnico:'(48) 9187-7904',emailTecnico:'atendimento@agenciaajuda.com.br',horario:'Seg-Sex, 8h-18h',site:'ajudaecom.com.br',instagram:'@ajudaecommerce',nome:'Ajuda Ecommerce'};
+const AJUDA={whatsappComercial:'(48) 99999-9999',emailComercial:'contato@ajudaecom.com.br',horario:'Seg-Sex, 9h-18h',site:'https://ajudaecom.com.br/projeto/',instagram:'@ajudaecommerce',nome:'Ajuda Ecommerce'};
 const SUPORTE_PLATAFORMA={'Nuvemshop':{canal:'atendimento@nuvemshop.com.br',site:'atendimento.nuvemshop.com.br',horario:'24/7 via chat'},'Shopify':{canal:'support@shopify.com',site:'help.shopify.com',horario:'24/7 via chat'},'VTEX':{canal:'suporte@vtex.com.br',site:'help.vtex.com',horario:'Seg-Sex comercial'},'WooCommerce':{canal:'wordpress.org/support/woocommerce',site:'woocommerce.com/contact-us',horario:'Forum/tickets'},'Loja Integrada':{canal:'ajuda@lojaintegrada.com.br',site:'ajuda.lojaintegrada.com.br',horario:'Seg-Sex comercial'},'Tray':{canal:'atendimento@tray.com.br',site:'atendimento.tray.com.br',horario:'Seg-Sex comercial'}};
 
 // Card colors for messages and docs (no emojis — pure color swatches)
@@ -2372,7 +2363,22 @@ function exportHTML(){
 
 /* ── PDF HELPERS ── */
 function val(id){const el=document.getElementById(id);return el?el.value.trim():'';}
-function clearAll(){document.querySelectorAll('#page-pdf input,#page-pdf select').forEach(el=>el.value='');showToast('Formulário limpo');}
+function valSelect(selectId, outroId){
+  const v=val(selectId);
+  return (v==='Outro'||v==='Outra') ? val(outroId) : v;
+}
+function toggleOutro(selectId, wrapId){
+  const v=document.getElementById(selectId).value;
+  document.getElementById(wrapId).style.display=(v==='Outro'||v==='Outra')?'':'none';
+}
+function clearAll(){
+  document.querySelectorAll('#page-pdf input,#page-pdf select').forEach(el=>el.value='');
+  // Hide all outro fields
+  ['ec_platform_outro','em_provider_outro','dom_provider_outro','erp_outro_wrap'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.style.display='none';
+  });
+  showToast('Formulário limpo');
+}
 
 /* ── INIT ── */
 loadData();migrateColors();renderMsgs();renderDocs();renderPages();renderLinks();renderImages();updateStats();
@@ -2459,9 +2465,13 @@ function generatePDF() {
 
   const drawInfoBlock = (title, rows, accentColor) => {
     const labelH = 10, rowH = 14, blockH = labelH + rows.length*rowH + 6;
-    doc.setFillColor(...C.white); doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3);
-    doc.roundedRect(margin, y, contentW, blockH, 3, 3, 'FD');
-    if (accentColor) { doc.setFillColor(...accentColor); doc.rect(margin, y, contentW, 1.5, 'F'); }
+    const y_start = y;
+    const col = accentColor || C.accent;
+    // Same technique as credential cards: fill with color, white over right portion, redraw border
+    doc.setFillColor(...col); doc.roundedRect(margin, y, contentW, blockH, 3, 3, 'F');
+    doc.setFillColor(...C.white); doc.rect(margin, y+3, contentW, blockH-3, 'F');
+    doc.roundedRect(margin, y+blockH-6, contentW, 6, 3, 3, 'F');
+    doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3); doc.roundedRect(margin, y, contentW, blockH, 3, 3, 'S');
     doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.muted);
     doc.text(title.toUpperCase(), margin+7, y+7);
     const tw = doc.getTextWidth(title.toUpperCase());
@@ -2475,7 +2485,7 @@ function generatePDF() {
       else { doc.setTextColor(...C.dark); doc.text(v||'—', margin+7, ry+5); }
       ry += rowH;
     });
-    y += blockH;
+    y = y_start + blockH;
   };
 
   const drawResumoContatos = () => {
@@ -2485,8 +2495,8 @@ function generatePDF() {
     doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...C.dark);
     doc.text('Resumo do projeto', margin, y); y += 10;
 
-    const ecPlatform = val('ec_platform') || '—';
-    const erpChoice = val('erp_choice') || val('erp_outro_nome') || '—';
+    const ecPlatform = valSelect('ec_platform','ec_platform_nome') || '—';
+    const erpChoice = valSelect('erp_choice','erp_outro_nome') || '—';
     const dateNow = new Date().toLocaleDateString('pt-BR');
 
     const resumoRows = [
@@ -2510,9 +2520,11 @@ function generatePDF() {
     const halfW = (contentW-6)/2;
     const drawSupportColumn = (title, sx, rows) => {
       const labelH = 10, rowH = 14, blockH = labelH + rows.length*rowH + 6;
-      doc.setFillColor(...C.white); doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3);
-      doc.roundedRect(sx, y, halfW, blockH, 3, 3, 'FD');
-      doc.setFillColor(...C.accent); doc.rect(sx, y, halfW, 1.5, 'F');
+      // Same colored-top-strip technique
+      doc.setFillColor(...C.accent); doc.roundedRect(sx, y, halfW, blockH, 3, 3, 'F');
+      doc.setFillColor(...C.white); doc.rect(sx, y+3, halfW, blockH-3, 'F');
+      doc.roundedRect(sx, y+blockH-6, halfW, 6, 3, 3, 'F');
+      doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.3); doc.roundedRect(sx, y, halfW, blockH, 3, 3, 'S');
       doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.dark);
       doc.text(title, sx+7, y+9);
       let ry = y + labelH + 5;
@@ -2540,23 +2552,20 @@ function generatePDF() {
     }
     y += 6;
 
-    checkY(10 + 3*14 + 6 + 10);
+    checkY(10 + 4*14 + 6 + 10);
     doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C.muted);
     doc.text('AJUDA ECOMMERCE', margin, y+6);
     const ajLw = doc.getTextWidth('AJUDA ECOMMERCE');
     doc.setDrawColor(...C.border); doc.setLineWidth(0.3); doc.line(margin+ajLw+5, y+5, margin+contentW, y+5);
     y += 10;
 
-    const comH = drawSupportColumn('Suporte Comercial', margin, [
-      ['WhatsApp', AJUDA.whatsappComercial],['E-mail', AJUDA.emailComercial],['Horário', AJUDA.horario],
-    ]);
-    const tecH = drawSupportColumn('Suporte Técnico', margin+halfW+6, [
-      ['WhatsApp', AJUDA.whatsappTecnico],['E-mail', AJUDA.emailTecnico],['Horário', AJUDA.horario],
-    ]);
-    y = Math.max(comH, tecH) + 6;
-
-    checkY(10 + 2*14 + 6);
-    drawInfoBlock('Ajuda Ecommerce', [['Site', AJUDA.site, true],['Instagram', AJUDA.instagram, false]], C.accent);
+    // Single unified card: Para novos orçamentos + site + instagram
+    drawInfoBlock('Para novos orçamentos', [
+      ['WhatsApp', AJUDA.whatsappComercial, false],
+      ['E-mail', AJUDA.emailComercial, false],
+      ['Horário', AJUDA.horario, false],
+      ['Site', AJUDA.site, true],
+    ], C.accent);
     y += 10;
 
     checkY(60);
@@ -2571,17 +2580,16 @@ function generatePDF() {
 
   const ROW_H=17, FIELD_H=15, ARROW_H=21, CARD_TITLE_H=18, CARD_PAD=8, CARD_GAP=5, TOPIC_H=14, TOPIC_GAP=5, GROUP_GAP=8, SUB_H=10, SUB_PAD=4;
   const calcFieldH = r => { if (Array.isArray(r)) return r.some(f=>f.value)?ROW_H:0; if (!r.value) return 0; return r.value.indexOf('  ->  ')!==-1?ARROW_H:FIELD_H; };
-  const calcCardH = rows => { let h = CARD_TITLE_H; rows.forEach(r=>{h+=calcFieldH(r);}); return h+CARD_PAD; };
+  const calcCardH = rows => { let h = CARD_TITLE_H; rows.forEach(r=>{h+=calcFieldH(r);}); return h+CARD_PAD+CARD_GAP; };
   const calcCompositeH = sections => {
     let h = CARD_TITLE_H;
     sections.forEach(({rows}) => {
-      // Mirror subSection: skip if no values
       if (!rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)) return;
-      h += SUB_H; // header line
+      h += SUB_H;
       rows.forEach(r => { h += calcFieldH(r); });
       h += SUB_PAD;
     });
-    return h + CARD_PAD + 4; // +4 safety buffer
+    return h + CARD_GAP; // exact match: CARD_TITLE_H + content + CARD_GAP
   };
 
   const sectionTitle = label => {
@@ -2595,10 +2603,9 @@ function generatePDF() {
   const sectionCard = (title, color, rows) => {
     if (!rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)) return;
     const h = calcCardH(rows);
-    // Card: colored left strip + white body, single roundedRect border
+    const y_start = y;
     doc.setFillColor(...color); doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
     doc.setFillColor(...C.white); doc.rect(margin+4, y, contentW-4, h, 'F');
-    // Restore white rounded corners on the right side
     doc.roundedRect(margin+contentW-6, y, 6, h, 3, 3, 'F');
     doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.25); doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
     doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.dark); doc.text(title, margin+9, y+10);
@@ -2625,7 +2632,8 @@ function generatePDF() {
         else { doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(...C.dark); doc.text(row.value, margin+9, ry+6); ry += FIELD_H; }
       }
     });
-    y += h + CARD_GAP;
+    // Force y to rect bottom — eliminates divergence
+    y = y_start + h;
   };
 
   const subSection = (title, color, rows) => {
@@ -2656,20 +2664,23 @@ function generatePDF() {
   const compositeCard = (title, color, sections) => {
     if (!sections.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))) return;
     const h = calcCompositeH(sections);
+    const y_start = y;
     // Card: colored left strip + white body, single roundedRect border
     doc.setFillColor(...color); doc.roundedRect(margin, y, contentW, h, 3, 3, 'F');
     doc.setFillColor(...C.white); doc.rect(margin+4, y, contentW-4, h, 'F');
-    // Restore white rounded corners on the right side
     doc.roundedRect(margin+contentW-6, y, 6, h, 3, 3, 'F');
     doc.setDrawColor(...C.cardBdr); doc.setLineWidth(0.25); doc.roundedRect(margin, y, contentW, h, 3, 3, 'S');
     doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...C.dark); doc.text(title, margin+9, y+10);
-    y += CARD_TITLE_H; sections.forEach(s => subSection(s.title, color, s.rows)); y += CARD_GAP - SUB_PAD;
+    y += CARD_TITLE_H;
+    sections.forEach(s => subSection(s.title, color, s.rows));
+    // Force y to exactly y_start + h (rect bottom) — eliminates any divergence
+    y = y_start + h;
   };
 
   const drawCredenciais = () => {
     const blocks = [];
     const ecRows = [
-      { label:'Plataforma', value: val('ec_platform') },
+      { label:'Plataforma', value: valSelect('ec_platform','ec_platform_nome') },
       { label:'URL / Painel Admin', value: val('ec_url') },
       [{ label:'E-mail / Login', value: val('ec_email') }, { label:'Senha', value: val('ec_senha') }],
     ];
@@ -2677,7 +2688,7 @@ function generatePDF() {
       blocks.push({ group:'E-commerce', type:'card', title:'Plataforma de E-commerce', color:C.sections.ecommerce, rows:ecRows });
 
     const emRows = [
-      { label:'Provedor', value: val('em_provider') },
+      { label:'Provedor', value: valSelect('em_provider','em_provider_nome') },
       [{ label:'E-mail / Login', value: val('em_email') }, { label:'Senha', value: val('em_senha') }],
     ];
     if (emRows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value))
@@ -2685,7 +2696,7 @@ function generatePDF() {
 
     const domEmailLogin = val('dom_login') || val('dom_dominio');
     const domRows = [
-      { label:'Registradora', value: val('dom_provider') },
+      { label:'Registradora', value: valSelect('dom_provider','dom_provider_nome') },
       { label:'Domínio', value: val('dom_dominio') },
       [{ label:'E-mail / Login', value: domEmailLogin }, { label:'Senha', value: val('dom_senha') }],
     ];
@@ -2695,17 +2706,11 @@ function generatePDF() {
     const envioSecs = [
       { title:'Melhor Envio', rows:[[{ label:'E-mail / Login', value: val('me_email') }, { label:'Senha', value: val('me_senha') }]] },
       { title:'Correios', rows:[[{ label:'Login / CNPJ', value: val('cor_login') }, { label:'Senha', value: val('cor_senha') }]] },
-      { title:'Outro Transportador', rows:[[{ label:'Transportador', value: val('out_nome') }, { label:'E-mail / Login', value: val('out_login') }], [{ label:'Senha', value: val('out_senha') }]] },
+      { title: val('out_nome')||'Outro Transportador', rows:[[{ label:'E-mail / Login', value: val('out_login') }], [{ label:'Senha', value: val('out_senha') }]] },
     ];
     if (envioSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
       blocks.push({ group:'Envio', type:'composite', title:'Meios de Envio', color:C.sections.envio, sections:envioSecs });
 
-    const fbSecs = [
-      { title:'Conta Facebook', rows:[[{ label:'E-mail / Telefone', value: val('fb_email') }, { label:'Senha', value: val('fb_senha') }]] },
-      { title:'Business Manager', rows:[[{ label:'URL Business Manager', value: val('fb_bm_url') }, { label:'URL da Página', value: val('fb_page') }]] },
-    ];
-    if (fbSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
-      blocks.push({ group:'Meta e Google', type:'composite', title:'Facebook / Meta', color:C.sections.facebook, sections:fbSecs });
 
     const ggSecs = [];
     if (val('gg_email') || val('gg_senha')) {
@@ -2716,13 +2721,13 @@ function generatePDF() {
       ]});
     }
     if (ggSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
-      blocks.push({ group:'Meta e Google', type:'composite', title:'Conta Google', color:C.sections.google, sections:ggSecs });
+      blocks.push({ group:'Google', type:'composite', title:'Conta Google', color:C.sections.google, sections:ggSecs });
 
-    const erpSecs = [
-      { title:'Bling', rows:[[{ label:'E-mail / Login', value: val('bling_login') }, { label:'Senha', value: val('bling_senha') }]] },
-      { title:'Olist', rows:[[{ label:'E-mail / Login', value: val('olist_login') }, { label:'Senha', value: val('olist_senha') }]] },
-      { title:'Outro ERP', rows:[[{ label:'Sistema', value: val('erp_outro_nome') }, { label:'E-mail / Login', value: val('erp_outro_login') }], [{ label:'Senha', value: val('erp_outro_senha') }]] },
-    ];
+    const erpSecs = [];
+    if (val('erp_choice')) {
+      const erpTitle = valSelect('erp_choice','erp_outro_nome');
+      erpSecs.push({ title: erpTitle, rows:[[{ label:'E-mail / Login', value: val('erp_login') }, { label:'Senha', value: val('erp_senha') }]] });
+    }
     if (erpSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
       blocks.push({ group:'ERP', type:'composite', title:'ERP', color:C.sections.erp, sections:erpSecs });
 
@@ -2732,6 +2737,8 @@ function generatePDF() {
       { title:'Mercado Livre', rows:[[{ label:'E-mail / Login', value: val('ml_login') }, { label:'Senha', value: val('ml_senha') }]] },
       { title:'TikTok Shop', rows:[[{ label:'E-mail / Login', value: val('tkt_login') }, { label:'Senha', value: val('tkt_senha') }]] },
     ];
+    if (val('mkp_outro_login')||val('mkp_outro_senha'))
+      mktpSecs.push({ title: val('mkp_outro_nome')||'Outro Marketplace', rows:[[{ label:'E-mail / Login', value: val('mkp_outro_login') }, { label:'Senha', value: val('mkp_outro_senha') }]] });
     if (mktpSecs.some(s=>s.rows.some(r=>Array.isArray(r)?r.some(f=>f.value):r.value)))
       blocks.push({ group:'Marketplace', type:'composite', title:'Marketplace', color:C.sections.marketplace, sections:mktpSecs });
 
@@ -2743,34 +2750,36 @@ function generatePDF() {
     doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(...C.dark);
     doc.text('Credenciais', margin, y); y += 12;
 
-    const PAGE_BOTTOM = pageH - 25;
-    const queued = blocks.map(b => ({ block:b, h: b.type==='card'?calcCardH(b.rows):calcCompositeH(b.sections) }));
-    let pageBlocks = [], pageH_used = 0, lastGroup = null, i = 0;
-
-    const flushPage = () => {
-      if (pageBlocks.length === 0) return;
-      let prevGroup = null;
-      pageBlocks.forEach((it, idx) => {
-        const b = it.block;
-        if (b.group !== prevGroup) { if (prevGroup !== null) y += GROUP_GAP; sectionTitle(b.group); y += TOPIC_GAP; prevGroup = b.group; }
-        if (b.type === 'card') sectionCard(b.title, b.color, b.rows); else compositeCard(b.title, b.color, b.sections);
-        const next = pageBlocks[idx+1];
-        if (next && next.block.group !== b.group) y -= CARD_GAP;
-      });
-      pageBlocks = []; pageH_used = 0; lastGroup = null;
+    const PAGE_BOTTOM = pageH - 30;
+    const needsNewPage = (h) => y + h > PAGE_BOTTOM;
+    const credContinuation = () => {
+      addPage(); drawTopBand(); y = 32;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
+      doc.text('03  ·  CREDENCIAIS E ACESSOS  (continuação)', margin, y); y += 12;
     };
 
-    while (i < queued.length) {
-      const it = queued[i], b = it.block; let addH = it.h;
-      if (b.group !== lastGroup) { if (lastGroup !== null) addH += GROUP_GAP; addH += TOPIC_H + TOPIC_GAP; }
-      if (pageBlocks.length > 0 && (y + pageH_used + addH) > PAGE_BOTTOM) {
-        flushPage(); addPage(); drawTopBand(); y = 32;
-        doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C.muted);
-        doc.text('03  ·  CREDENCIAIS E ACESSOS  (continuação)', margin, y); y += 12; continue;
+    let prevGroup = null;
+    blocks.forEach(b => {
+      const cardH = b.type==='card' ? calcCardH(b.rows) : calcCompositeH(b.sections);
+      // Height needed for group header + card
+      const groupH = (b.group !== prevGroup) ? (prevGroup !== null ? GROUP_GAP : 0) + TOPIC_H + TOPIC_GAP : 0;
+      const totalH = groupH + cardH;
+
+      if (needsNewPage(totalH)) {
+        credContinuation();
+        prevGroup = null; // redraw group header on new page
       }
-      pageBlocks.push(it); pageH_used += addH; lastGroup = b.group; i++;
-    }
-    flushPage();
+
+      if (b.group !== prevGroup) {
+        if (prevGroup !== null) y += GROUP_GAP;
+        sectionTitle(b.group);
+        y += TOPIC_GAP;
+        prevGroup = b.group;
+      }
+
+      if (b.type === 'card') sectionCard(b.title, b.color, b.rows);
+      else compositeCard(b.title, b.color, b.sections);
+    });
   };
 
   drawCover(); drawMensagem(); drawResumoContatos(); drawCredenciais();

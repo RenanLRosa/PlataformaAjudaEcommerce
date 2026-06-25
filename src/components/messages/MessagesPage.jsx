@@ -98,13 +98,25 @@ export default function MessagesPage({ data, adminMode, actions, showToast }) {
       </div>
 
       {!adminMode && (
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Buscar mensagem…"
-          className="px-3 py-2 border border-neutral-300 rounded-md text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
-        />
+        <div className="relative">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Buscar mensagem…"
+            className="w-full pl-9 pr-4 py-2.5 text-sm rounded-xl outline-none transition-all"
+            style={{
+              border: '1px solid #D6E4EF',
+              background: '#fff',
+              color: '#002B4D',
+            }}
+            onFocus={e => { e.target.style.borderColor = '#A0E800'; e.target.style.boxShadow = '0 0 0 3px rgba(160,232,0,0.12)'; }}
+            onBlur={e => { e.target.style.borderColor = '#D6E4EF'; e.target.style.boxShadow = 'none'; }}
+          />
+        </div>
       )}
 
       {adminMode && (
@@ -133,11 +145,13 @@ export default function MessagesPage({ data, adminMode, actions, showToast }) {
         </div>
       )}
 
-      <div className="flex gap-0 flex-wrap border-b border-neutral-200">
+      <div className="flex gap-0 flex-wrap border-b border-[#E8EEF4]">
         <button
           onClick={() => setActiveTab('todas')}
-          className={`px-3 py-1.5 text-xs font-semibold border-b-2 -mb-px transition-colors ${
-            activeTab === 'todas' ? 'text-blue-600 border-blue-600' : 'text-neutral-500 border-transparent hover:text-neutral-700'
+          className={`px-3 py-2 text-[12px] font-bold border-b-2 -mb-px transition-colors ${
+            activeTab === 'todas'
+              ? 'text-[#A0E800] border-[#A0E800]'
+              : 'text-neutral-400 border-transparent hover:text-neutral-600'
           }`}
         >
           Todas
@@ -146,8 +160,10 @@ export default function MessagesPage({ data, adminMode, actions, showToast }) {
           <button
             key={cat.id}
             onClick={() => setActiveTab(cat.id)}
-            className={`px-3 py-1.5 text-xs font-semibold border-b-2 -mb-px transition-colors ${
-              activeTab === cat.id ? 'text-blue-600 border-blue-600' : 'text-neutral-500 border-transparent hover:text-neutral-700'
+            className={`px-3 py-2 text-[12px] font-bold border-b-2 -mb-px transition-colors ${
+              activeTab === cat.id
+                ? 'text-[#A0E800] border-[#A0E800]'
+                : 'text-neutral-400 border-transparent hover:text-neutral-600'
             }`}
           >
             {cat.label}
@@ -162,13 +178,21 @@ export default function MessagesPage({ data, adminMode, actions, showToast }) {
           .filter((s) => s.show)
           .map(({ cat, items, visibleItems }) => (
             <div key={cat.id} className="flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-wide text-neutral-500 mt-2">
-                {cat.section}
-                <span className="flex-1 h-px bg-neutral-200" />
+              <div className="flex items-center gap-3 mt-4">
+                <div
+                  className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md"
+                  style={{ background: '#002B4D', color: '#A0E800', letterSpacing: '0.12em' }}
+                >
+                  {cat.section}
+                </div>
+                <span className="flex-1 h-px" style={{ background: 'linear-gradient(to right, #E8EEF4, transparent)' }} />
                 {adminMode && (
                   <button
                     onClick={() => openNewMsg(cat.id)}
-                    className="text-[11px] font-semibold px-2 py-0.5 border border-neutral-300 rounded text-neutral-600 hover:border-blue-600 hover:text-blue-600"
+                    className="text-[11px] font-bold px-2.5 py-1 rounded-md border transition-colors"
+                    style={{ borderColor: '#D6E4EF', color: '#1A6AA8' }}
+                    onMouseOver={e => { e.currentTarget.style.borderColor = '#A0E800'; e.currentTarget.style.color = '#002B4D'; e.currentTarget.style.background = '#A0E80011'; }}
+                    onMouseOut={e => { e.currentTarget.style.borderColor = '#D6E4EF'; e.currentTarget.style.color = '#1A6AA8'; e.currentTarget.style.background = ''; }}
                   >
                     + Mensagem
                   </button>

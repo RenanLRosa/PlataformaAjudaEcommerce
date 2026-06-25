@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen bg-[#F4F7FA] overflow-hidden">
+    <div className="flex h-screen bg-[#EFF4F9] overflow-hidden">
       <Sidebar
         currentPage={currentPage}
         onNavigate={setCurrentPage}

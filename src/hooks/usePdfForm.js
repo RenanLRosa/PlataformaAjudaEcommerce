@@ -7,10 +7,15 @@ const emptyForm = {
   ec_platform: '',
   ec_platform_nome: '',
   ec_url: '',
+  ec_login_tipo: 'direto', // 'direto' | 'parceiros'
   ec_email: '',
   ec_senha: '',
+  ec_suporte_canal: '',
+  ec_suporte_link: '',
+  ec_suporte_horario: '',
   em_provider: '',
   em_provider_nome: '',
+  em_login_tipo: 'direto', // 'direto' | 'cliente'
   em_email: '',
   em_senha: '',
   me_email: '',
@@ -27,6 +32,10 @@ const emptyForm = {
   dom_senha: '',
   gg_email: '',
   gg_senha: '',
+  // Redes sociais (Facebook é opcional)
+  fb_email: '',
+  fb_senha: '',
+  ig_usuario: '',
   erp_choice: '',
   erp_outro_nome: '',
   erp_login: '',

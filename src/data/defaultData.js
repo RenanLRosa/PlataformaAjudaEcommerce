@@ -207,46 +207,6 @@ export const DEFAULT_MSGS = [
     "title": "Aprovação de Etapa",
     "sub": "Solicitar aprovação de layout ou etapa",
     "text": "Olá, [NOME]! 🎨\n\nA etapa de [NOME DA ETAPA] está pronta para aprovação!\n\n🔗 Link para visualização: [LINK]\n\nPor favor, revise e nos diga:\n👍 Aprovado — seguimos para a próxima etapa\n✏️ Solicitar ajustes — nos informe o que alterar\n\nAguardamos seu retorno em até [PRAZO] para manter o cronograma. 📅"
-  },
-  {
-    "id": "m16",
-    "cat": "suporte",
-    "icon": "🛠️",
-    "color": "#1e3a5f",
-    "full": false,
-    "title": "Abertura de Chamado de Suporte",
-    "sub": "Confirmação ao receber solicitação de suporte",
-    "text": "Olá, [NOME]! 👋\n\nRecebemos sua solicitação de suporte. ✅\n\n📋 *Protocolo:* #[NÚMERO]\n🔎 *Assunto:* [ASSUNTO]\n⏱️ *Prazo de retorno:* até [PRAZO]\n\nNossa equipe técnica já está analisando. Assim que tivermos novidades, te aviso aqui!\n\nAjuda Ecommerce — Suporte Técnico"
-  },
-  {
-    "id": "m17",
-    "cat": "suporte",
-    "icon": "✔️",
-    "color": "#1e3a5f",
-    "full": false,
-    "title": "Resolução de Chamado",
-    "sub": "Informar que o problema foi resolvido",
-    "text": "Olá, [NOME]! 😊\n\nO problema reportado foi resolvido com sucesso! ✅\n\n🔧 *O que foi feito:* [DESCRIÇÃO DA SOLUÇÃO]\n\nPor favor, verifique se está tudo funcionando corretamente e nos informe.\n\nQualquer outra dúvida, estamos à disposição!\nEquipe Ajuda Ecommerce 🚀"
-  },
-  {
-    "id": "m18",
-    "cat": "cobranca",
-    "icon": "💰",
-    "color": "#9f1239",
-    "full": false,
-    "title": "Envio de Proposta",
-    "sub": "Encaminhar proposta comercial",
-    "text": "Olá, [NOME]! 😊\n\nConforme conversamos, segue nossa proposta para o seu projeto:\n\n📎 [LINK OU ANEXO DA PROPOSTA]\n\n📋 *Resumo:*\n• Serviço: [DESCRIÇÃO]\n• Investimento: R$ [VALOR]\n• Prazo de entrega: [PRAZO]\n• Forma de pagamento: [FORMA]\n\nFicamos à disposição para esclarecer qualquer dúvida!\n\nAjuda Ecommerce"
-  },
-  {
-    "id": "m19",
-    "cat": "cobranca",
-    "icon": "🔔",
-    "color": "#9f1239",
-    "full": false,
-    "title": "Lembrete de Pagamento",
-    "sub": "Cobrar pagamento de forma gentil",
-    "text": "Olá, [NOME]! Como vai?\n\nPassando para lembrar que temos um pagamento pendente:\n\n💳 *Referente a:* [SERVIÇO]\n💰 *Valor:* R$ [VALOR]\n📅 *Vencimento:* [DATA]\n\nChave PIX: [CHAVE PIX]\nOu acesse: [LINK DO BOLETO]\n\nEm caso de dúvidas, estamos à disposição! 😊"
   }
 ];
 
